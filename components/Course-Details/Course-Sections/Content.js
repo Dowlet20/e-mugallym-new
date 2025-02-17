@@ -24,7 +24,6 @@ const Content = ({ topics, courseSlug, course_duration }) => {
                   <button
                     className={`accordion-button ${
                       !innerIndex===0 ? "collapsed" : ""
-                      //item.collapsed
                     }`}
                     type="button"
                     data-bs-toggle="collapse"
@@ -53,11 +52,13 @@ const Content = ({ topics, courseSlug, course_duration }) => {
                           <Link href={`/lesson/${list.slug}/${courseSlug}`}>
                             <div className="course-content-left">
                               {/* list.playIcon */}
-                              {true ? (
-                                <i className="feather-play-circle"></i>
-                              ) : (
-                                <i className="feather-file-text"></i>
-                              )}
+                              <i
+                                  className={`feather-${
+                                    list?.type !=="video"
+                                      ? "file-text"
+                                      : "play-circle"
+                                  }`}
+                                ></i>
                               <span className="text">{list.title}</span>
                             </div>
                             {/* list.status */}
@@ -66,11 +67,6 @@ const Content = ({ topics, courseSlug, course_duration }) => {
                                 <span className="min-lable">
                                   {list.lesson_duration}
                                 </span>
-                                {/* <span className="rbt-badge variation-03 bg-primary-opacity">
-                                  <i className="feather-eye"></i>
-                                  <span> </span>  
-                                  Gysgaça
-                                </span> */}
                               </div>
                             ) : (
                               <div className="course-content-right">
