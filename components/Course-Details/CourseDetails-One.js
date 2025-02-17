@@ -3,20 +3,16 @@ import CourseBanner from "./Course-Sections/Course-Banner";
 import CourseMenu from "./Course-Sections/Course-Menu";
 import Instructor from "./Course-Sections/Instructor";
 import Overview from "./Course-Sections/Overview";
+import Requirements from "./Course-Sections/Requirements";
 
 const CourseDetailsOne = ({ checkMatchCourses, course }) => {
   
-  
+  console.log(course?.requirements);
 
   return (
     <>
       <div className="col-lg-12">
         <div className="course-details-content">
-          <div className="rbt-course-feature-box rbt-shadow-box thuumbnail">
-            {checkMatchCourses.courseImg && (
-              <CourseBanner bannerImg={course.thumbnail ? course.thumbnail : checkMatchCourses.courseImg} course={course} />
-            )}
-          </div>
           <div className="rbt-inner-onepage-navigation sticky-top mt--30">
             <CourseMenu />
           </div>
@@ -29,6 +25,19 @@ const CourseDetailsOne = ({ checkMatchCourses, course }) => {
           >
            <Content course_duration={course?.course_duration}  topics={course?.topics} courseSlug={course?.slug}  />
           </div>
+
+          <div
+            className="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30"
+            id="details"
+          >
+            <div className="row g-5">
+              <Requirements
+                description={course?.description}
+                requirements={course?.requirements}
+              />
+            </div>
+          </div>
+
           <div
             className="rbt-instructor rbt-shadow-box intructor-wrapper mt--30"
             id="intructor"

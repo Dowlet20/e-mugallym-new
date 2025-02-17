@@ -5,8 +5,7 @@ import Link from "next/link";
 const CourseBreadcrumb = ({ getMatchCourse, course }) => {
   return (
     <>
-      
-      <div className="col-lg-8">
+      <div className="col-lg-7">
         <div className="content text-start">
           <ul className="page-list">
             <li className="rbt-breadcrumb-item">
@@ -50,6 +49,18 @@ const CourseBreadcrumb = ({ getMatchCourse, course }) => {
               {course?.language?.title}
             </li>
           </ul>
+        </div>
+      </div>
+      <div className="col-lg-5 mt-lg-0 mt--25">
+        <div className="course-sidebar sticky-top rbt-shadow-box course-sidebar-top">
+          <div className="inner">
+          <Image
+            width={800}
+            height={660}
+            src={course?.thumbnail ? course?.thumbnail : "/images/banner/gallery-banner-03.jpg"}
+            alt={course?.source?.title}
+          />
+          </div>
         </div>
       </div>
     </>
