@@ -20,10 +20,10 @@ import axiosInstance from "@/utils/axiosInstance";
 import { Ripple } from "react-css-spinners";
 
 const SingleProfile = ({ getParams }) => {
-  const [user, setUser] = useState({});
+  const [source, setSource] = useState({});
   const [courses, setCourses] = useState([]);
   const router = useRouter();
-  const postId = parseInt(getParams.profileId);
+  const postId = getParams.profileId;
   let getCourse;
   const [loading, setLoading] = useState(true);
 
@@ -35,10 +35,10 @@ const SingleProfile = ({ getParams }) => {
     const fetchData = async () => {
       try {
         
-        const response_user = await axiosInstance_user.get(`/user/${postId}`);
-        setUser(response_user.data);
+        const response_s = await axiosInstance.get(`/source/${postId}`);
+        setSource(response_s.data);
 
-        const response = await axiosInstance.get(`/courses/?user=${postId}`);
+        const response = await axiosInstance.get(`/courses/?source=${postId}`);
         setCourses(response.data);
         setLoading(false);
 
@@ -79,25 +79,19 @@ const SingleProfile = ({ getParams }) => {
           <div className="rbt-dashboard-area rbt-section-overlayping-top rbt-section-gapBottom">
             <div className="container">
               <div className="row">
-                <UserProfile checkMatchProfile={checkMatchProfile} user={user} />
-                <Biography user={user} checkMatchProfile={checkMatchProfile} />
+                <UserProfile checkMatchProfile={checkMatchProfile} source={source} />
+                <Biography source={source} checkMatchProfile={checkMatchProfile} />
               </div>
               <div className="rbt-profile-course-area mt--60">
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="sction-title">
                       <h2 className="rbt-title-style-3">
-                        Mugallymyň beýleki kurslary
+                        Çeşmä degişli beýleki kurslar
                       </h2>
                     </div>
                   </div>
                 </div>
-                {/* <div className="row g-5 mt--5">
-                  {checkMatchProfile &&
-                    checkMatchProfile.relatedCourse.map((data, index) => (
-                      <UserCourses {...data} key={index} relatedCourse={data} />
-                    ))}
-                </div> */}
                 <div className="row g-5 mt--5">
                   <UserCourses {...courses} key={"ssss"} courses={courses} />
                 </div>

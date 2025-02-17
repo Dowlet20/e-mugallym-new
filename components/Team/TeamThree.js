@@ -91,8 +91,7 @@ const TeamThree = () => {
                           textOverflow: 'ellipsis',
                           lineHeight: '1.5em'
                         }}>
-                          {/* {user?.biography}  */}
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Quisque feugiat metus ut orci placerat, nec rutrum eros tempus. Fusce at magna id velit luctus pretium. Donec vehicula, orci eu iaculis vehicula, risus leo maximus elit, vel egestas erat mi ut velit. Sed aliquet suscipit sollicitudin. Phasellus convallis arcu vel purus efficitur, sed eleifend libero tincidunt. Sed vitae ex ut nisi suscipit condimentum id ac justo. Etiam aliquam gravida felis. Suspendisse potenti. Aenean a suscipit orci. Vivamus tempus sapien in lectus sollicitudin, ut facilisis arcu porttitor.
+                          {source?.description} 
                         </div>
                       </div>
                     </div>

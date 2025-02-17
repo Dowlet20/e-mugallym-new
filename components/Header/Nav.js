@@ -25,6 +25,9 @@ const Nav = () => {
           <Link
             className={isActive("/kitaphana") ? "active" : ""}
             href="/kitaphana"
+            onClick={(e) => {
+              e.preventDefault(); 
+            }}
             >
               Kitaphana
           </Link>

@@ -43,6 +43,8 @@ const LessonPage = () => {
     }
   }, []);
 
+  console.log(lesson)
+
   if (loading) {
     return (
       <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
@@ -61,46 +63,27 @@ const LessonPage = () => {
       <div className="rbt-lesson-area bg-color-white">
         <div className="rbt-lesson-content-wrapper">
           <div className="rbt-lesson-leftsidebar">
-            <LessonSidebar course_slug={course_slug} lesson_slug={lesson_slug} topic_id={lesson?.topic} />
+            <LessonSidebar course_slug={course_slug} lesson_slug={lesson_slug} topic_id={lesson?.topic} type={lesson?.type} />
           </div>
 
           <div className="rbt-lesson-rightsidebar overflow-hidden lesson-video">
             <LessonTop lesson_title={lesson_title} course_slug={course_slug} />
             <div className="inner">
               <div className="plyr__video-embed rbtplayer">
-              <ReactPlayer
-                url={lesson_slug ? `${base_URL}lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
-                width="100%"
-                height="100%"
-                playing={false} // Start playing immediately
-                controls={true} // Show controls (play/pause, volume, etc.)
-                light={false} // Don't show the thumbnail if video is playable
-              />
-                {/* <CldVideoPlayer  we have lazy load
-                  id="course"
-                  width={'1920'}
-                  height={'1080'}
-                  style={{ minHeight: "615px" }}
-                  src={lesson_slug ? `${base_URL}api/lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
-                /> */}
-                {/* <iframe
-                  className="w-100"
-                  src={lesson_slug ? `${base_URL}api/lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
-                  style={{ minHeight: "615px" }}
-                  crossOrigin="anonymous"  // Add this attribute
-                ></iframe> */}
-              </div>
-              <div className="content">
-                <div className="section-title">
-                  <h4>Kurs barada</h4>
-                  <p>
-                  Geliň geçmişiň iň uly hitlerini seljereliň we nämäni öwreneliň
-                    bu ýollary şeýle aýratynlaşdyrýar
-                  </p>
-                </div>
+              {lesson?.type === "video" ? (
+                <ReactPlayer
+                  url={lesson_slug ? `${base_URL}lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
+                  width="100%"
+                  height="100%"
+                  playing={false} 
+                  controls={true} 
+                  light={false}
+                />
+              ) : 
+              (<>
+              </>)}
               </div>
             </div>
-            {/* <LessonPagination urlPrev="#" urlNext="/lesson-intro" /> */}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import axiosInstance from "@/utils/axiosInstance";
 
-const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
+const LessonSidebar = ({course_slug, lesson_slug, topic_id, type}) => {
   const [activeTab, setActiveTab] = useState(false);
   const [topics, setTopics] = useState([]);
   useEffect(()=>{
@@ -89,20 +89,14 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
                               onClick={() => setActiveTab(topic?.id)}
                             >
                               <div className="course-content-left">
-                                {/* {innerData.iconHelp ? (
-                                  <i className="feather-help-circle"></i>
-                                ) : (
+                                {type==="video" ? (
                                   <i
-                                    className={`feather-${
-                                      innerData.iconFile
-                                        ? "file-text"
-                                        : "play-circle"
-                                    }`}
+                                    className="feather-play-circle"
                                   ></i>
-                                )} */}
-                                <i
-                                  className={`feather-play-circle`}
-                                ></i>
+
+                                ) : (
+                                  <></>
+                                )}
                                 <span className="text">
                                   {lesson.title}
                                   <span className="min-lable ml--15">

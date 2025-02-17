@@ -9,7 +9,7 @@ const Profile = ({ params }) => {
 
   useEffect(() => {
     if (postId === undefined) {
-      router.push("/profile/1");
+      router.push("/");
     }
   }, []);
 };
