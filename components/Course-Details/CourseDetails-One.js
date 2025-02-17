@@ -6,13 +6,15 @@ import Overview from "./Course-Sections/Overview";
 
 const CourseDetailsOne = ({ checkMatchCourses, course }) => {
   
+  
+
   return (
     <>
       <div className="col-lg-12">
         <div className="course-details-content">
           <div className="rbt-course-feature-box rbt-shadow-box thuumbnail">
             {checkMatchCourses.courseImg && (
-              <CourseBanner bannerImg={course.thumbnail ? course.thumbnail : checkMatchCourses.courseImg} />
+              <CourseBanner bannerImg={course.thumbnail ? course.thumbnail : checkMatchCourses.courseImg} course={course} />
             )}
           </div>
           <div className="rbt-inner-onepage-navigation sticky-top mt--30">

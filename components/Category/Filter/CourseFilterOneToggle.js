@@ -45,7 +45,7 @@ const CourseFilterOneToggle = ({ course, start, end }) => {
             >
               <div className="rbt-card-img">
                 <Link href={`/course-details/${data?.slug}`}>
-                  <div style={{ height: '244px', overflow: 'hidden', position: 'relative' }}>
+                  <div style={{ height: toggle ? '244px' : '304px', overflow: 'hidden', position: 'relative' }}>
                     <Image
                       src={data?.thumbnail ? data?.thumbnail : "/images/course/course-01.jpg"}
                       alt="Card image"

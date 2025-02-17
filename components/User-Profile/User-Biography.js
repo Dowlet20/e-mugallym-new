@@ -7,13 +7,14 @@ import awardImg from "../../public/images/icons/card-icon-1.png";
 
 
 const Biography = ({ checkMatchProfile, source }) => {
+  console.log(source?.description)
   return (
     <>
       <div className="col-lg-12 mt--30">
         <div className="profile-content rbt-shadow-box" >
           <h4 className="rbt-title-style-3">Çeşme barada</h4>
           <div className="row g-5">
-            <div className="col-lg-8">
+            <div className="col-lg-12">
               <p className="mt--10 mb--20">
                 {source?.description}
               </p>

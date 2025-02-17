@@ -26,9 +26,11 @@ const CourseFilteTwoTogglePage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedValues, setSelectedValues] = useState([]);
   const [selectedLevels, setSelectedLevels] = useState([]);
+  const [selectedSources, setSelectedSources] = useState([]);
 
   let category="";
   let level="";
+  let source="";
 
   selectedValues.forEach((x,i)=>{
     if (i !== selectedValues.length-1) {
@@ -45,6 +47,15 @@ const CourseFilteTwoTogglePage = () => {
     }
     else {
       level=level+x;
+    }
+  });
+
+  selectedSources.forEach((x,i)=>{
+    if (i !== selectedSources.length-1) {
+      source=source+x+",";
+    }
+    else {
+      source=source+x;
     }
   });
 
@@ -66,7 +77,7 @@ const CourseFilteTwoTogglePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url =`/courses/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}`;
+        const url =`/courses/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && source ? `&source=${source}` : !search && !level && !category && source ? `?source=${source}` : ""}`;
         const response = await axiosInstance.get(url);
         const allCourse = response.data;
         setCourse(allCourse);
@@ -77,7 +88,7 @@ const CourseFilteTwoTogglePage = () => {
       }
     }
     fetchData();
-  }, [setTotalPages, setCourse, search, category,  level]);
+  }, [setTotalPages, setCourse, search, category,  level, source]);
   
   
 
@@ -107,6 +118,7 @@ const CourseFilteTwoTogglePage = () => {
             setSearch={setSearch}
             setSelectedValues={setSelectedValues}
             setSelectedLevels={setSelectedLevels}
+            setSelectedSources={setSelectedSources}
           />
           <div className="rbt-section-overlayping-top rbt-section-gapBottom">
             <div className="inner">

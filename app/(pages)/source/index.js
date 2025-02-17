@@ -87,7 +87,7 @@ const SingleProfile = ({ getParams }) => {
                   <div className="col-lg-12">
                     <div className="sction-title">
                       <h2 className="rbt-title-style-3">
-                        Çeşmä degişli beýleki kurslar
+                        Çeşmä degişli kurslar
                       </h2>
                     </div>
                   </div>

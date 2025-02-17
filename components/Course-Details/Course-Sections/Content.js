@@ -50,7 +50,7 @@ const Content = ({ topics, courseSlug, course_duration }) => {
                       {item?.lessons?.map((list, subIndex) => (
                         <li key={subIndex}>
                           <Link href={`/lesson/${list.slug}/${courseSlug}`}>
-                            <div className="course-content-left">
+                            <div className="course-content-left" style={{ width: '85%' }}>
                               {/* list.playIcon */}
                               <i
                                   className={`feather-${
@@ -61,7 +61,6 @@ const Content = ({ topics, courseSlug, course_duration }) => {
                                 ></i>
                               <span className="text">{list.title}</span>
                             </div>
-                            {/* list.status */}
                             {true ? (
                               <div className="course-content-right">
                                 <span className="min-lable">

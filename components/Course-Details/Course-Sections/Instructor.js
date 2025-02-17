@@ -35,24 +35,23 @@ const Instructor = ({ checkMatchCourses, course }) => {
                 </span>
               </div>
               <div className="content">
-                  <div className="description">
-                    <div style={{
-                      width: '100%', 
-                      height: '7.5em',
-                      overflow: 'hidden', 
-                      display: '-webkit-box',
-                      WebkitBoxOrient: 'vertical',
-                      WebkitLineClamp: 5,
-                      textOverflow: 'ellipsis',
-                      lineHeight: '1.5em',
-                  }}>
-                    {/* {course?.user?.biography} */}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Quisque feugiat metus ut orci placerat, nec rutrum eros tempus. Fusce at magna id velit luctus pretium. Donec vehicula, orci eu iaculis vehicula, risus leo maximus elit, vel egestas erat mi ut velit. Sed aliquet suscipit sollicitudin. Phasellus convallis arcu vel purus efficitur, sed eleifend libero tincidunt. Sed vitae ex ut nisi suscipit condimentum id ac justo. Etiam aliquam gravida felis. Suspendisse potenti. Aenean a suscipit orci. Vivamus tempus sapien in lectus sollicitudin, ut facilisis arcu porttitor.
-                  </div>
+                <div className="description">
+                  <div style={{
+                    width: '100%', 
+                    height: '7.5em',
+                    overflow: 'hidden', 
+                    display: '-webkit-box',
+                    WebkitBoxOrient: 'vertical',
+                    WebkitLineClamp: 5,
+                    textOverflow: 'ellipsis',
+                    lineHeight: '1.5em',
+                }}>
+                  {course?.source?.description}
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </>
   );

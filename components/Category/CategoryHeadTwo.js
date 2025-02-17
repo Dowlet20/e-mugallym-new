@@ -9,7 +9,7 @@ import CategoryBanner from "./Category-Banner";
 import CourseFilterTwo from "./Filter/CourseFilterTwo";
 import { useAppContext } from "@/context/Context";
 
-const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLevels }) => {
+const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLevels, setSelectedSources }) => {
   const pathname = usePathname();
   const { toggle, setToggle } = useAppContext();
   const [filterToggle, setFilterToggle] = useState(true);
@@ -112,6 +112,7 @@ const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLe
                 <CourseFilterTwo
                   setSelectedValues={setSelectedValues}
                   setSelectedLevels={setSelectedLevels}
+                  setSelectedSources={setSelectedSources}
                 />
               </div>
             </div>

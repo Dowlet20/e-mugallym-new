@@ -1,12 +1,8 @@
 "use client";
 import {useEffect, useState} from "react";
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
-import LessonPagination from "@/components/Lesson/LessonPagination";
 import LessonTop from "@/components/Lesson/LessonTop";
 import axiosInstance from "@/utils/axiosInstance";
-import Link from "next/link";
-import videojs from 'video.js'
-import {useRouter} from "next/navigation";
 import { useParams } from "next/navigation";
 import React from "react";
 import { base_URL } from "@/utils/axiosInstance";
@@ -14,6 +10,66 @@ import { Ripple } from "react-css-spinners";
 
 import dynamic from 'next/dynamic'
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+
+const DownloadButton = ({ fileUrl }) => {
+
+  const buttonStyle = {
+      background: 'linear-gradient(45deg, #2f57ef, #1a3e9e)',
+      color: 'white',
+      border: 'none',
+      borderRadius: '8px', 
+      padding: '12px 24px',
+      fontSize: '1.8rem',
+      cursor: 'pointer',
+      transition: 'background 0.3s, transform 0.2s',
+      display: 'inline-block',
+
+    };
+
+  const handleMouseOver = (e) => {
+    e.currentTarget.style.background = '#2f57ef'; 
+  };
+
+  const handleMouseOut = (e) => {
+      e.currentTarget.style.background = '#2f57ef';
+  };
+
+  const downloadFile = async () => {
+      try {
+          const response = await fetch(fileUrl);
+          
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'downloaded_file.html'; 
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url); 
+      } catch (error) {
+          console.error('Error downloading the file:', error);
+      }
+  };
+
+  return (
+    <div className="flex items-center justify-content-center m-5">
+      <button 
+        style={buttonStyle}
+        onClick={downloadFile}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+      >
+          Faýly ýükläň
+      </button>
+    </div>
+  );
+};
 
 const LessonPage = () => {
   const params = useParams();
@@ -43,8 +99,6 @@ const LessonPage = () => {
     }
   }, []);
 
-  console.log(lesson)
-
   if (loading) {
     return (
       <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
@@ -57,6 +111,7 @@ const LessonPage = () => {
       </div>
     );
   }
+
 
   return (
     <>
@@ -80,8 +135,11 @@ const LessonPage = () => {
                   light={false}
                 />
               ) : 
-              (<>
-              </>)}
+              (
+                <div>
+                  <DownloadButton fileUrl={lesson?.material} />
+                </div>
+              )}
               </div>
             </div>
           </div>

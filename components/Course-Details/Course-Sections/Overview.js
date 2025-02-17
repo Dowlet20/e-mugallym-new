@@ -18,7 +18,7 @@ const Overview = ({ course }) => {
           </div>
           <div dangerouslySetInnerHTML={{ __html: course?.learning_outcomes }} />
 
-          <div className="row g-5 mb--30">
+          {/* <div className="row g-5 mb--30">
             <div className="col-lg-6">
               <ul className="rbt-list-style-1">
                 
@@ -30,8 +30,8 @@ const Overview = ({ course }) => {
                 
               </ul>
             </div>
-          </div>
-          <p>{course?.description}</p>
+          </div> */}
+          {/* <p>{course?.description}</p> */}
         </div>
         <div
           className={`rbt-show-more-btn ${toggle ? "active" : ""}`}

@@ -18,7 +18,7 @@ const LessonTop = ({ sidebar, setSidebar, lesson_title, course_slug }) => {
               <i className="feather-arrow-left"></i>
             </button>
           </div> */}
-          {/* <h5>{lesson_title}</h5> */}
+          <h5>{lesson_title}</h5>
         </div>
         <div className="lesson-top-right">
           <div className="rbt-btn-close">

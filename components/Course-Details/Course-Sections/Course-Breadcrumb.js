@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
 const CourseBreadcrumb = ({ getMatchCourse, course }) => {
   return (
     <>
+      
       <div className="col-lg-8">
         <div className="content text-start">
           <ul className="page-list">

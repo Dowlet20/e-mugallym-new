@@ -8,11 +8,13 @@ import axiosInstance from "@/utils/axiosInstance";
 const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
   const [activeTab, setActiveTab] = useState(false);
   const [topics, setTopics] = useState([]);
+  const [search, setSearch] = useState("");
   useEffect(()=>{
     setActiveTab(topic_id)
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get(`/topics/?course__slug=${course_slug}`);
+        const url=`/topics/?course__slug=${course_slug}${search ? "&search="+search : ""}`;
+        const response = await axiosInstance.get(url);
         setTopics(response.data);
       } catch (err) {
         console.log(err.message);
@@ -21,8 +23,13 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
     if (course_slug) {
       fetchData();
     }
-  },[topic_id, course_slug]);
+  },[topic_id, course_slug,search]);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(search=>e.target.value);
+  }
+  
   
   return (
     <>
@@ -32,18 +39,19 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
             Sapaklar
           </h4>
         </div>
-        {/* <div className="lesson-search-wrapper">
+        <div className="lesson-search-wrapper">
           <form action="#" className="rbt-search-style-1">
             <input
               className="rbt-search-active"
               type="text"
               placeholder="Sapak gözle"
+              onChange={handleSearch}
             />
             <button className="search-btn disabled">
               <i className="feather-search"></i>
             </button>
           </form>
-        </div> */}
+        </div>
         <hr className="mt--10" />
         <div className="rbt-accordion-style rbt-accordion-02 for-right-content accordion">
           <div className="accordion" id="accordionExampleb2">
