@@ -9,7 +9,7 @@ const CourseBreadcrumb = ({ getMatchCourse, course }) => {
         <div className="content text-start">
           <ul className="page-list">
             <li className="rbt-breadcrumb-item">
-              <Link href="/">Home</Link>
+              <Link href="/">Baş sahypa</Link>
             </li>
             <li>
               <div className="icon-right">

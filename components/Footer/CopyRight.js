@@ -10,7 +10,7 @@ const CopyRight = () => {
           <div className="row align-items-center">
             <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
               <p className="rbt-link-hover text-center text-lg-start">
-                Copyright © 2024
+                Copyright © 2025
                 <Link href="https://themeforest.net/user/rbt-themes">
                   <span> </span> emugallym <span> </span>
                 </Link>

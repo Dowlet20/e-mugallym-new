@@ -8,9 +8,9 @@ const UserProfile = ({  source }) => {
     <>
       <div className="col-lg-12">
         <div className="rbt-dashboard-content-wrapper">
-          <div className="tutor-bg-photo bg_image bg_image--22 height-350">
+          <div className="bg-white height-350">
             <Image 
-              src={source?.icon ? source?.icon : bgImage} 
+              src={source?.thumbnail ? source?.thumbnail : bgImage} 
               layout="fill"
               objectFit="cover" 
               alt="" 

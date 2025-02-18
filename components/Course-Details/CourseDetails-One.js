@@ -16,26 +16,26 @@ const CourseDetailsOne = ({ checkMatchCourses, course }) => {
           <div className="rbt-inner-onepage-navigation sticky-top mt--30">
             <CourseMenu />
           </div>
+          
+          <Overview  
+            learning_outcomes={course?.description} 
+            title="Kurs barada" 
+          />
 
-          <Overview  course={course} />
+          <Overview   
+            learning_outcomes={course?.learning_outcomes} 
+            title="Siziň şu kursda öwrenýän materiallaryňyz"
+          />
 
           <div
             className="course-content rbt-shadow-box coursecontent-wrapper mt--30"
             id="coursecontent"
           >
-           <Content course_duration={course?.course_duration}  topics={course?.topics} courseSlug={course?.slug}  />
-          </div>
-
-          <div
-            className="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30"
-            id="details"
-          >
-            <div className="row g-5">
-              <Requirements
-                description={course?.description}
-                requirements={course?.requirements}
-              />
-            </div>
+            <Content 
+              course_duration={course?.course_duration}  
+              topics={course?.topics} 
+              courseSlug={course?.slug}  
+            />
           </div>
 
           <div

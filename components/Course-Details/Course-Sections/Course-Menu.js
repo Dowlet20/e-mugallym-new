@@ -7,7 +7,7 @@ const CourseMenu = () => {
   const [currentSection, setCurrentSection] = useState("overview");
 
   const sections = [
-    { id: "overview", label: "Gysgaça syn" },
+    { id: "overview", label: "Kurs barada" },
     { id: "coursecontent", label: "Kursyň wideolary" },
     { id: "intructor", label: "Çeşme" }
   ];

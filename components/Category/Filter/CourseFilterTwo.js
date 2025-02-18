@@ -106,7 +106,6 @@ const CourseFilterTwo = ({
                               htmlFor={`checkbox${category?.id}`}
                               style={{
                                 fontSize: '16px',
-                                color: '#333',
                                 marginLeft: '10px',
                                 cursor: 'pointer',
                               }}
@@ -161,7 +160,6 @@ const CourseFilterTwo = ({
                               htmlFor={`checkboxsource${source?.id}`}
                               style={{
                                 fontSize: '16px',
-                                color: '#333',
                                 marginLeft: '10px',
                                 cursor: 'pointer',
                               }}
@@ -213,6 +211,11 @@ const CourseFilterTwo = ({
                               <label
                                 className="form-check-label"
                                 htmlFor={`check${level?.id}`}
+                                style={{
+                                  fontSize: '16px',
+                                  marginLeft: '10px',
+                                  cursor: 'pointer',
+                                }}
                               >
                                 {level?.title}
                               </label>

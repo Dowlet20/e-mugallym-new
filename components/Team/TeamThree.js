@@ -23,7 +23,7 @@ const TeamThree = () => {
     fetchData();
   }, []);
 
-  console.log(sources);
+  
 
   if (loading) {
     return (
