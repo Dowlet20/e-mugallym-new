@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const base_URL = 'http://10.10.73.21:5000/api/';
+export const base_URL = 'http://10.20.7.41:5000/api/';
 
 //export const base_URL = 'http://216.250.13.53/api/course/';
 
