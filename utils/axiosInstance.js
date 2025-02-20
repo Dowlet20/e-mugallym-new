@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 const IP_ADDRESSES = [
-  'http://127.0.0.1:5000/api/',
-  'http://10.20.7.43:5000/api/',
-  'http://10.10.73.21:5000/api/' 
+  'http://10.20.7.41:5000/api/',
+  'http://10.20.8.41:5000/api/',
+  'http://10.10.73.21:5000/api/', 
+  'http://127.0.0.1:5000/api/'
 ];
 
 const createAxiosInstance = (baseURL) => {
