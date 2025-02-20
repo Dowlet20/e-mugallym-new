@@ -40,14 +40,14 @@ const Nav = () => {
               Çeşmeler
           </Link>
         </li>
-        <li className="has-dropdown has-menu-child-item">
+        {/* <li className="has-dropdown has-menu-child-item">
           <Link
               className={isActive("/biz-barada") ? "active" : ""}
               href="/biz-barada"
               >
                 Biz barada
             </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

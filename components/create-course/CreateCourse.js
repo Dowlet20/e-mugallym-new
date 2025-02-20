@@ -36,7 +36,7 @@ const CreateCourse = () => {
   const [createCourseSlug, setCreateCourseSlug] = useState("");
   const [createCourseTitle, setCreateCourseTitle] = useState("");
   const [trigger, setTrigger] = useState(false);
-  
+
   const [topics, setTopics] = useState([]);
 
 
@@ -65,41 +65,41 @@ const CreateCourse = () => {
   const [currentTopicId, setCurrentTopicId] = useState(null);
 
   const [error, setError] = useState({
-    kurs_title:true,
-    short_description:true,
-    description:true,
-    learning_outcomes:true,
+    kurs_title: true,
+    short_description: true,
+    description: true,
+    learning_outcomes: true,
     teacherId: true,
-    requirements:true,
+    requirements: true,
     selectedLevel: true,
-    selectedLanguage:true,
-    selectedValues:true,
-    selectedImage:true,
-    price:true
+    selectedLanguage: true,
+    selectedValues: true,
+    selectedImage: true,
+    price: true
   });
 
-  const lessonPost = async (title, topicId, course, order, file, type="video") => {
-  
-    
+  const lessonPost = async (title, topicId, course, order, file, type = "video") => {
+
+
     const formData = new FormData();
     formData.append('title', title);
     formData.append('topic', topicId);
     formData.append('course', course);
     formData.append('order', order);
-    formData.append('material', file); 
-    formData.append('type', type); 
-  
+    formData.append('material', file);
+    formData.append('type', type);
+
     try {
       const response = await axiosInstance.post(
-        "/lesson/", 
-        formData, 
+        "/lesson/",
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         }
       );
-      
+
       //setLessonTitle(""); 
       //titleInputRef.current.value="";
       //setLessonOrder(123123123); 
@@ -109,7 +109,7 @@ const CreateCourse = () => {
       //closeModalButtonRef.current.click();
     } catch (err) {
       console.error("Error during lesson post:", err);
-    } 
+    }
   };
 
   const topicPost = async (title, course, order) => {
@@ -145,106 +145,106 @@ const CreateCourse = () => {
 
 
     if (!title) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        kurs_title:false
+        kurs_title: false
       }));
       progressRef.current.click();
       return;
     }
 
     if (!short_description) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        short_description:false
+        short_description: false
       }));
       progressRef.current.click();
       return;
     }
 
-    if (selectedValues.length===0) {
-      setError((prevError)=> ({
+    if (selectedValues.length === 0) {
+      setError((prevError) => ({
         ...prevError,
-        selectedValues:false
+        selectedValues: false
       }));
       progressRef.current.click();
       return;
     }
-    
+
     if (!selectedLevel) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        selectedLevel:false
+        selectedLevel: false
       }));
       progressRef.current.click();
       return;
     }
-    
+
     if (!selectedLanguage) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        selectedLanguage:false
+        selectedLanguage: false
       }));
       progressRef.current.click();
       return;
     }
-   
+
     if (paid && !price) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        price:false
+        price: false
       }));
       progressRef.current.click();
       return;
     }
-    
+
     if (!selectedImage) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        selectedImage:false
+        selectedImage: false
       }));
       progressRef.current.click();
       return;
     }
-    
+
     if (!requirements) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        requirements:false
+        requirements: false
       }));
       progressRef.current.click();
       return;
     }
 
     if (!description) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        description:false
+        description: false
       }));
       progressRef.current.click();
       return;
     }
-    
+
     if (!learning_outcomes) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        learning_outcomes:false
+        learning_outcomes: false
       }));
       progressRef.current.click();
       return;
     }
 
     if (!teacherId) {
-      setError((prevError)=> ({
+      setError((prevError) => ({
         ...prevError,
-        teacherId:false
+        teacherId: false
       }));
       progressRef.current.click();
       return;
     }
 
     setLoading(true);
-    
+
     const formData = new FormData();
     formData.append('title', title);
     formData.append('short_description', short_description);
@@ -254,7 +254,7 @@ const CreateCourse = () => {
     formData.append('requirements', requirements);
     formData.append('level', selectedLevel);
     formData.append('language', selectedLanguage);
-    selectedValues.forEach(value=>{
+    selectedValues.forEach(value => {
       formData.append('category', value);
     })
     formData.append('thumbnail', selectedImage);
@@ -264,19 +264,19 @@ const CreateCourse = () => {
     formData.append('paid', paid);
     formData.append('certified', certified);
     formData.append('start_date', start_date);
-    
+
     try {
       const response = await axiosInstance.post(
-        "/courses/", 
-        formData, 
+        "/courses/",
+        formData,
         {
           headers: {
-            'Content-Type':'multipart-data',
-          }  
+            'Content-Type': 'multipart-data',
+          }
         }
       );
-      
-      const courseId= response.data?.id;
+
+      const courseId = response.data?.id;
 
       for (const topic of topics) {
 
@@ -286,7 +286,7 @@ const CreateCourse = () => {
           await lessonPost(lesson?.title, topicId, courseId, lesson?.order, lesson?.material, lesson?.type)
         }
       }
-      
+
     } catch (err) {
       console.error(err);
     } finally {
@@ -319,7 +319,7 @@ const CreateCourse = () => {
     }
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get("/category/");
@@ -337,19 +337,19 @@ const CreateCourse = () => {
 
 
 
-   const handleDelete = (ind) => {
+  const handleDelete = (ind) => {
     try {
       setTopics((prevTopics) =>
-      prevTopics.filter((topic) => topic.id !== ind)
-    );
-    } catch(err) {
+        prevTopics.filter((topic) => topic.id !== ind)
+      );
+    } catch (err) {
       console.error(err);
     }
   }
 
-    return (
-      <div style={{ position: "relative" }}>
-        <ToastContainer autoClose={3000} />
+  return (
+    <div style={{ position: "relative" }}>
+      <ToastContainer autoClose={3000} />
       {loading && (
         <div
           style={{
@@ -366,7 +366,7 @@ const CreateCourse = () => {
           }}
         >
           <Ripple
-            color="rgba(12,235,115,1)"
+            color="rgba(162,145,247,1)"
             size={115}
             thickness={7}
             className="mx-auto align-self-center"
@@ -397,7 +397,7 @@ const CreateCourse = () => {
                   data-bs-parent="#tutionaccordionExamplea1"
                 >
                   <div className="accordion-body card-body">
-                    <InfoForm 
+                    <InfoForm
                       acButtonRef={acButtonRef}
                       setTitle={setTitle}
                       title={title}
@@ -460,93 +460,93 @@ const CreateCourse = () => {
                   data-bs-parent="#tutionaccordionExamplea1"
                 >
                   <div className="accordion-body card-body rbt-course-field-wrapper rbt-default-form">
-                    <div className="course-field mb--15"> 
+                    <div className="course-field mb--15">
                       <div style={{
-                        padding:'20px'
+                        padding: '20px'
                       }}>
 
-                        {createCourseId ? 
-                        (
-                          <>
-                            <small
-                              className="d-block mt_dec--5"
-                              style={{ 
-                                fontSize: '1.5rem', 
-                                marginBottom:'7px' 
-                              }}
-                            >
-                              <i className="feather-info"> </i> 
-                              Kursa degişli topikleri döretmek üçin ilki kursy dörediň
-                            </small>
-                            <small
-                              className="d-block mt_dec--5"
-                              style={{ fontSize: '1.5rem' }}
-                            >
-                              <i className="feather-info"> </i> 
-                              Eger-de siz kursy öň döreden bolsaňyz, ol kursa mugallym panelinde goşup bilersiňiz! 
-                            </small>
-                          </>
-                        )
-                        : (
-                          <>
-                            <small>
-                              Kursyň ady:
-                            </small>
-                            <h2 
-                              className="accordion-header card-header"
-                              style={{ fontSize: '2.0rem' }}
-                            >
-                                {title}
-                            </h2>
-                            <div className="accordion-body card-body">
-                              {topics.length===0 ? (<></>) : 
-                                topics.map((topic, index) => {
-                                  return (
-                                    <Lesson
-                                      key={index}
-                                      topicId={topic?.id}
-                                      setTopics={setTopics}
-                                      topic={topic}
-                                      // handleFileChange={handleFileChange}
-                                      // handleImportClick={handleImportClick}
-                                      fileInputRef={fileInputRef}
-                                      id={`accOne${index+1}`}
-                                      target={`accCollapseOne${index+1}`}
-                                      expanded={true}
-                                      text="1-nji Sapak"
-                                      start={0}
-                                      end={4}
-                                      trigger={trigger}
-                                      setTrigger={setTrigger}
-                                      createCourseId={createCourseId}
-                                      handleDelete={handleDelete}
-                                      setCurrentTopicId={setCurrentTopicId}
-                                      currentTopicId={currentTopicId}
-                                      //selectedCourseId={selectedOption}
-                                    />
-                                  )
-                                })
-                              }
-
-                              <button
-                                className="rbt-btn btn-md btn-gradient hover-icon-reverse"
-                                type="button"
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
+                        {createCourseId ?
+                          (
+                            <>
+                              <small
+                                className="d-block mt_dec--5"
+                                style={{
+                                  fontSize: '1.5rem',
+                                  marginBottom: '7px'
+                                }}
                               >
-                                <span className="icon-reverse-wrapper">
-                                  <span className="btn-text">Täze Topigi goşuň</span>
-                                  <span className="btn-icon">
-                                    <i className="feather-plus-circle"></i>
+                                <i className="feather-info"> </i>
+                                Kursa degişli topikleri döretmek üçin ilki kursy dörediň
+                              </small>
+                              <small
+                                className="d-block mt_dec--5"
+                                style={{ fontSize: '1.5rem' }}
+                              >
+                                <i className="feather-info"> </i>
+                                Eger-de siz kursy öň döreden bolsaňyz, ol kursa mugallym panelinde goşup bilersiňiz!
+                              </small>
+                            </>
+                          )
+                          : (
+                            <>
+                              <small>
+                                Kursyň ady:
+                              </small>
+                              <h2
+                                className="accordion-header card-header"
+                                style={{ fontSize: '2.0rem' }}
+                              >
+                                {title}
+                              </h2>
+                              <div className="accordion-body card-body">
+                                {topics.length === 0 ? (<></>) :
+                                  topics.map((topic, index) => {
+                                    return (
+                                      <Lesson
+                                        key={index}
+                                        topicId={topic?.id}
+                                        setTopics={setTopics}
+                                        topic={topic}
+                                        // handleFileChange={handleFileChange}
+                                        // handleImportClick={handleImportClick}
+                                        fileInputRef={fileInputRef}
+                                        id={`accOne${index + 1}`}
+                                        target={`accCollapseOne${index + 1}`}
+                                        expanded={true}
+                                        text="1-nji Sapak"
+                                        start={0}
+                                        end={4}
+                                        trigger={trigger}
+                                        setTrigger={setTrigger}
+                                        createCourseId={createCourseId}
+                                        handleDelete={handleDelete}
+                                        setCurrentTopicId={setCurrentTopicId}
+                                        currentTopicId={currentTopicId}
+                                      //selectedCourseId={selectedOption}
+                                      />
+                                    )
+                                  })
+                                }
+
+                                <button
+                                  className="rbt-btn btn-md btn-gradient hover-icon-reverse"
+                                  type="button"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                >
+                                  <span className="icon-reverse-wrapper">
+                                    <span className="btn-text">Täze Topigi goşuň</span>
+                                    <span className="btn-icon">
+                                      <i className="feather-plus-circle"></i>
+                                    </span>
+                                    <span className="btn-icon">
+                                      <i className="feather-plus-circle"></i>
+                                    </span>
                                   </span>
-                                  <span className="btn-icon">
-                                    <i className="feather-plus-circle"></i>
-                                  </span>
-                                </span>
-                              </button>
-                            </div>
-                          </>
-                        )}
+                                </button>
+                              </div>
+                            </>
+                          )}
                       </div>
                     </div>
                   </div>
@@ -576,11 +576,11 @@ const CreateCourse = () => {
             </div>
             <div className="col-lg-8">
               <button
-              type="button"
-              disabled={loading}
+                type="button"
+                disabled={loading}
                 className="rbt-btn btn-gradient hover-icon-reverse w-100 text-center"
                 href="#"
-                onClick={(e)=>{
+                onClick={(e) => {
                   handleSubmit(e);
                 }}
               >
@@ -637,20 +637,20 @@ const CreateCourse = () => {
           </div>
         </div>
       </div>
-      <TopicModal 
+      <TopicModal
         setTopics={setTopics}
         topics={topics}
-        //selectedCourseId={selectedOption} 
+      //selectedCourseId={selectedOption} 
       />
       <UpdateModal />
-      <LessonModal 
+      <LessonModal
         topicId={currentTopicId}
         setTopics={setTopics}
         currentTopicId={currentTopicId}
       />
       <QuizModal />
       <AssignmentModal />
-      <BackToTopCR 
+      <BackToTopCR
         progressRef={progressRef}
       />
     </div>
@@ -865,183 +865,183 @@ export default CreateCourse;
 
 
 // 1 const previewImages = CreateCourseData.createCourse[0].landscape.filter(
-  //   (item) => item.type === "preview"
-  // );
-  // const portImages = CreateCourseData.createCourse[0].landscape.filter(
-  //   (item) => item.type === "port"
-  // );
+//   (item) => item.type === "preview"
+// );
+// const portImages = CreateCourseData.createCourse[0].landscape.filter(
+//   (item) => item.type === "port"
+// );
 
 
-  // const handleImportClick = (e) => {
-  //   e.preventDefault();
-  //   fileInputRef.current.click();
-  // };
-  // const handleFileChange = (event) => {
-  //   const file = event.target.files[0];
-  // };
-
- 
-    // const customStyles = {
-    //   control: (provided) => ({
-    //     ...provided,
-    //     height: '40px', 
-    //     minHeight: '40px', 
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     padding: '0 8px',
-    //   }),
-    //   placeholder: (provided) => ({
-    //     ...provided,
-    //     fontSize: '14px',
-    //     display: 'flex', 
-    //     alignItems: 'center',
-    //     marginBottom:'10px'
-    //   }),
-    //   singleValue: (provided) => ({
-    //     ...provided,
-    //     fontSize: '16px', 
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //   }),
-    //   input: (provided) => ({
-    //     ...provided,
-    //     marginTop: '-10px',
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     fontSize: '14px',
-    //   }),
-    //   dropdownIndicator: (provided) => ({
-    //     ...provided,
-    //     padding: '0 8px',
-    //     paddingBottom:"10px",
-    //     display: 'flex', 
-    //     alignItems: 'center',
-    //   }),
-    //   indicatorSeparator: (provided) => ({
-    //     ...provided,
-    //     display: 'none',
-    //   }),
-    // };
+// const handleImportClick = (e) => {
+//   e.preventDefault();
+//   fileInputRef.current.click();
+// };
+// const handleFileChange = (event) => {
+//   const file = event.target.files[0];
+// };
 
 
-
+// const customStyles = {
+//   control: (provided) => ({
+//     ...provided,
+//     height: '40px', 
+//     minHeight: '40px', 
+//     display: 'flex',
+//     alignItems: 'center',
+//     padding: '0 8px',
+//   }),
+//   placeholder: (provided) => ({
+//     ...provided,
+//     fontSize: '14px',
+//     display: 'flex', 
+//     alignItems: 'center',
+//     marginBottom:'10px'
+//   }),
+//   singleValue: (provided) => ({
+//     ...provided,
+//     fontSize: '16px', 
+//     display: 'flex',
+//     alignItems: 'center',
+//   }),
+//   input: (provided) => ({
+//     ...provided,
+//     marginTop: '-10px',
+//     display: 'flex',
+//     alignItems: 'center',
+//     fontSize: '14px',
+//   }),
+//   dropdownIndicator: (provided) => ({
+//     ...provided,
+//     padding: '0 8px',
+//     paddingBottom:"10px",
+//     display: 'flex', 
+//     alignItems: 'center',
+//   }),
+//   indicatorSeparator: (provided) => ({
+//     ...provided,
+//     display: 'none',
+//   }),
+// };
 
 
 
 
 
- // const darkModeStyles = {
-  //   control: (provided) => ({
-  //     ...provided,
-  //     backgroundColor: '#333',
-  //     borderColor: '#555',
-  //     color: '#fff',
-  //   }),
-  //   menu: (provided) => ({
-  //     ...provided,
-  //     backgroundColor: '#333',
-  //     color: '#fff',
-  //   }),
-  //   option: (provided, state) => ({
-  //     ...provided,
-  //     padding: '10px',
-  //     backgroundColor: state.isSelected ? '#4CAF50' : state.isFocused ? '#555' : '#333',
-  //     color: state.isSelected ? '#fff' : '#ddd',
-  //     cursor: 'pointer',
-  //   }),
-  //   placeholder: (provided) => ({
-  //     ...provided,
-  //     color: '#aaa',
-  //   }),
-  //   input: (provided) => ({
-  //     ...provided,
-  //     color: '#fff',
-  //   }),
-  //   singleValue: (provided) => ({
-  //     ...provided,
-  //     color: '#fff',
-  //   }),
-  //   indicatorSeparator: () => ({
-  //     display: 'none',
-  //   }),
-  //   dropdownIndicator: (provided) => ({
-  //     ...provided,
-  //     color: '#fff',
-  //   }),
-  // };
-
-  // const lightModeStyles = {
-  //   control: (provided) => ({
-  //     ...provided,
-  //     backgroundColor: '#fff',
-  //     borderColor: '#ccc',
-  //     color: '#333',
-  //   }),
-  //   menu: (provided) => ({
-  //     ...provided,
-  //     backgroundColor: '#fff',
-  //     color: '#333',
-  //   }),
-  //   option: (provided, state) => ({
-  //     ...provided,
-  //     padding: '10px',
-  //     backgroundColor: state.isSelected ? '#4CAF50' : state.isFocused ? '#e4e4e4' : '#fff',
-  //     color: state.isSelected ? '#fff' : '#333',
-  //     cursor: 'pointer',
-  //   }),
-  //   placeholder: (provided) => ({
-  //     ...provided,
-  //     color: '#888',
-  //   }),
-  //   input: (provided) => ({
-  //     ...provided,
-  //     color: '#333',
-  //   }),
-  //   singleValue: (provided) => ({
-  //     ...provided,
-  //     color: '#333',
-  //   }),
-  //   indicatorSeparator: () => ({
-  //     display: 'none',
-  //   }),
-  //   dropdownIndicator: (provided) => ({
-    //     ...provided,
-    //     color: '#333',
-    //   }),
-    // };
-    
-    
-    // const currentStyles = isDarkMode ? darkModeStyles : lightModeStyles;
 
 
 
-  // const loadOptions = async (inputValue) => {
-  //   const url = !inputValue ? "/api/courses" : `/api/courses/?search=${inputValue}`; 
-    
-  //   try {
-      
-  //     const response = await axiosInstance.get(url);
-      
-  //     const options = response.data.map(item=> ({
-  //       label: item.title,
-  //       value: item.id,
-  //       anotherValue:item.slug
-  //     }))
+// const darkModeStyles = {
+//   control: (provided) => ({
+//     ...provided,
+//     backgroundColor: '#333',
+//     borderColor: '#555',
+//     color: '#fff',
+//   }),
+//   menu: (provided) => ({
+//     ...provided,
+//     backgroundColor: '#333',
+//     color: '#fff',
+//   }),
+//   option: (provided, state) => ({
+//     ...provided,
+//     padding: '10px',
+//     backgroundColor: state.isSelected ? '#4CAF50' : state.isFocused ? '#555' : '#333',
+//     color: state.isSelected ? '#fff' : '#ddd',
+//     cursor: 'pointer',
+//   }),
+//   placeholder: (provided) => ({
+//     ...provided,
+//     color: '#aaa',
+//   }),
+//   input: (provided) => ({
+//     ...provided,
+//     color: '#fff',
+//   }),
+//   singleValue: (provided) => ({
+//     ...provided,
+//     color: '#fff',
+//   }),
+//   indicatorSeparator: () => ({
+//     display: 'none',
+//   }),
+//   dropdownIndicator: (provided) => ({
+//     ...provided,
+//     color: '#fff',
+//   }),
+// };
 
-  //     return options;
-      
-  //   } catch (err) {
-  //     console.error(err);
-  //     return [];
-  //   }
-  // };
+// const lightModeStyles = {
+//   control: (provided) => ({
+//     ...provided,
+//     backgroundColor: '#fff',
+//     borderColor: '#ccc',
+//     color: '#333',
+//   }),
+//   menu: (provided) => ({
+//     ...provided,
+//     backgroundColor: '#fff',
+//     color: '#333',
+//   }),
+//   option: (provided, state) => ({
+//     ...provided,
+//     padding: '10px',
+//     backgroundColor: state.isSelected ? '#4CAF50' : state.isFocused ? '#e4e4e4' : '#fff',
+//     color: state.isSelected ? '#fff' : '#333',
+//     cursor: 'pointer',
+//   }),
+//   placeholder: (provided) => ({
+//     ...provided,
+//     color: '#888',
+//   }),
+//   input: (provided) => ({
+//     ...provided,
+//     color: '#333',
+//   }),
+//   singleValue: (provided) => ({
+//     ...provided,
+//     color: '#333',
+//   }),
+//   indicatorSeparator: () => ({
+//     display: 'none',
+//   }),
+//   dropdownIndicator: (provided) => ({
+//     ...provided,
+//     color: '#333',
+//   }),
+// };
 
-  // const handleChange = selectedOption => {
 
-  //   setSelectedOption(selectedOption?.value);
-  //   setSelectedCourse(selectedOption?.anotherValue);
+// const currentStyles = isDarkMode ? darkModeStyles : lightModeStyles;
 
-  // };
+
+
+// const loadOptions = async (inputValue) => {
+//   const url = !inputValue ? "/api/courses" : `/api/courses/?search=${inputValue}`; 
+
+//   try {
+
+//     const response = await axiosInstance.get(url);
+
+//     const options = response.data.map(item=> ({
+//       label: item.title,
+//       value: item.id,
+//       anotherValue:item.slug
+//     }))
+
+//     return options;
+
+//   } catch (err) {
+//     console.error(err);
+//     return [];
+//   }
+// };
+
+// const handleChange = selectedOption => {
+
+//   setSelectedOption(selectedOption?.value);
+//   setSelectedCourse(selectedOption?.anotherValue);
+
+// };
 
 {/* <small 
   className="d-block mt_dec--5"
@@ -1062,7 +1062,7 @@ export default CreateCourse;
     styles={customStyles}
   /> */}
 
-  {/* <Lesson
+{/* <Lesson
     handleFileChange={handleFileChange}
     handleImportClick={handleImportClick}
     fileInputRef={fileInputRef}
@@ -1075,7 +1075,7 @@ export default CreateCourse;
   /> */}
 
 
-  {/* <div className="accordion-item card">
+{/* <div className="accordion-item card">
     <h2 className="accordion-header card-header" id="accThree3">
       <button
         className="accordion-button collapsed"
@@ -1114,7 +1114,7 @@ export default CreateCourse;
   </div> */}
 
 
-  {/* sahalanma sablony <div className="accordion-item card">
+{/* sahalanma sablony <div className="accordion-item card">
                 <h2 className="accordion-header card-header" id="accSeven">
                   <button
                     className="accordion-button collapsed"

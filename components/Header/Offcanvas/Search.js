@@ -38,11 +38,10 @@ const Search = () => {
     const fetchData = async () => {
       try {
         const url =`/courses/${slug ? `?category_slug=${slug}` : ""}${slug && paid ? `&paid=${paid}` : !slug && paid ? `?paid=${paid}` : ""}${(slug || paid) && user ? `&user=${user}` : !slug && !paid && user ? `?user=${user}` : ""}${(slug || paid || user) && searchapi ? `&search=${searchapi}` : !slug && !paid && !user && searchapi ? `?search=${searchapi}` : ""}${(slug || paid || user || searchapi) && ordering ? `&ordering=${ordering}` : !slug && !paid && !user && !searchapi && ordering ? `?ordering${ordering}` : ""}`;
-        console.log(url);
         const response = await axiosInstance.get(url);
-        const allCourse = response.data;
+        const allCourse = response.data.items;
         setCourse(allCourse);
-        setTotalPages(Math.ceil(allCourse.length / 6));
+        setTotalPages(response.data.total_pages);
       
       } catch (error) {
         console.log(error.Message);

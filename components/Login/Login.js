@@ -1,7 +1,7 @@
 import axiosInstance from "@/utils/axiosInstance";
 import Link from "next/link";
-import {useState} from "react";
-import {Ripple} from "react-css-spinners";
+import { useState } from "react";
+import { Ripple } from "react-css-spinners";
 import axiosInstance_user from "@/utils/axiosInstance_user";
 const Login = () => {
   const [emailLogin, setEmailLogin] = useState("");
@@ -14,7 +14,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -24,7 +24,7 @@ const Login = () => {
       setError('Doly doldurmaly');
       return;
     }
-    
+
     setError('');
 
     const requestData = {
@@ -40,7 +40,7 @@ const Login = () => {
     } catch (error) {
       console.error(error);
       setError(error.response?.data?.message || 'Içeri girmekde ýalňyşlyk')
-    }  finally {
+    } finally {
       setLoading(false);
     }
 
@@ -53,62 +53,62 @@ const Login = () => {
     setLoading(true);
 
     if (!usernameRegister || !passwordRegister || !emailRegister || !confirmPassword) {
-        setError('Hemmesini doldur!');
-        return;
-      }
-      if (passwordRegister !== confirmPassword) {
-        setError('Girizýän açar sözleriňiz gabat gelmeli')
-        return;
-      }
+      setError('Hemmesini doldur!');
+      return;
+    }
+    if (passwordRegister !== confirmPassword) {
+      setError('Girizýän açar sözleriňiz gabat gelmeli')
+      return;
+    }
 
-      setError('');
+    setError('');
 
-      const registerData = {
-        email:emailRegister,
-        username: usernameRegister,
-        password:passwordRegister,
-        password2:confirmPassword
-      }
+    const registerData = {
+      email: emailRegister,
+      username: usernameRegister,
+      password: passwordRegister,
+      password2: confirmPassword
+    }
 
-      try {
-        const response = await axiosInstance_user.post(`/register/`, registerData);
-        console.log(response.data);
-        e.target.reset();
-      } catch (error) {
-        setError(error.response?.data?.message || 'Agza bolmakda yalnyslyk')
-      } finally {
-        setLoading(false);
-      }
-    };
-    
+    try {
+      const response = await axiosInstance_user.post(`/register/`, registerData);
+      console.log(response.data);
+      e.target.reset();
+    } catch (error) {
+      setError(error.response?.data?.message || 'Agza bolmakda yalnyslyk')
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
 
   return (
     <>
       {loading && (
-          <div 
-            className="d-flex bg-transparent"  
-            style={{height: '100vh'}}
-          >
-            <Ripple
-              color="rgba(12,235,115,1)"
-              size={115}
-              thickness={7}
-              className="mx-auto align-self-center"
-            />
-          </div>
+        <div
+          className="d-flex bg-transparent"
+          style={{ height: '100vh' }}
+        >
+          <Ripple
+            color="rgba(162,145,247,1)"
+            size={115}
+            thickness={7}
+            className="mx-auto align-self-center"
+          />
+        </div>
       )}
       <div className="col-lg-6">
         <div className="rbt-contact-form contact-form-style-1 max-width-auto">
           <h3 className="title">Içeri girmek</h3>
-          {error && <p style={{ color: 'red' }}>{error}</p>} 
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <form onSubmit={handleLogin} className="max-width-auto">
             <div className="form-group">
               <input
                 name="con_name"
                 type="text"
                 placeholder="ulanyjy ady ýa-da e-poçta *"
-                onChange={(e)=> {
+                onChange={(e) => {
                   setEmailLogin(e.target.value);
                 }}
               />
@@ -119,7 +119,7 @@ const Login = () => {
                 name="con_email"
                 type="password"
                 placeholder="Açar sözi *"
-                onChange={(e)=> {
+                onChange={(e) => {
                   setPasswordLogin(e.target.value);
                 }}
               />
@@ -171,7 +171,7 @@ const Login = () => {
                 name="register-email"
                 type="email"
                 placeholder="e-poçta *"
-                onChange={(e)=> {
+                onChange={(e) => {
                   setEmailRegister(e.target.value);
                 }}
               />
@@ -184,7 +184,7 @@ const Login = () => {
                 type="text"
                 // placeholder="Username *"
                 placeholder="Ulanyjy ady *"
-                onChange={(e)=> {
+                onChange={(e) => {
                   setUsernameRegister(e.target.value);
                 }}
               />
@@ -197,7 +197,7 @@ const Login = () => {
                 type="password"
                 // placeholder="Password *"
                 placeholder="Açar sözi *"
-                onChange={(e)=> {
+                onChange={(e) => {
                   setPasswordRegister(e.target.value);
                 }}
               />
@@ -210,7 +210,7 @@ const Login = () => {
                 type="password"
                 // placeholder="Confirm Password *"
                 placeholder="Açar sözi gaýtala *"
-                onChange={(e)=> {
+                onChange={(e) => {
                   setConfirmPassord(e.target.value);
                 }}
               />

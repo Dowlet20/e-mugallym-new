@@ -8,28 +8,8 @@ import { useAppContext } from "@/context/Context";
 
 import Pagination from "@/components/Common/Pagination";
 
-const CourseFilterOneToggle = ({ course, start, end }) => {
+const CourseFilterOneToggle = ({ course}) => {
   const { toggle } = useAppContext();
-  const [courses, setCourse] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-
-  const startIndex = (page - 1) * 6;
-
-  const getSelectedCourse = courses.slice(startIndex, startIndex + 6);
-
-  const handleClick = (num) => {
-    setPage(num);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  useEffect(() => {
-    setCourse(course);
-    setTotalPages(Math.ceil(course.length / 6));
-  }, [setTotalPages, setCourse, getSelectedCourse]);
 
   return (
     <>
@@ -37,7 +17,7 @@ const CourseFilterOneToggle = ({ course, start, end }) => {
         className={`rbt-course-grid-column ${!toggle ? "active-list-view" : ""
           }`}
       >
-        {course.slice(start, end).map((data, index) => (
+        {course.map((data, index) => (
           <div className="course-grid-3" key={index}>
             <div
               className={`rbt-card variation-01 rbt-hover ${!toggle ? "card-list-2" : ""
@@ -113,20 +93,6 @@ const CourseFilterOneToggle = ({ course, start, end }) => {
           </div>
         ))}
       </div>
-
-      {course.length > 6 ? (
-        <div className="row">
-          <div className="col-lg-12 mt--60">
-            <Pagination
-              totalPages={totalPages}
-              pageNumber={page}
-              handleClick={handleClick}
-            />
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
     </>
   );
 };

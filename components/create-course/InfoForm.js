@@ -94,7 +94,7 @@ const InfoForm = ({
      {/* {loading && (
       <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"

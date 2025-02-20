@@ -33,7 +33,7 @@ const SingleProductPage = ({ getParams }) => {
   //   }
   // }, [checkMatch, router]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const url = `/books/${productId}`
@@ -45,17 +45,17 @@ const SingleProductPage = ({ getParams }) => {
       }
     }
     fetchData();
-  },[])
+  }, [])
 
-  
+
   if (loading) {
     return (
-      <div 
-        className="d-flex bg-transparent"  
-        style={{height: '100vh'}}
+      <div
+        className="d-flex bg-transparent"
+        style={{ height: '100vh' }}
       >
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"

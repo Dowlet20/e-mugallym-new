@@ -15,7 +15,7 @@ import Separator from "@/components/Common/Separator";
 import FooterOne from "@/components/Footer/Footer-One";
 
 import axiosInstance from "@/utils/axiosInstance";
-import {Ripple} from 'react-css-spinners'
+import { Ripple } from 'react-css-spinners'
 
 const CourseFilteTwoTogglePage = () => {
 
@@ -28,41 +28,36 @@ const CourseFilteTwoTogglePage = () => {
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSources, setSelectedSources] = useState([]);
 
-  let category="";
-  let level="";
-  let source="";
+  let category = "";
+  let level = "";
+  let source = "";
 
-  selectedValues.forEach((x,i)=>{
-    if (i !== selectedValues.length-1) {
-      category=category+x+",";
+  selectedValues.forEach((x, i) => {
+    if (i !== selectedValues.length - 1) {
+      category = category + x + ",";
     }
     else {
-      category=category+x;
+      category = category + x;
     }
   });
 
-  selectedLevels.forEach((x,i)=>{
-    if (i !== selectedLevels.length-1) {
-      level=level+x+",";
+  selectedLevels.forEach((x, i) => {
+    if (i !== selectedLevels.length - 1) {
+      level = level + x + ",";
     }
     else {
-      level=level+x;
+      level = level + x;
     }
   });
 
-  selectedSources.forEach((x,i)=>{
-    if (i !== selectedSources.length-1) {
-      source=source+x+",";
+  selectedSources.forEach((x, i) => {
+    if (i !== selectedSources.length - 1) {
+      source = source + x + ",";
     }
     else {
-      source=source+x;
+      source = source + x;
     }
   });
-
-
-
-  const startIndex = (page - 1) * 6;
-  const getSelectedCourse = courses.slice(startIndex, startIndex + 6);
 
   const handleClick = (num) => {
     setPage(num);
@@ -77,26 +72,26 @@ const CourseFilteTwoTogglePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url =`/courses/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && source ? `&source=${source}` : !search && !level && !category && source ? `?source=${source}` : ""}`;
+        const url = `/courses/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && source ? `&source=${source}` : !search && !level && !category && source ? `?source=${source}` : ""}${(search || category || level || source) && page ? `&page=${page}` : !search && !category && !level && !source && page ? `?page=${page}` : ""}`;
         const response = await axiosInstance.get(url);
-        const allCourse = response.data;
+        const allCourse = response.data.items;
         setCourse(allCourse);
-        setTotalPages(Math.ceil(allCourse.length / 6));
+        setTotalPages(response.data.total_pages);
         setLoading(false);
       } catch (error) {
         console.error(error);
       }
     }
     fetchData();
-  }, [setTotalPages, setCourse, search, category,  level, source]);
-  
-  
+  }, [setTotalPages, setCourse, search, category, level, source, page]);
+
+
 
   if (loading) {
     return (
-      <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
+      <div className="d-flex bg-transparent" style={{ height: '100vh' }}>
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"
@@ -113,8 +108,8 @@ const CourseFilteTwoTogglePage = () => {
           <MobileMenu />
           <Cart />
 
-          <CategoryHeadTwo 
-            category={courses} 
+          <CategoryHeadTwo
+            category={courses}
             setSearch={setSearch}
             setSelectedValues={setSelectedValues}
             setSelectedLevels={setSelectedLevels}
@@ -123,22 +118,18 @@ const CourseFilteTwoTogglePage = () => {
           <div className="rbt-section-overlayping-top rbt-section-gapBottom">
             <div className="inner">
               <div className="container">
-                <CourseFilterOneToggle 
-                  course={getSelectedCourse} 
+                <CourseFilterOneToggle
+                  course={courses}
                 />
-                {courses.length > 6 ? (
-                  <div className="row">
-                    <div className="col-lg-12 mt--60">
-                      <Pagination
-                        totalPages={totalPages}
-                        pageNumber={page}
-                        handleClick={handleClick}
-                      />
-                    </div>
+                <div className="row">
+                  <div className="col-lg-12 mt--60">
+                    <Pagination
+                      totalPages={totalPages}
+                      pageNumber={page}
+                      handleClick={handleClick}
+                    />
                   </div>
-                ) : (
-                  ""
-                )}
+                </div>
               </div>
             </div>
           </div>

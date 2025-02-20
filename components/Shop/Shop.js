@@ -72,12 +72,12 @@ const Shop = () => {
 
   if (loading) {
     return (
-      <div 
-        className="d-flex bg-transparent"  
-        style={{height: '100vh'}}
+      <div
+        className="d-flex bg-transparent"
+        style={{ height: '100vh' }}
       >
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"
@@ -100,16 +100,16 @@ const Shop = () => {
                     <div className="inner flex-grow-1">
                       <div className="thumbnail">
                         <Link href={`/single-product/${data.slug}`}>
-                        <div style={{ height: '476px', overflow: 'hidden', position: 'relative' }}>
-                          <Image
-                            src={data.cover}
-                            alt="Histudy Book Image"
-                            layout="fill" 
-                            //objectFit="cover" 
-                            className="image-cover" 
-                          />
-                        </div>
-                        {/* <Image
+                          <div style={{ height: '476px', overflow: 'hidden', position: 'relative' }}>
+                            <Image
+                              src={data.cover}
+                              alt="Histudy Book Image"
+                              layout="fill"
+                              //objectFit="cover" 
+                              className="image-cover"
+                            />
+                          </div>
+                          {/* <Image
                           src={data.cover}
                           alt="Histudy Book Image"
                           layout="responsive"
@@ -133,12 +133,12 @@ const Shop = () => {
                             textOverflow: 'ellipsis', // Show ellipsis when text overflows
                             lineHeight: '1.5em', // Set line height for proper spacing
                           }}>
-                              <Link href={`/single-product/${data.slug}`}>
-                                {data.title}
-                              </Link>
+                            <Link href={`/single-product/${data.slug}`}>
+                              {data.title}
+                            </Link>
                           </div>
                         </h2>
-                        
+
 
                         <span className="team-form">
                           <span className="location">By {data?.authors?.[0]}</span>
