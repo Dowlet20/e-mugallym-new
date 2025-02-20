@@ -1,5 +1,5 @@
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axiosInstance from "@/utils/axiosInstance";
@@ -9,8 +9,8 @@ const TeamThree = () => {
   const [sources, setSources] = useState();
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    const fetchData =async () => {
+  useEffect(() => {
+    const fetchData = async () => {
       try {
         const response = await axiosInstance.get("/source");
         setSources(response.data);
@@ -19,17 +19,17 @@ const TeamThree = () => {
       catch (err) {
         console.error(err)
       }
-    } 
+    }
     fetchData();
   }, []);
 
-  
+
 
   if (loading) {
     return (
-      <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
+      <div className="d-flex bg-transparent" style={{ height: '100vh' }}>
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"
@@ -46,7 +46,7 @@ const TeamThree = () => {
           {sources?.map((source, innerIndex) => {
             if (!source?.title && !source?.icon) return;
             return (
-            <div className="col-lg-4 col-md-6 col-12 mt--30" key={innerIndex}>
+              <div className="col-lg-4 col-md-6 col-12 mt--30" key={innerIndex}>
                 <div
                   className="rbt-team team-style-default rbt-hover-02"
                 >
@@ -64,20 +64,20 @@ const TeamThree = () => {
                     </div>
                     <div className="content">
                       <h2 className="title">
-                      <div className="rbt-card-text" style={{
-                        width: '100%', 
-                        height: '1.5em',
-                        overflow: 'hidden',
-                        display: '-webkit-box',
-                        WebkitBoxOrient: 'vertical',
-                        WebkitLineClamp: 1,
-                        textOverflow: 'ellipsis',
-                        lineHeight: '1.5em'
-                      }}>
-                        <Link href={`/source/${source?.slug}`}>
-                          {source.title}
-                        </Link>
-                      </div>
+                        <div className="rbt-card-text" style={{
+                          width: '100%',
+                          height: '1.5em',
+                          overflow: 'hidden',
+                          display: '-webkit-box',
+                          WebkitBoxOrient: 'vertical',
+                          WebkitLineClamp: 1,
+                          textOverflow: 'ellipsis',
+                          lineHeight: '1.5em'
+                        }}>
+                          <Link href={`/source/${source?.slug}`}>
+                            {source.title}
+                          </Link>
+                        </div>
                       </h2>
                       <div className="description">
                         <div className="rbt-card-text" style={{
@@ -91,14 +91,15 @@ const TeamThree = () => {
                           textOverflow: 'ellipsis',
                           lineHeight: '1.5em'
                         }}>
-                          {source?.description} 
+                          {source?.description}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-             </div>
-            )})}
+              </div>
+            )
+          })}
         </div>
       </div>
     </>

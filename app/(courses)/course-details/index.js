@@ -30,14 +30,14 @@ const SingleCourse = ({ getParams }) => {
   let getCourse;
 
 
-  
+
 
   getCourse = JSON.parse(JSON.stringify(CourseData.courseDetails));
 
   const checkMatch = getCourse.find((course) => course.id === 1);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get(`/courses/${slug}/`);
@@ -48,14 +48,14 @@ const SingleCourse = ({ getParams }) => {
       }
     }
     fetchData();
-  },[]);
+  }, []);
 
 
   if (loading) {
     return (
-      <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
+      <div className="d-flex bg-transparent" style={{ height: '100vh' }}>
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"
@@ -75,7 +75,7 @@ const SingleCourse = ({ getParams }) => {
           <div className="rbt-breadcrumb-default rbt-breadcrumb-style-3">
             <CourseHead
               checkMatch={checkMatch !== undefined ? checkMatch : ""}
-              course = {course}
+              course={course}
             />
           </div>
 

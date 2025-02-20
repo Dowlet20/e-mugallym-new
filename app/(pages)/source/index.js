@@ -18,11 +18,16 @@ import FooterOne from "@/components/Footer/Footer-One";
 import axiosInstance_user from "@/utils/axiosInstance_user";
 import axiosInstance from "@/utils/axiosInstance";
 import { Ripple } from "react-css-spinners";
+import Pagination from "@/components/Common/Pagination";
+
 
 const SingleProfile = ({ getParams }) => {
   const [source, setSource] = useState({});
   const [courses, setCourses] = useState([]);
   const router = useRouter();
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
   const postId = getParams.profileId;
   let getCourse;
   const [loading, setLoading] = useState(true);
@@ -31,31 +36,40 @@ const SingleProfile = ({ getParams }) => {
 
   const checkMatchProfile = getCourse.find((course) => course.id === postId);
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        
+
         const response_s = await axiosInstance.get(`/source/${postId}`);
         setSource(response_s.data);
 
-        const response = await axiosInstance.get(`/courses/?source=${postId}`);
-        setCourses(response.data);
+        const response = await axiosInstance.get(`/courses/?source=${postId}&page=${page}`);
+        setCourses(response.data.items);
+        setTotalPages(response.data.total_pages)
         setLoading(false);
 
       } catch (err) {
         console.error(err)
       }
-    } 
+    }
     if (postId) {
       fetchData();
     }
-  },[]);
+  }, [page]);
+
+  const handleClick = (num) => {
+    setPage(num);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   if (loading) {
     return (
-      <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
+      <div className="d-flex bg-transparent" style={{ height: '100vh' }}>
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"
@@ -94,6 +108,15 @@ const SingleProfile = ({ getParams }) => {
                 </div>
                 <div className="row g-5 mt--5">
                   <UserCourses {...courses} key={"ssss"} courses={courses} />
+                </div>
+                <div className="row">
+                  <div className="col-lg-12 mt--60">
+                    <Pagination
+                      totalPages={totalPages}
+                      pageNumber={page}
+                      handleClick={handleClick}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -16,7 +16,7 @@ import FooterOne from "@/components/Footer/Footer-One";
 
 import CourseDetails from "../../../data/course-details/courseData.json";
 import axiosInstance from "@/utils/axiosInstance";
-import {Ripple} from 'react-css-spinners'
+import { Ripple } from 'react-css-spinners'
 
 const CourseFilteTwoTogglePage = () => {
   const [courses, setCourse] = useState([]);
@@ -36,30 +36,30 @@ const CourseFilteTwoTogglePage = () => {
       behavior: "smooth",
     });
   };
-  let slug="";
-  let paid="";
-  let user="";
-  let ordering="";
+  let slug = "";
+  let paid = "";
+  let user = "";
+  let ordering = "";
 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         ///api/courses/?search=asd&ordering=1&category=slug_1,slug_2&paid=true&user=20
-        const url =`/courses/${slug ? `?category_slug=${slug}` : ""}${slug && paid ? `&paid=${paid}` : !slug && paid ? `?paid=${paid}` : ""}${(slug || paid) && user ? `&user=${user}` : !slug && !paid && user ? `?user=${user}` : ""}${(slug || paid || user) && search ? `&search=${search}` : !slug && !paid && !user && search ? `?search=${search}` : ""}${(slug || paid || user || search) && ordering ? `&ordering=${ordering}` : !slug && !paid && !user && !search && ordering ? `?ordering=${ordering}` : ""}`;
+        const url = `/courses/${slug ? `?category_slug=${slug}` : ""}${slug && paid ? `&paid=${paid}` : !slug && paid ? `?paid=${paid}` : ""}${(slug || paid) && user ? `&user=${user}` : !slug && !paid && user ? `?user=${user}` : ""}${(slug || paid || user) && search ? `&search=${search}` : !slug && !paid && !user && search ? `?search=${search}` : ""}${(slug || paid || user || search) && ordering ? `&ordering=${ordering}` : !slug && !paid && !user && !search && ordering ? `?ordering=${ordering}` : ""}`;
         const response = await axiosInstance.get(url);
-        const allCourse = response.data;
+        const allCourse = response.data.items;
         setCourse(allCourse);
         setTotalPages(Math.ceil(allCourse.length / 6));
         setLoading(false);
-      
+
       } catch (error) {
         console.error(error);
       }
     }
     fetchData();
   }, [setTotalPages, setCourse, search]);
-  
+
   // if (loading) {
   //   return (
   //   <div>  
@@ -73,9 +73,9 @@ const CourseFilteTwoTogglePage = () => {
 
   if (loading) {
     return (
-      <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
+      <div className="d-flex bg-transparent" style={{ height: '100vh' }}>
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"
@@ -92,15 +92,15 @@ const CourseFilteTwoTogglePage = () => {
           <MobileMenu />
           <Cart />
 
-          <CategoryHeadTwo 
-            category={courses} 
+          <CategoryHeadTwo
+            category={courses}
             setSearch={setSearch}
           />
           <div className="rbt-section-overlayping-top rbt-section-gapBottom">
             <div className="inner">
               <div className="container">
-                <CourseFilterOneToggle 
-                  course={getSelectedCourse} 
+                <CourseFilterOneToggle
+                  course={getSelectedCourse}
                 />
                 {courses.length > 6 ? (
                   <div className="row">

@@ -79,6 +79,7 @@ const LessonPage = () => {
   const [lesson, setLesson] = useState({});
   const [lesson_title, setLesson_title] = useState('');
   const [loading, setLoading] = useState(true);
+  const [baseUrl, setBaseUrl] = useState('');
 
 
 
@@ -88,6 +89,8 @@ const LessonPage = () => {
         const response = await axiosInstance.get(`/lesson/${lesson_slug}`);
         setLesson(response.data);
         setLesson_title(response.data?.title);
+        const parsedUrl = new URL(response.data?.material);
+        setBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
         setLoading(false);
       } catch (err) {
         console.error(err);
@@ -99,11 +102,11 @@ const LessonPage = () => {
     }
   }, []);
 
-  if (loading) {
+  if (loading && !baseUrl) {
     return (
       <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
         <Ripple
-          color="rgba(12,235,115,1)"
+          color="rgba(162,145,247,1)"
           size={115}
           thickness={7}
           className="mx-auto align-self-center"
@@ -111,7 +114,8 @@ const LessonPage = () => {
       </div>
     );
   }
-
+  console.log(baseUrl);
+  
 
   return (
     <>
@@ -127,7 +131,7 @@ const LessonPage = () => {
               <div className="plyr__video-embed rbtplayer">
               {lesson?.type === "video" ? (
                 <ReactPlayer
-                  url={lesson_slug ? `${base_URL}lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
+                  url={lesson_slug ? `${baseUrl}/api/lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
                   width="100%"
                   height="100%"
                   playing={false} 

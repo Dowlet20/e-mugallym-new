@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import img1 from "../../public/images/tab/tabs-10.jpg";
 
@@ -16,32 +16,32 @@ const InstructorRegistration = () => {
 
   const [info, setInfo] = useState({
 
-      first_name:"",
-      last_name:"",
-      middle_name:"",
-      username:"",
-      phone_number:"",
-      email:"",
-      biography:"",
-      type:"instructor",
+    first_name: "",
+    last_name: "",
+    middle_name: "",
+    username: "",
+    phone_number: "",
+    email: "",
+    biography: "",
+    type: "instructor",
 
-    }
+  }
   )
   const [loading, setLoading] = useState(false);
 
   const handleFileImg = (event) => {
-    if (event.target.files && event.target.files.length > 0) {  
-      setImg(event.target.files[0]); 
+    if (event.target.files && event.target.files.length > 0) {
+      setImg(event.target.files[0]);
     }
   };
 
   const handleFileThumbnail = (event) => {
-    if (event.target.files && event.target.files.length > 0) {  
-      setThumbnail(event.target.files[0]); 
+    if (event.target.files && event.target.files.length > 0) {
+      setThumbnail(event.target.files[0]);
     }
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get("/profession");
@@ -52,10 +52,10 @@ const InstructorRegistration = () => {
     }
     fetchData();
   }, []);
-  
+
   const handleChange = (e) => {
     setSelectedProfession(e.target.value);
-  } 
+  }
 
 
   const postInstructor = async (e) => {
@@ -83,10 +83,10 @@ const InstructorRegistration = () => {
     formData.append("type", "instructor");
     formData.append("order", 1000000); //duzetmeli
 
-    const url="/user/";
+    const url = "/user/";
 
     try {
-      
+
       const response = await axiosInstance.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -109,9 +109,9 @@ const InstructorRegistration = () => {
   return (
     <>
       {loading && (
-        <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
+        <div className="d-flex bg-transparent" style={{ height: '100vh' }}>
           <Ripple
-            color="rgba(12,235,115,1)"
+            color="rgba(162,145,247,1)"
             size={115}
             thickness={7}
             className="mx-auto align-self-center"
@@ -141,14 +141,14 @@ const InstructorRegistration = () => {
             <form action="#" onSubmit={postInstructor} className="row row--15">
               <div className="col-lg-6">
                 <div className="form-group">
-                  <input 
-                    name="con_name" 
-                    type="text" 
+                  <input
+                    name="con_name"
+                    type="text"
                     placeholder="Ady"
-                    onChange={(e) => setInfo((info)=> ({
+                    onChange={(e) => setInfo((info) => ({
                       ...info,
-                      "first_name":e.target.value,
-                    }))} 
+                      "first_name": e.target.value,
+                    }))}
                   />
                   <span className="focus-border"></span>
                 </div>
@@ -160,26 +160,26 @@ const InstructorRegistration = () => {
                     name="con_lastname"
                     type="text"
                     placeholder="Familiýasy"
-                    onChange={(e) => setInfo((info)=> ({
+                    onChange={(e) => setInfo((info) => ({
                       ...info,
-                      "last_name":e.target.value,
-                    }))} 
+                      "last_name": e.target.value,
+                    }))}
                   />
 
                   <span className="focus-border"></span>
                 </div>
               </div>
-              
+
               <div className="col-lg-6">
                 <div className="form-group">
                   <input
                     name="con_middlename"
                     type="text"
                     placeholder="Atasynyň ady"
-                    onChange={(e) => setInfo((info)=> ({
+                    onChange={(e) => setInfo((info) => ({
                       ...info,
-                      "middle_name":e.target.value,
-                    }))} 
+                      "middle_name": e.target.value,
+                    }))}
                   />
                   <span className="focus-border"></span>
                 </div>
@@ -191,10 +191,10 @@ const InstructorRegistration = () => {
                     name="con_username"
                     type="text"
                     placeholder="Ulanyjy ady"
-                    onChange={(e) => setInfo((info)=> ({
+                    onChange={(e) => setInfo((info) => ({
                       ...info,
-                      "username":e.target.value,
-                    }))} 
+                      "username": e.target.value,
+                    }))}
                   />
                   <span className="focus-border"></span>
                 </div>
@@ -206,10 +206,10 @@ const InstructorRegistration = () => {
                     name="con_phone"
                     type="text"
                     placeholder="Telefon nomeri"
-                    onChange={(e) => setInfo((info)=> ({
+                    onChange={(e) => setInfo((info) => ({
                       ...info,
-                      "phone_number":e.target.value,
-                    }))} 
+                      "phone_number": e.target.value,
+                    }))}
                   />
                   <span className="focus-border"></span>
                 </div>
@@ -217,15 +217,15 @@ const InstructorRegistration = () => {
 
               <div className="col-lg-6">
                 <div className="form-group">
-                  <input 
-                  name="con_email" 
-                  type="email" 
-                  placeholder="Email"
-                  onChange={(e) => setInfo((info)=> ({
-                    ...info,
-                    "email":e.target.value,
-                  }))}  
-                />
+                  <input
+                    name="con_email"
+                    type="email"
+                    placeholder="Email"
+                    onChange={(e) => setInfo((info) => ({
+                      ...info,
+                      "email": e.target.value,
+                    }))}
+                  />
                   <span className="focus-border"></span>
                 </div>
               </div>
@@ -258,10 +258,10 @@ const InstructorRegistration = () => {
                   <span className="select-label d-block">
                     Mugallymyň suratyny saýlaň
                   </span>
-                <input 
-                  type="file" 
-                  onChange={handleFileImg} 
-                />
+                  <input
+                    type="file"
+                    onChange={handleFileImg}
+                  />
                   <span className="focus-border"></span>
                 </div>
               </div>
@@ -271,9 +271,9 @@ const InstructorRegistration = () => {
                   <span className="select-label d-block">
                     Mugallym paneli üçin suraty saýlaň
                   </span>
-                  <input 
-                    type="file" 
-                    onChange={handleFileThumbnail} 
+                  <input
+                    type="file"
+                    onChange={handleFileThumbnail}
                   />
                   <span className="focus-border"></span>
                 </div>
@@ -285,7 +285,7 @@ const InstructorRegistration = () => {
                   <div className="filter-select rbt-modern-select search-by-category">
                     <select value={selectedProfession} onChange={handleChange}>
                       <option value={0}>Hünärini saýla</option>
-                      {professions?.map((profession,index) => {
+                      {professions?.map((profession, index) => {
                         return (
                           <option value={profession?.id} key={index}>
                             {profession?.title}
@@ -297,15 +297,15 @@ const InstructorRegistration = () => {
                   <span className="focus-border"></span>
                 </div>
               </div>
-              
+
               <div className="col-lg-12">
                 <div className="form-group">
-                  <textarea 
+                  <textarea
                     placeholder="Bio"
-                    onChange={(e) => setInfo((info)=> ({
+                    onChange={(e) => setInfo((info) => ({
                       ...info,
-                      "biography":e.target.value,
-                    }))}  
+                      "biography": e.target.value,
+                    }))}
                   ></textarea>
                   <span className="focus-border"></span>
                 </div>
