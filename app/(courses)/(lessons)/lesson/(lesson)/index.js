@@ -114,7 +114,6 @@ const LessonPage = () => {
       </div>
     );
   }
-  console.log(baseUrl);
   
 
   return (

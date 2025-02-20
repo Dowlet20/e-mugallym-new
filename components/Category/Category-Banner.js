@@ -33,7 +33,14 @@ const CategoryBanner = ({ category }) => {
                 <p className="description">
                   {category && category.desc
                     ? category.desc
-                    : "Maglumat portaly bu - web sahypasynyň we mobil (ykjam) programmanyň üsti bilen wideo sapaklary, maglumatlary we salgylanmalary (sprawoçnik) görkezýän anyk kesgitlenen web çeşmesi."}
+                    : `"Geljegiňi Döret!"
+                    E-Mugallym: Tölegli kurslary mugt eden platforma
+                    Geliň, sanly bilim dünýäsi bilen geljegiňiz üçin esas dörediň!
+                     Biz size iň ýokary hilli okuw kurslaryny hödürleýäris – mugt!
+                     Maksadyňyz näme bolsa-da, E-Mugallym bilen maksatlaryňyza ýakynlaşyň.
+                    🎓 Bilim mugt.
+                    📚 Geljek seniň eliňde.
+                    💻 Häzirki zaman tehnologiýasy bilen okaň.`}
                 </p>
               </div>
             </div>

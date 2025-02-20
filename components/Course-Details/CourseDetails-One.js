@@ -7,7 +7,6 @@ import Requirements from "./Course-Sections/Requirements";
 
 const CourseDetailsOne = ({ checkMatchCourses, course }) => {
   
-  console.log(course?.requirements);
 
   return (
     <>

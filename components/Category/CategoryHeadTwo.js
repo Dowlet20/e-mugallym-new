@@ -9,7 +9,7 @@ import CategoryBanner from "./Category-Banner";
 import CourseFilterTwo from "./Filter/CourseFilterTwo";
 import { useAppContext } from "@/context/Context";
 
-const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLevels, setSelectedSources }) => {
+const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLevels, setSelectedSources, total_items, page }) => {
   const pathname = usePathname();
   const { toggle, setToggle } = useAppContext();
   const [filterToggle, setFilterToggle] = useState(true);
@@ -60,7 +60,7 @@ const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLe
                     {category && (
                       <div className="rbt-short-item">
                         <span className="course-index">
-                          19 netijäniň 1-9-y görkezilýär
+                          {total_items} netijäniň {(page-1)*6+1}-{page*6}-y görkezilýär
                         </span>
                         
                       </div>

@@ -8,7 +8,6 @@ export const metadata = {
 };
 
 const LessonLayout = () => {
-  console.log("men");
   return (
     <>
       <LessonPage />

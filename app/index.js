@@ -20,6 +20,7 @@ import { Ripple } from 'react-css-spinners'
 const CourseFilteTwoTogglePage = () => {
 
   const [courses, setCourse] = useState([]);
+  const [total_items, setTotal_items] =useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [search, setSearch] = useState("");
@@ -40,6 +41,12 @@ const CourseFilteTwoTogglePage = () => {
       category = category + x;
     }
   });
+  useEffect(() => {
+    const storedPage = localStorage.getItem('currentPage');
+    if (storedPage) {
+      setPage(parseInt(storedPage,10));
+    }
+  }, []);
 
   selectedLevels.forEach((x, i) => {
     if (i !== selectedLevels.length - 1) {
@@ -61,6 +68,7 @@ const CourseFilteTwoTogglePage = () => {
 
   const handleClick = (num) => {
     setPage(num);
+    
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -77,6 +85,8 @@ const CourseFilteTwoTogglePage = () => {
         const allCourse = response.data.items;
         setCourse(allCourse);
         setTotalPages(response.data.total_pages);
+        setTotal_items(response.data.total_items);
+        localStorage.setItem('currentPage', page);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -114,6 +124,8 @@ const CourseFilteTwoTogglePage = () => {
             setSelectedValues={setSelectedValues}
             setSelectedLevels={setSelectedLevels}
             setSelectedSources={setSelectedSources}
+            total_items={total_items}
+            page={page}
           />
           <div className="rbt-section-overlayping-top rbt-section-gapBottom">
             <div className="inner">

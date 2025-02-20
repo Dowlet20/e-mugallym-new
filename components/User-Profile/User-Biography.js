@@ -7,7 +7,6 @@ import awardImg from "../../public/images/icons/card-icon-1.png";
 
 
 const Biography = ({ checkMatchProfile, source }) => {
-  console.log(source?.description)
   return (
     <>
       <div className="col-lg-12 mt--30">

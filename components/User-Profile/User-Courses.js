@@ -13,7 +13,7 @@ const UserCourses = ({ courses }) => {
     });
   }, []);
 
-  console.log(courses);
+  
 
   return (
     <>

@@ -92,7 +92,6 @@ const InstructorRegistration = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response.data.id);
       localStorage.setItem('teacher_id', response.data.id);
       e.target.reset();
       // duzetmeli kabir zatlar menzes bolmaly dal diyip yalnyslyk cykarmaly
