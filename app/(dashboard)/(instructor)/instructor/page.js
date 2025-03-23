@@ -1,7 +1,5 @@
-
 import BackToTop from "@/app/backToTop";
 import InstructorPage from "./(team)";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 export const metadata = {
   title: "Instructor - Online Courses & Education NEXTJS14 Template",
@@ -11,10 +9,8 @@ export const metadata = {
 const InstructorLayout = () => {
   return (
     <>
-      <ProtectedRoute>
-        <InstructorPage />
-        <BackToTop />
-      </ProtectedRoute>
+      <InstructorPage />
+      <BackToTop />
     </>
   );
 };

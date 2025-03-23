@@ -1,3 +1,4 @@
+import ProtectedRoute from "@/components/ProtectedRoute";
 import SingleProfile from "../index";
 
 export const metadata = {
@@ -8,7 +9,9 @@ export const metadata = {
 const SingleProfileLayout = ({ params }) => {
   return (
     <>
+    <ProtectedRoute>
       <SingleProfile getParams={params} />
+    </ProtectedRoute>
     </>
   );
 };

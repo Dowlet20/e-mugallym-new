@@ -7,17 +7,17 @@ const LessonTop = ({ sidebar, setSidebar, lesson_title, course_slug }) => {
     <>
       <div className="lesson-top-bar">
         <div className="lesson-top-left">
-          {/* <div className="rbt-lesson-toggle">
+          <div className="rbt-lesson-toggle">
             <button
               className={`lesson-toggle-active btn-round-white-opacity ${
                 !sidebar ? "sidebar-hide" : ""
               }`}
               title="Toggle Sidebar"
-              onClick={setSidebar}
+              onClick={()=>{setSidebar((prev)=> !prev)}}
             >
               <i className="feather-arrow-left"></i>
             </button>
-          </div> */}
+          </div>
           <h5>{lesson_title}</h5>
         </div>
         <div className="lesson-top-right">

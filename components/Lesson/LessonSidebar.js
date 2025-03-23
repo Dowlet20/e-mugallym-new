@@ -1,19 +1,27 @@
 "use client";
 
+
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import axiosInstance from "@/utils/axiosInstance";
 
 const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
   const [activeTab, setActiveTab] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href) => pathname === href;
+
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState("");
+  const [quizToggle, setQuizToggle] = useState(false);
+
   useEffect(()=>{
     setActiveTab(topic_id)
     const fetchData = async () => {
       try {
-        const url=`/topics/?course__slug=${course_slug}${search ? "&search="+search : ""}`;
+        const url=`/topics/?course_slug=${course_slug}${search ? "&search="+search : ""}`;
         const response = await axiosInstance.get(url);
         setTopics(response.data);
       } catch (err) {
@@ -30,6 +38,7 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
     setSearch(search=>e.target.value);
   }
   
+  console.log(isActive("/questions-types"));
   
   return (
     <>
@@ -56,78 +65,174 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
         <div className="rbt-accordion-style rbt-accordion-02 for-right-content accordion">
           <div className="accordion" id="accordionExampleb2">
             {topics?.map((topic, index) => (
-                <div className="accordion-item card" key={index}>
-                  <h2
-                    className="accordion-header card-header"
-                    id={`headingTwo${index + 1}`}
-                  >
-                    <button
-                      className={`accordion-button ${
-                        topic?.id === activeTab ? "" : "collapsed"
-                      }`}
-                      type="button"
-                      data-bs-toggle="collapse"
-                      aria-expanded={topic?.id === activeTab}
-                      data-bs-target={`#collapseTwo${index + 1}`}
-                      aria-controls={`collapseTwo${index + 1}`}
-                      onClick={() => setActiveTab(topic?.id)}
-                    >
-                      <div className="d-flex align-items-center justify-content-between">
-                        <p style={{ width: '250px' }} className="mb-0"> 
-                          {topic.title}
-                        </p>
-                        <p className="rbt-badge-5 ml--30 mb-0">   
-                          {topic.topic_duration}
-                        </p>
-                      </div>
-                    </button>
-                  </h2>
-                  <div
-                    id={`collapseTwo${index + 1}`}
-                    className={`accordion-collapse collapse
-                     ${
-                      topic?.id === activeTab ? "show" : ""
+              <div className="accordion-item card" key={index}>
+                <h2
+                  className="accordion-header card-header"
+                  id={`headingTwo${index + 1}`}
+                >
+                  <button
+                    className={`accordion-button ${
+                      topic?.id === activeTab ? "" : "collapsed"
                     }`}
-                    aria-labelledby={`headingTwo${index + 1}`}
+                    type="button"
+                    data-bs-toggle="collapse"
+                    aria-expanded={topic?.id === activeTab}
+                    data-bs-target={`#collapseTwo${index + 1}`}
+                    aria-controls={`collapseTwo${index + 1}`}
+                    onClick={() => setActiveTab(topic?.id)}
                   >
-                    <div className="accordion-body card-body">
-                      <ul className="rbt-course-main-content liststyle">
-                        {topic.lessons.map((lesson, innerIndex) => (
-                          <li key={innerIndex}>
-                            <Link
-                              className={
-                                lesson?.slug === lesson_slug ? "active" : ""
-                              }
-                              href={`/lesson/${lesson?.slug}/${course_slug}`}
-                              onClick={() => setActiveTab(topic?.id)}
-                            >
-                              <div className="course-content-left">
-                                <i
-                                  className={`feather-${
-                                    lesson?.type !=="video"
-                                      ? "file-text"
-                                      : "play-circle"
-                                  }`}
-                                ></i>
-                                <span className="text">
-                                  {lesson.title} 
-                                </span>
-                              </div>
-                              <div className="course-content-right">
-                                {lesson?.type ==="video" && (
-                                  <span className="min-lable">
-                                    {lesson.lesson_duration}
-                                  </span>
-                                )}
-                              </div>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="d-flex align-items-center justify-content-between">
+                      <p style={{ width: '250px' }} className="mb-0"> 
+                        {topic.title}
+                      </p>
+                      <p className="rbt-badge-5 ml--30 mb-0">   
+                        {topic.topic_duration}
+                      </p>
                     </div>
+                  </button>
+                </h2>
+                <div
+                  id={`collapseTwo${index + 1}`}
+                  className={`accordion-collapse collapse
+                    ${
+                    topic?.id === activeTab ? "show" : ""
+                  }`}
+                  aria-labelledby={`headingTwo${index + 1}`}
+                >
+                  <div className="accordion-body card-body">
+                    <ul className="rbt-course-main-content liststyle">
+                      {topic.lessons.map((lesson, innerIndex) => (
+                        <li key={innerIndex}>
+                          <Link
+                            className={
+                              lesson?.slug === lesson_slug ? "active" : ""
+                            }
+                            href={`/lesson/${lesson?.slug}/${course_slug}`}
+                            onClick={() => setActiveTab(topic?.id)}
+                          >
+                            <div className="course-content-left">
+                              <i
+                                className={`feather-${
+                                  lesson?.type !=="video"
+                                    ? "file-text"
+                                    : "play-circle"
+                                }`}
+                              ></i>
+                              <span className="text">
+                                {lesson.title} 
+                              </span>
+                            </div>
+                            <div className="course-content-right">
+                              {lesson?.type ==="video" && (
+                                <span className="min-lable">
+                                  {lesson.lesson_duration}
+                                </span>
+                              )}
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
+            <div className="accordion-item card" key={"LessonQuiz"}>
+              <h2
+                className="accordion-header card-header"
+                id={`headingTwoLessonQuiz`}
+              >
+                <button
+                  //quizToggle ? "" : "collapsed"
+                  className={`accordion-button ${
+                    true ? "" : "collapsed"
+                  }`}
+                  type="button"
+                  data-bs-toggle="collapse"
+                  aria-expanded={true}
+                  data-bs-target={`#collapseTwoLessonQuiz`}
+                  aria-controls={`collapseTwoLessonQuiz`}
+                  onClick={() => setQuizToggle((prev)=> !prev)}
+                >
+                  <div 
+                    className="d-flex align-items-center justify-content-between"
+                  >
+                    <p style={{ width: '250px' }} className="mb-0"> 
+                      E-mugallym Test
+                    </p>
+                  </div>
+                </button>
+              </h2>
+              <div
+                id={`collapseTwoLessonQuiz`}
+                className={`accordion-collapse collapse
+                  ${
+                  true ? "show" : ""
+                }`}
+                aria-labelledby={`headingTwoLessonQuiz`}
+              >
+                <div className="accordion-body card-body">
+                  <ul className="rbt-course-main-content liststyle">
+                    <li>
+                      <Link
+                        className={
+                          isActive("/questions-types") ? "active" : ""
+                        }
+                        href={`/questions-types`}
+                      >
+                        <div className="course-content-left">
+                          {/* <i
+                            className={`feather-${
+                              lesson?.type !=="video"
+                                ? "file-text"
+                                : "play-circle"
+                            }`}
+                          ></i> */}
+                          <span className="text">
+                            Question Types
+                          </span>
+                        </div>
+                        {/* <div className="course-content-right">
+                          {lesson?.type ==="video" && (
+                            <span className="min-lable">
+                              {lesson.lesson_duration}
+                            </span>
+                          )}
+                        </div> */}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={
+                          isActive("/pagination-quiz") ? "active" : ""
+                        }
+                        href={`/pagination-quiz`}
+                      >
+                        <div className="course-content-left">
+                          {/* <i
+                            className={`feather-${
+                              lesson?.type !=="video"
+                                ? "file-text"
+                                : "play-circle"
+                            }`}
+                          ></i> */}
+                          <span className="text">
+                            Pagination Quiz
+                          </span>
+                        </div>
+                        {/* <div className="course-content-right">
+                          {lesson?.type ==="video" && (
+                            <span className="min-lable">
+                              {lesson.lesson_duration}
+                            </span>
+                          )}
+                        </div> */}
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

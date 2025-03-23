@@ -1,16 +1,45 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-export const CreateContext = createContext();
+// Create the context with an initial default value
+const AppContext = createContext({
+  tazele: false,
+  setTazele: () => {},
+  toggle: true,
+  setToggle: () => {},
+  mobile: true,
+  setMobile: () => {},
+  smallMobileMenu: true,
+  setsmallMobileMenu: () => {},
+  cartToggle: true,
+  setCart: () => {},
+  search: true,
+  setSearch: () => {},
+  pricing: true,
+  setPricing: () => {},
+  pricingTwo: true,
+  setPricingTwo: () => {},
+  pricingThree: true,
+  setPricingThree: () => {},
+  pricingFour: true,
+  setPricingFour: () => {},
+  isLightTheme: true,
+  setLightTheme: () => {},
+  toggleTheme: () => {},
+});
 
-export const useAppContext = () => useContext(CreateContext);
+// Custom hook to use the context
+export const useAppContext = () => {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error('useAppContext must be used within an AppContextProvider');
+  }
+  return context;
+};
 
 const Context = ({ children }) => {
-  const dispatch = useDispatch();
-  const { cart } = useSelector((state) => state.CartReducer);
-
+  const [tazele, setTazele] = useState(false);
   const [cartToggle, setCart] = useState(true);
   const [toggle, setToggle] = useState(true);
   const [search, setSearch] = useState(true);
@@ -21,10 +50,6 @@ const Context = ({ children }) => {
   const [pricingThree, setPricingThree] = useState(true);
   const [pricingFour, setPricingFour] = useState(true);
   const [isLightTheme, setLightTheme] = useState(true);
-
-  useEffect(() => {
-    dispatch({ type: "COUNT_CART_TOTALS" });
-  }, [cart]);
 
   useEffect(() => {
     const themeType = localStorage.getItem("histudy-theme");
@@ -48,34 +73,36 @@ const Context = ({ children }) => {
     setLightTheme((prevTheme) => !prevTheme);
   };
 
+  const value = {
+    tazele,
+    setTazele,
+    toggle,
+    setToggle,
+    mobile,
+    setMobile,
+    smallMobileMenu,
+    setsmallMobileMenu,
+    cartToggle,
+    setCart,
+    search,
+    setSearch,
+    pricing,
+    setPricing,
+    pricingTwo,
+    setPricingTwo,
+    pricingThree,
+    setPricingThree,
+    pricingFour,
+    setPricingFour,
+    isLightTheme,
+    setLightTheme,
+    toggleTheme,
+  };
+
   return (
-    <CreateContext.Provider
-      value={{
-        toggle,
-        setToggle,
-        mobile,
-        setMobile,
-        smallMobileMenu,
-        setsmallMobileMenu,
-        cartToggle,
-        setCart,
-        search,
-        setSearch,
-        pricing,
-        setPricing,
-        pricingTwo,
-        setPricingTwo,
-        pricingThree,
-        setPricingThree,
-        pricingFour,
-        setPricingFour,
-        isLightTheme,
-        setLightTheme,
-        toggleTheme,
-      }}
-    >
+    <AppContext.Provider value={value}>
       {children}
-    </CreateContext.Provider>
+    </AppContext.Provider>
   );
 };
 

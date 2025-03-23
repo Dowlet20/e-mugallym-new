@@ -21,6 +21,7 @@ import "swiper/css/thumbs";
 
 import "../public/scss/styles.scss";
 
+
 export default function RootLayout({ children }) {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js");

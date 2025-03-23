@@ -1,85 +1,78 @@
 
-
+// utils/axiosInstance.js
 import axios from 'axios';
 
+export const base_URL = 'http://216.250.10.52:5000/api/';
 
-const IP_ADDRESSES = [
-  'http://10.20.7.41:5000/api/',
-  'http://10.20.8.41:5000/api/',
-  'http://10.10.73.21:5000/api/', 
-  'http://127.0.0.1:5000/api/'
-];
-
-const createAxiosInstance = (baseURL) => {
-  return axios.create({
-    baseURL,
+const axiosInstance = axios.create({
+    baseURL: base_URL,
     timeout: 5000,
     headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+});
+
+// export const refreshToken = async () => {
+//     const refreshTokenValue = sessionStorage.getItem('refreshToken');
+//     if (!refreshTokenValue) {
+//         throw new Error('No refresh token available');
+//     }
+
+//     try {
+//         const response = await axios.post(`${base_URL}/token/refresh/`, {
+//             "refresh": refreshTokenValue
+//         });
+//         const { access } = response.data;
+//         setAuthToken(access);
+//         return access;
+//     } catch (error) {
+//         sessionStorage.removeItem('authToken');
+//         sessionStorage.removeItem('refreshToken');
+//         // window.location.href = '/login';
+//         throw error;
+//     }
+// };
+
+export const setAuthToken = (token) => {
+    if (token) {
+        sessionStorage.setItem('authToken', token);
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+        sessionStorage.removeItem('authToken');
+        delete axiosInstance.defaults.headers.common['Authorization'];
+    }
 };
 
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = sessionStorage.getItem('authToken');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
 
-class FallbackAxiosInstance {
-  constructor() {
-    this.currentIPIndex = 0;
-    this.instances = IP_ADDRESSES.map(url => createAxiosInstance(url));
-    this.successfulIP = IP_ADDRESSES[0]; 
-  }
+axiosInstance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+        const originalRequest = error.config;
 
-  async request(config) {
-    try {
-      const requests = this.instances.map((instance, index) => 
-        instance(config)
-          .then(response => {
-            this.successfulIP = IP_ADDRESSES[index]; 
-            return { response, ipIndex: index };
-          })
-          .catch(error => {
-            // console.log(`Failed to connect to ${IP_ADDRESSES[index]}`);
-            return Promise.reject(error);
-          })
-      );
-
-      const { response, ipIndex } = await Promise.any(requests);
-      this.currentIPIndex = ipIndex;
-      // console.log(`Successfully connected to ${this.successfulIP}`);
-      return response;
-    } catch (error) {
-      console.error('All IP addresses failed');
-      throw error;
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
+            try {
+                // const newToken = await refreshToken();
+                // originalRequest.headers.Authorization = `Bearer ${newToken}`;
+                // return axiosInstance(originalRequest);
+            } catch (refreshError) {
+                return Promise.reject(refreshError);
+            }
+        }
+        return Promise.reject(error);
     }
-  }
+);
 
-  getCurrentBaseURL() {
-    return this.successfulIP; 
-  }
+export default axiosInstance;
 
-  async get(url, config) {
-    return this.request({ ...config, method: 'get', url });
-  }
-
-  async post(url, data, config) {
-    return this.request({ ...config, method: 'post', url, data });
-  }
-
-  async put(url, data, config) {
-    return this.request({ ...config, method: 'put', url, data });
-  }
-
-  async delete(url, config) {
-    return this.request({ ...config, method: 'delete', url });
-  }
-
-  async patch(url, data, config) {
-    return this.request({ ...config, method: 'patch', url, data });
-  }
-}
-
-const axiosInstance = new FallbackAxiosInstance();
-
-
-const base_URL = 'http://127.0.0.1:5000/api/';
-export { base_URL };
-export default axiosInstance; // duzetmeli yeri bar

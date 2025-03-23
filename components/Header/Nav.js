@@ -23,6 +23,14 @@ const Nav = () => {
       <ul className="mainmenu">
         <li className="has-dropdown has-menu-child-item">
           <Link
+            className={isActive("/student-dashboard") ? "active" : ""}
+            href="/student-dashboard"
+            >
+              Talyp paneli
+          </Link>
+        </li>
+        <li className="has-dropdown has-menu-child-item">
+          <Link
             className={isActive("/kitaphana") ? "active" : ""}
             href="/kitaphana"
             onClick={(e) => {

@@ -1,5 +1,6 @@
 import BackToTop from "@/app/backToTop";
 import CourseFilteTwoTogglePage from "./index";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export const metadata = {
   title: "E-Mugallym",
@@ -9,8 +10,10 @@ export const metadata = {
 const CourseFilteTwoToggleLayout = () => {
   return (
     <>
+    <ProtectedRoute>
       <CourseFilteTwoTogglePage />
       <BackToTop />
+    </ProtectedRoute>
     </>
   );
 };

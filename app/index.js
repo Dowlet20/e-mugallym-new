@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import Store from "@/redux/store";
-import Context from "@/context/Context";
+import Context, { useAppContext } from "@/context/Context";
 
 import HeaderStyleTen from "@/components/Header/HeaderStyle-Ten";
 import MobileMenu from "@/components/Header/MobileMenu";
@@ -15,10 +15,10 @@ import Separator from "@/components/Common/Separator";
 import FooterOne from "@/components/Footer/Footer-One";
 
 import axiosInstance from "@/utils/axiosInstance";
-import { Ripple } from 'react-css-spinners'
+import { Ripple } from 'react-css-spinners';
 
 const CourseFilteTwoTogglePage = () => {
-
+  const [taze,  setTaze] = useState(false);
   const [courses, setCourse] = useState([]);
   const [total_items, setTotal_items] =useState(0);
   const [page, setPage] = useState(1);
@@ -74,6 +74,10 @@ const CourseFilteTwoTogglePage = () => {
       behavior: "smooth",
     });
   };
+
+  const handleRender = () => {
+    setTaze((prev)=>!prev)
+  }
 
   // const url =`/courses/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && search ? `&search=${search}` : !slug && !paid && !user && search ? `?search=${search}` : ""}${(slug || paid || user || search) && ordering ? `&ordering=${ordering}` : !slug && !paid && !user && !search && ordering ? `?ordering=${ordering}` : ""}`;
 
@@ -132,6 +136,7 @@ const CourseFilteTwoTogglePage = () => {
               <div className="container">
                 <CourseFilterOneToggle
                   course={courses}
+                  handleRender={handleRender}
                 />
                 <div className="row">
                   <div className="col-lg-12 mt--60">

@@ -30,7 +30,40 @@ import FillBlanks from "./Quiz/FillBlanks";
 import Summary from "./Quiz/Summary";
 import Ordering from "./Quiz/Ordering";
 
-const PaginationQuiz = () => {
+
+const usePersistedState = (key, defaultValue) => {
+  const [state, setState] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(key);
+      return saved ? JSON.parse(saved) : defaultValue;
+    }
+    return defaultValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
+
+  return [state, setState];
+};
+
+
+  
+  const PaginationQuiz = () => {
+    
+  const [answers, setAnswers] = usePersistedState("quizAnswers", {});
+
+  const handleAnswer = (questionId, answer) => {
+    setAnswers((prev) => ({ ...prev, [questionId]: answer }));
+  };
+
+  // <div>
+  //     <h1>Quiz</h1>
+  //     <button onClick={() => handleAnswer(1, "A")}>Answer A</button>
+  //     <button onClick={() => handleAnswer(1, "B")}>Answer B</button>
+  //     <p>Saved Answers: {JSON.stringify(answers)}</p>
+  //   </div>
+
   const [courseList, setCourseList] = useState(CourseData.courseDetails);
   const [hydrated, setHydrated] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(1);

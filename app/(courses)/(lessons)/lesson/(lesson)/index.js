@@ -73,9 +73,10 @@ const DownloadButton = ({ fileUrl }) => {
 
 const LessonPage = () => {
   const params = useParams();
-  const lesson_slug= params?.lessonId;
-  const course_slug= params?.courseId;
+  const lesson_slug = params?.lessonId;
+  const course_slug = params?.courseId;
 
+  const [sidebar, setSidebar] = useState(false);
   const [lesson, setLesson] = useState({});
   const [lesson_title, setLesson_title] = useState('');
   const [loading, setLoading] = useState(true);
@@ -114,7 +115,6 @@ const LessonPage = () => {
       </div>
     );
   }
-  
 
   return (
     <>
@@ -125,12 +125,17 @@ const LessonPage = () => {
           </div>
 
           <div className="rbt-lesson-rightsidebar overflow-hidden lesson-video">
-            <LessonTop lesson_title={lesson_title} course_slug={course_slug} />
+            <LessonTop 
+              lesson_title={lesson_title} 
+              course_slug={course_slug} 
+              sidebar={sidebar}
+              setSidebar={setSidebar}
+            />
             <div className="inner">
               <div className="plyr__video-embed rbtplayer">
               {lesson?.type === "video" ? (
                 <ReactPlayer
-                  url={lesson_slug ? `${baseUrl}/api/lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
+                  url={lesson_slug ? `${lesson.material}` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
                   width="100%"
                   height="100%"
                   playing={false} 

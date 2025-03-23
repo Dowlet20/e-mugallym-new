@@ -19,6 +19,7 @@
     "gray-matter": "^4.0.3",
     "http-proxy-middleware": "^3.0.3",
     "jodit-react": "^4.1.2",
+    "lucide-react": "^0.479.0",
     "luxon": "^3.4.4",
     "next": "14.0.4",
     "next-cloudinary": "^6.16.0",
