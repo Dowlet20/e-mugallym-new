@@ -49,9 +49,11 @@ const usePersistedState = (key, defaultValue) => {
 
 
   
-  const PaginationQuiz = () => {
-    
+const PaginationQuiz = ({test_slug}) => {
+  const [quiz, setQuiz] = useState([]);    
   const [answers, setAnswers] = usePersistedState("quizAnswers", {});
+
+  
 
   const handleAnswer = (questionId, answer) => {
     setAnswers((prev) => ({ ...prev, [questionId]: answer }));

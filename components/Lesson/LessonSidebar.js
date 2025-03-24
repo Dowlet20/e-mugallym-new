@@ -12,10 +12,30 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
   const [activeTab, setActiveTab] = useState(false);
   const pathname = usePathname();
   const isActive = (href) => pathname === href;
+  const [tests, setTests] = useState([]);
 
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState("");
   const [quizToggle, setQuizToggle] = useState(false);
+
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const url=`/quiz/${course_slug}/`;
+        const response = await axiosInstance.get(url);
+        setTests(response.data);
+        console.log(response.data)
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    if (course_slug) {
+      fetchData();
+    }
+  },[course_slug]);
+
+
 
   useEffect(()=>{
     setActiveTab(topic_id)
@@ -38,7 +58,7 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
     setSearch(search=>e.target.value);
   }
   
-  console.log(isActive("/questions-types"));
+  
   
   return (
     <>
@@ -173,12 +193,12 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
               >
                 <div className="accordion-body card-body">
                   <ul className="rbt-course-main-content liststyle">
-                    <li>
+                    <li key="0">
                       <Link
                         className={
                           isActive("/questions-types") ? "active" : ""
                         }
-                        href={`/questions-types`}
+                        href={`/questions-types/${course_slug}`}
                       >
                         <div className="course-content-left">
                           {/* <i
@@ -201,34 +221,36 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
                         </div> */}
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        className={
-                          isActive("/pagination-quiz") ? "active" : ""
-                        }
-                        href={`/pagination-quiz`}
-                      >
-                        <div className="course-content-left">
-                          {/* <i
-                            className={`feather-${
-                              lesson?.type !=="video"
-                                ? "file-text"
-                                : "play-circle"
-                            }`}
-                          ></i> */}
-                          <span className="text">
-                            Pagination Quiz
-                          </span>
-                        </div>
-                        {/* <div className="course-content-right">
-                          {lesson?.type ==="video" && (
-                            <span className="min-lable">
-                              {lesson.lesson_duration}
+                    {tests?.map((test, index)=>(
+                      <li key={index+1}>
+                        <Link
+                          className={
+                            isActive(`/pagination-quiz/${test.slug}/${course_slug}`) ? "active" : ""
+                          }
+                          href={`/pagination-quiz/${test.slug}/${course_slug}`}
+                        >
+                          <div className="course-content-left">
+                            {/* <i
+                              className={`feather-${
+                                lesson?.type !=="video"
+                                  ? "file-text"
+                                  : "play-circle"
+                              }`}
+                            ></i> */}
+                            <span className="text">
+                              {test.title}
                             </span>
-                          )}
-                        </div> */}
-                      </Link>
-                    </li>
+                          </div>
+                          {/* <div className="course-content-right">
+                            {lesson?.type ==="video" && (
+                              <span className="min-lable">
+                                {lesson.lesson_duration}
+                              </span>
+                            )}
+                          </div> */}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

@@ -5,10 +5,14 @@ import { useEffect, useState } from "react";
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonTop from "@/components/Lesson/LessonTop";
 import QuestionType from "@/components/Lesson/QuestionType";
+import { useParams } from "next/navigation";
 
 const QuestionTypeLayout = () => {
   const [sidebar, setSidebar] = useState(true);
   const [details, setDetails] = useState(false);
+  const params = useParams();
+  const course_slug = params?.courseId;
+  
 
   return (
     <>
@@ -19,7 +23,9 @@ const QuestionTypeLayout = () => {
               sidebar ? "" : "sibebar-none"
             }`}
           >
-            <LessonSidebar />
+            <LessonSidebar 
+              course_slug={course_slug}
+            />
           </div>
 
           <div className="rbt-lesson-rightsidebar overflow-hidden">
