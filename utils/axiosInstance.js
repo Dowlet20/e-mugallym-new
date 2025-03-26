@@ -2,7 +2,7 @@
 // utils/axiosInstance.js
 import axios from 'axios';
 
-export const base_URL = 'http://216.250.10.52:5000/api/';
+export const base_URL = 'http://10.10.73.31/api/';
 
 const axiosInstance = axios.create({
     baseURL: base_URL,

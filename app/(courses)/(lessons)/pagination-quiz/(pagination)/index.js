@@ -24,7 +24,9 @@ const PaginationQuizLayout = () => {
               sidebar ? "" : "sibebar-none"
             }`}
           >
-            <LessonSidebar course_slug={course_slug} />
+            <LessonSidebar 
+              course_slug={course_slug} 
+            />
           </div>
 
           <div className="rbt-lesson-rightsidebar overflow-hidden">
@@ -43,10 +45,10 @@ const PaginationQuizLayout = () => {
               </div>
             </div>
 
-            <LessonPagination
+            {/* <LessonPagination
               urlPrev="/all-questions"
               urlNext="/single-question"
-            />
+            /> */}
           </div>
         </div>
       </div>

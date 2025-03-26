@@ -24,8 +24,8 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
       try {
         const url=`/quiz/${course_slug}/`;
         const response = await axiosInstance.get(url);
-        setTests(response.data);
-        console.log(response.data)
+        setTests(response.data.reverse());
+        
       } catch (err) {
         console.log(err.message);
       }

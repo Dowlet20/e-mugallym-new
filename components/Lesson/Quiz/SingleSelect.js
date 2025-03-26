@@ -1,10 +1,10 @@
 import React from "react";
 
-const SingleSelect = ({ point, pointNum }) => {
+const SingleSelect = ({ point, pointNum, question, index }) => {
   return (
     <>
       <div className="rbt-single-quiz">
-        <h4>2. What is the Javascript?</h4>
+        <h4>{index+1}. {question.question}</h4>
         {point ? (
           <div className="mb--10">
             <span>
@@ -24,7 +24,7 @@ const SingleSelect = ({ point, pointNum }) => {
                 id="rbt-radio-1"
               />
               <label className="form-check-label" htmlFor="rbt-radio-1">
-                Option One
+                {question.answer1}
               </label>
             </div>
           </div>
@@ -37,7 +37,7 @@ const SingleSelect = ({ point, pointNum }) => {
                 id="rbt-radio-2"
               />
               <label className="form-check-label" htmlFor="rbt-radio-2">
-                Option Two
+              {question.answer2}
               </label>
             </div>
           </div>
@@ -50,7 +50,7 @@ const SingleSelect = ({ point, pointNum }) => {
                 id="rbt-radio-3"
               />
               <label className="form-check-label" htmlFor="rbt-radio-3">
-                Option Three
+              {question.answer3}
               </label>
             </div>
           </div>
@@ -63,7 +63,7 @@ const SingleSelect = ({ point, pointNum }) => {
                 id="rbt-radio-4"
               />
               <label className="form-check-label" htmlFor="rbt-radio-4">
-                Option Four
+              {question.answer4}
               </label>
             </div>
           </div>

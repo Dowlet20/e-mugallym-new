@@ -1,10 +1,11 @@
 import React from "react";
 
-const MutipleSelect = ({ point, pointNum }) => {
+const MutipleSelect = ({ point, pointNum, question, index }) => {
+  
   return (
     <>
       <div className="rbt-single-quiz">
-        <h4>1. What is the capital of France?</h4>
+        <h4>{index+1}. {question.question}</h4>
         {point ? (
           <div className="mb--10">
             <span>
@@ -23,7 +24,7 @@ const MutipleSelect = ({ point, pointNum }) => {
                 type="checkbox"
                 value="yes"
               />
-              <label htmlFor="rbt-checkbox-1">Option One</label>
+              <label htmlFor="rbt-checkbox-1">{question.answer1}</label>
             </p>
           </div>
           <div className="col-lg-6">
@@ -34,7 +35,7 @@ const MutipleSelect = ({ point, pointNum }) => {
                 type="checkbox"
                 value="yes"
               />
-              <label htmlFor="rbt-checkbox-2">Option Two</label>
+              <label htmlFor="rbt-checkbox-2">{question.answer2}</label>
             </p>
           </div>
           <div className="col-lg-6">
@@ -45,7 +46,7 @@ const MutipleSelect = ({ point, pointNum }) => {
                 type="checkbox"
                 value="yes"
               />
-              <label htmlFor="rbt-checkbox-3">Option Three</label>
+              <label htmlFor="rbt-checkbox-3">{question.answer3}</label>
             </p>
           </div>
           <div className="col-lg-6">
@@ -56,7 +57,7 @@ const MutipleSelect = ({ point, pointNum }) => {
                 type="checkbox"
                 value="yes"
               />
-              <label htmlFor="rbt-checkbox-4">Option Four</label>
+              <label htmlFor="rbt-checkbox-4">{question.answer4}</label>
             </p>
           </div>
         </div>

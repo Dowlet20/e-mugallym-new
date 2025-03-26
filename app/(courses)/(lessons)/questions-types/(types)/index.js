@@ -43,7 +43,11 @@ const QuestionTypeLayout = () => {
 
                 <hr />
                 <div className="rbt-dashboard-table table-responsive mobile-table-750 mt--30">
-                  <QuestionType details={details} setDetails={setDetails} />
+                  <QuestionType 
+                    course_slug={course_slug}
+                    details={details} 
+                    setDetails={setDetails} 
+                  />
                 </div>
               </div>
             </div>

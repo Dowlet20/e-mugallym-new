@@ -20,13 +20,11 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-
+import axiosInstance from "@/utils/axiosInstance";
 import CourseData from "../../data/course-details/courseData.json";
 
 import MutipleSelect from "./Quiz/MutipleSelect";
 import SingleSelect from "./Quiz/SingleSelect";
-import TrueFalse from "./Quiz/TrueFalse";
-import FillBlanks from "./Quiz/FillBlanks";
 import Summary from "./Quiz/Summary";
 import Ordering from "./Quiz/Ordering";
 
@@ -34,14 +32,14 @@ import Ordering from "./Quiz/Ordering";
 const usePersistedState = (key, defaultValue) => {
   const [state, setState] = useState(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(key);
+      const saved = sessionStorage.getItem(key);
       return saved ? JSON.parse(saved) : defaultValue;
     }
     return defaultValue;
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state));
+    sessionStorage.setItem(key, JSON.stringify(state));
   }, [key, state]);
 
   return [state, setState];
@@ -50,11 +48,49 @@ const usePersistedState = (key, defaultValue) => {
 
   
 const PaginationQuiz = ({test_slug}) => {
-  const [quiz, setQuiz] = useState([]);    
-  const [answers, setAnswers] = usePersistedState("quizAnswers", {});
+  const [questions, setQuestions] = useState([]);    
+  const [length, setLength] = useState(0);
+  const [answers, setAnswers] = usePersistedState("quizAnswers", []);
+  const [courseList, setCourseList] = useState(CourseData.courseDetails);
+  const [hydrated, setHydrated] = useState(false);
+  const [activeQuestion, setActiveQuestion] = useState(1);
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
-  
+  const upsertItem = (newItem) => {
+    setAnswers((prevItems) => {
+      const exists = prevItems.some((item) => item.id === newItem.id);
 
+      if (exists) {
+        return prevItems.map((item) =>
+          item.id === newItem.id ? { ...item, ...newItem } : item
+        );
+      } else {
+        return [...prevItems, newItem];
+      }
+    });
+  };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+     try {
+       const url = `/questions/${test_slug}`;
+       const response = await axiosInstance.get(url);
+       setQuestions(response.data.reverse());
+       setLength(response.data.length);
+     } catch (error) {
+       console.log(error.message);
+     }
+    }
+    if (test_slug) fetchData();
+  }, [test_slug]);
+
+ 
   const handleAnswer = (questionId, answer) => {
     setAnswers((prev) => ({ ...prev, [questionId]: answer }));
   };
@@ -66,9 +102,6 @@ const PaginationQuiz = ({test_slug}) => {
   //     <p>Saved Answers: {JSON.stringify(answers)}</p>
   //   </div>
 
-  const [courseList, setCourseList] = useState(CourseData.courseDetails);
-  const [hydrated, setHydrated] = useState(false);
-  const [activeQuestion, setActiveQuestion] = useState(1);
 
   const handlePaginationClick = (questionNumber) => {
     setActiveQuestion(questionNumber);
@@ -86,12 +119,6 @@ const PaginationQuiz = ({test_slug}) => {
     setHydrated(true);
   }, []);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
 
   function handleDragEnd(event) {
     const { active, over } = event;
@@ -106,9 +133,41 @@ const PaginationQuiz = ({test_slug}) => {
     }
   }
 
+  const renderPagination = () => {
+    const totalPages = questions.length;
+    const maxVisiblePages = 5; 
+    const pages = [];
+  
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (activeQuestion <= 3) {
+        pages.push(1, 2, 3, "...", totalPages);
+      } else if (activeQuestion >= totalPages - 2) {
+        pages.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, "...", activeQuestion - 1, activeQuestion, activeQuestion + 1, "...", totalPages);
+      }
+    }
+  
+    return pages.map((page, index) => (
+      <li
+        key={index}
+        className={page === activeQuestion ? "active" : ""}
+        onClick={() => typeof page === "number" && handlePaginationClick(page)}
+      >
+        {typeof page === "number" ? <Link href="#">{page}</Link> : <span>...</span>}
+      </li>
+    ));
+  };
+
+
   if (!hydrated) {
     return null;
   }
+
 
   return (
     <>
@@ -132,43 +191,7 @@ const PaginationQuiz = ({test_slug}) => {
                 <i className="feather-chevron-left" />
               </Link>
             </li>
-            <li
-              className={activeQuestion === 1 ? "active" : ""}
-              onClick={() => handlePaginationClick(1)}
-            >
-              <Link href="#">1</Link>
-            </li>
-            <li
-              className={activeQuestion === 2 ? "active" : ""}
-              onClick={() => handlePaginationClick(2)}
-            >
-              <Link href="#">2</Link>
-            </li>
-            <li
-              className={activeQuestion === 3 ? "active" : ""}
-              onClick={() => handlePaginationClick(3)}
-            >
-              <Link href="#">3</Link>
-            </li>
-            <li
-              className={activeQuestion === 4 ? "active" : ""}
-              onClick={() => handlePaginationClick(4)}
-            >
-              <Link href="#">4</Link>
-            </li>
-            <li
-              className={activeQuestion === 5 ? "active" : ""}
-              onClick={() => handlePaginationClick(5)}
-            >
-              <Link href="#">5</Link>
-            </li>
-            <li
-              className={activeQuestion === 6 ? "active" : ""}
-              onClick={() => handlePaginationClick(6)}
-            >
-              <Link href="#">6</Link>
-            </li>
-
+            {renderPagination()}
             <li onClick={handleNextClick}>
               <Link href="#" aria-label="Next">
                 <i className="feather-chevron-right" />
@@ -178,41 +201,41 @@ const PaginationQuiz = ({test_slug}) => {
         </div>
       </nav>
       <form id="quiz-form" className="quiz-form-wrapper">
-        <div
-          id="question-1"
-          className={`question ${activeQuestion === 1 ? "" : "d-none"}`}
-        >
-          <MutipleSelect />
-        </div>
+        {questions.map((question,index)=> (
+          <div key={index}>
+            <div
+              id="question-1"
+              className={`question ${activeQuestion === index+1 && question.type === "multiple_choice" ? "" : "d-none"}`}
+            >
+              <MutipleSelect 
+                question={question}
+                index={index}
+              />
+            </div>
 
-        <div
-          id="question-2"
-          className={`question ${activeQuestion === 2 ? "" : "d-none"}`}
-        >
-          <SingleSelect />
-        </div>
+            <div
+              id="question-2"
+              className={`question ${activeQuestion === index+1 && question.type ===  "single_choice" ? "" : "d-none"}`}
+            >
+              <SingleSelect 
+                question={question}
+                index={index}
+              />
+            </div>
 
-        <div
-          id="question-3"
-          className={`question ${activeQuestion === 3 ? "" : "d-none"}`}
-        >
-          <TrueFalse />
-        </div>
-        <div
-          id="question-4"
-          className={`question ${activeQuestion === 4 ? "" : "d-none"}`}
-        >
-          <Summary />
-        </div>
+            <div
+              id="question-5"
+              className={`question ${activeQuestion === index+1 && question.type === "fill_in_the_blank" ? "" : "d-none"}`}
+            >
+              <Summary
+                question={question}
+                index={index}
+              />
+            </div>
+          </div>
+        ))}
 
-        <div
-          id="question-5"
-          className={`question ${activeQuestion === 5 ? "" : "d-none"}`}
-        >
-          <FillBlanks />
-        </div>
-
-        <div
+        {/* <div
           id="question-6"
           className={`question ${activeQuestion === 6 ? "" : "d-none"}`}
         >
@@ -240,26 +263,10 @@ const PaginationQuiz = ({test_slug}) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </form>
       <div className="submit-btn mt--40">
-        {activeQuestion === 6 ? (
-          <button
-            className="rbt-btn btn-gradient hover-icon-reverse"
-            onClick={() => handleNextClick(activeQuestion + 1)}
-          >
-            <span className="icon-reverse-wrapper">
-              <span className="btn-text">Submit</span>
-              <span className="btn-icon">
-                <i className="feather-arrow-right"></i>
-              </span>
-              <span className="btn-icon">
-                <i className="feather-arrow-right"></i>
-              </span>
-            </span>
-          </button>
-        ) : (
-          <button
+        <button
             className="rbt-btn btn-gradient hover-icon-reverse"
             onClick={() => handleNextClick(activeQuestion + 1)}
           >
@@ -273,7 +280,6 @@ const PaginationQuiz = ({test_slug}) => {
               </span>
             </span>
           </button>
-        )}
       </div>
     </>
   );
