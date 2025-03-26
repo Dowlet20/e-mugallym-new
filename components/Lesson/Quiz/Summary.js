@@ -1,7 +1,7 @@
 "use client"
 import React, {useState, useEffect} from "react";
 
-const Summary = ({ point, pointNum, question, index }) => {
+const Summary = ({ point, pointNum, question, index, upsertItem }) => {
   const [inputs, setInputs] = useState([]);
   let sendText ="";
 
@@ -23,6 +23,17 @@ const Summary = ({ point, pointNum, question, index }) => {
     setInputs(newInputs);
   }, []);
 
+  // const [selectedValue, setSelectedValue]= useState("");
+  
+  //   const handleChange = (event) => {
+  //     setSelectedValue(event.target.value);
+  //     upsertItem({
+  //       "quiz_id":question.quiz, 
+  //       "question_id":question.id, 
+  //       "answer":event.target.value
+  //     })
+  //   };
+
 
   const handleInputChange = (index, event) => {
     const newInputs = [...inputs];
@@ -37,6 +48,14 @@ const Summary = ({ point, pointNum, question, index }) => {
       sendText+=x;
     }
   })
+
+  useEffect(()=>{
+    upsertItem({
+      "quiz_id":question.quiz, 
+      "question_id":question.id, 
+      "answer":sendText || ""
+    })
+  },[inputs])
 
   
   // console.log(splittedText);

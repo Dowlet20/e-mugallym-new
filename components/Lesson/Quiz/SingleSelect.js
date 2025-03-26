@@ -1,6 +1,21 @@
-import React from "react";
+"use client"
 
-const SingleSelect = ({ point, pointNum, question, index }) => {
+
+import React, {useState, useEffect} from "react";
+
+const SingleSelect = ({ point, pointNum, question, index, upsertItem }) => {
+  const [selectedValue, setSelectedValue]= useState("");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+    upsertItem({
+      "quiz_id":question.quiz, 
+      "question_id":question.id, 
+      "answer":event.target.value
+    })
+  };
+  
+  console.log(selectedValue);
   return (
     <>
       <div className="rbt-single-quiz">
@@ -22,6 +37,9 @@ const SingleSelect = ({ point, pointNum, question, index }) => {
                 type="radio"
                 name="rbt-radio"
                 id="rbt-radio-1"
+                value={question.answer1 || ""}
+                checked={selectedValue === question.answer1}
+                onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="rbt-radio-1">
                 {question.answer1}
@@ -35,6 +53,9 @@ const SingleSelect = ({ point, pointNum, question, index }) => {
                 type="radio"
                 name="rbt-radio"
                 id="rbt-radio-2"
+                value={question.answer2 || ""}
+                checked={selectedValue === question.answer2}
+                onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="rbt-radio-2">
               {question.answer2}
@@ -48,6 +69,9 @@ const SingleSelect = ({ point, pointNum, question, index }) => {
                 type="radio"
                 name="rbt-radio"
                 id="rbt-radio-3"
+                value={question.answer3 || ""}
+                checked={selectedValue === question.answer3}
+                onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="rbt-radio-3">
               {question.answer3}
@@ -61,6 +85,9 @@ const SingleSelect = ({ point, pointNum, question, index }) => {
                 type="radio"
                 name="rbt-radio"
                 id="rbt-radio-4"
+                value={question.answer4 || ""}
+                checked={selectedValue === question.answer4}
+                onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="rbt-radio-4">
               {question.answer4}

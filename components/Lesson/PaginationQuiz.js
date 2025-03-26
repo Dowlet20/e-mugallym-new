@@ -32,8 +32,13 @@ import Ordering from "./Quiz/Ordering";
 const usePersistedState = (key, defaultValue) => {
   const [state, setState] = useState(() => {
     if (typeof window !== "undefined") {
-      const saved = sessionStorage.getItem(key);
-      return saved ? JSON.parse(saved) : defaultValue;
+      try {
+        const saved = sessionStorage.getItem(key);
+        return saved ? JSON.parse(saved) : defaultValue;
+      } catch (error) {
+        console.error("Error parsing sessionStorage:", error);
+        return defaultValue;
+      }
     }
     return defaultValue;
   });
@@ -60,6 +65,9 @@ const PaginationQuiz = ({test_slug}) => {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+  console.log(answers);
+  
 
   const upsertItem = (newItem) => {
     setAnswers((prevItems) => {
@@ -209,6 +217,7 @@ const PaginationQuiz = ({test_slug}) => {
             >
               <MutipleSelect 
                 question={question}
+                upsertItem={upsertItem}
                 index={index}
               />
             </div>
@@ -219,6 +228,7 @@ const PaginationQuiz = ({test_slug}) => {
             >
               <SingleSelect 
                 question={question}
+                upsertItem={upsertItem}
                 index={index}
               />
             </div>
@@ -229,6 +239,7 @@ const PaginationQuiz = ({test_slug}) => {
             >
               <Summary
                 question={question}
+                upsertItem={upsertItem}
                 index={index}
               />
             </div>
