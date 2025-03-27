@@ -65,17 +65,16 @@ const PaginationQuiz = ({test_slug}) => {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
-
-  console.log(answers);
   
+  console.log(answers);
 
   const upsertItem = (newItem) => {
     setAnswers((prevItems) => {
-      const exists = prevItems.some((item) => item.id === newItem.id);
+      const exists = prevItems.some((item) => item.question_id === newItem.question_id);
 
       if (exists) {
         return prevItems.map((item) =>
-          item.id === newItem.id ? { ...item, ...newItem } : item
+          item.question_id === newItem.question_id ? { ...item, ...newItem } : item
         );
       } else {
         return [...prevItems, newItem];
@@ -116,7 +115,7 @@ const PaginationQuiz = ({test_slug}) => {
   };
 
   const handleNextClick = () => {
-    setActiveQuestion((prev) => Math.min(prev + 1, 6));
+    setActiveQuestion((prev) => Math.min(prev + 1, length));
   };
 
   const handlePreviousClick = () => {
@@ -171,6 +170,20 @@ const PaginationQuiz = ({test_slug}) => {
     ));
   };
 
+  const postAnswers = async () => {
+    try {
+      const body= answers || [];
+      const response = await axiosInstance.post('/answer/', body);
+      console.log(response.data);
+      if (typeof window !== "undefined") {
+        sessionStorage.removeItem('quizAnswers');
+        setAnswers([]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   if (!hydrated) {
     return null;
@@ -182,11 +195,11 @@ const PaginationQuiz = ({test_slug}) => {
       <div className="quize-top-meta">
         <div className="quize-top-left">
           <span>
-            Questions No:
-            <strong>{activeQuestion}/06</strong>
+            Sorag:
+            <strong> {activeQuestion}/{length}</strong>
           </span>
           <span>
-            Attempts Allowed: <strong>1/20</strong>
+            bu soragyň baly: <strong>{questions?.[activeQuestion-1]?.score || ""}</strong>
           </span>
         </div>
       </div>
@@ -211,38 +224,58 @@ const PaginationQuiz = ({test_slug}) => {
       <form id="quiz-form" className="quiz-form-wrapper">
         {questions.map((question,index)=> (
           <div key={index}>
-            <div
-              id="question-1"
-              className={`question ${activeQuestion === index+1 && question.type === "multiple_choice" ? "" : "d-none"}`}
-            >
-              <MutipleSelect 
-                question={question}
-                upsertItem={upsertItem}
-                index={index}
-              />
-            </div>
+            {activeQuestion === index+1 && question.type === "multiple_choice" ? (
+              <div
+                id="question-1"
+                className={`question ${activeQuestion === index+1 && question.type === "multiple_choice" ? "" : "d-none"}`}
+              >
+                <MutipleSelect 
+                  question={question}
+                  upsertItem={upsertItem}
+                  index={index}
+                  answers={answers}
+                />
+              </div>
+            ) : (
+            <>
+            </>)
+            }
 
-            <div
-              id="question-2"
-              className={`question ${activeQuestion === index+1 && question.type ===  "single_choice" ? "" : "d-none"}`}
-            >
-              <SingleSelect 
-                question={question}
-                upsertItem={upsertItem}
-                index={index}
-              />
-            </div>
+            {activeQuestion === index+1 && question.type === "single_choice" ? (
+              <div
+                id="question-2"
+                className={`question ${activeQuestion === index+1 && question.type ===  "single_choice" ? "" : "d-none"}`}
+              >
+                <SingleSelect 
+                  question={question}
+                  upsertItem={upsertItem}
+                  index={index}
+                  answers={answers}
+                />
+              </div>
+              ) : (
+                <>
+                </>
+              )
+            }
 
-            <div
-              id="question-5"
-              className={`question ${activeQuestion === index+1 && question.type === "fill_in_the_blank" ? "" : "d-none"}`}
-            >
-              <Summary
-                question={question}
-                upsertItem={upsertItem}
-                index={index}
-              />
-            </div>
+            {activeQuestion === index+1 && question.type === "fill_in_the_blank" ? (
+              <div
+                id="question-5"
+                className={`question ${activeQuestion === index+1 && question.type === "fill_in_the_blank" ? "" : "d-none"}`}
+              >
+                <Summary
+                  question={question}
+                  upsertItem={upsertItem}
+                  index={index}
+                  answers={answers}
+                />
+              </div>
+              ) : (
+                <>
+                </>
+              )
+            }
           </div>
         ))}
 
@@ -278,19 +311,23 @@ const PaginationQuiz = ({test_slug}) => {
       </form>
       <div className="submit-btn mt--40">
         <button
-            className="rbt-btn btn-gradient hover-icon-reverse"
-            onClick={() => handleNextClick(activeQuestion + 1)}
-          >
-            <span className="icon-reverse-wrapper">
-              <span className="btn-text">Submit & Next</span>
-              <span className="btn-icon">
-                <i className="feather-arrow-right"></i>
-              </span>
-              <span className="btn-icon">
-                <i className="feather-arrow-right"></i>
-              </span>
+          className="rbt-btn btn-gradient hover-icon-reverse"
+          onClick={() => {
+            if (window.confirm("Siz testi tabşyrmak isleýarsiňizmi?")) {
+              postAnswers();
+            }
+          }}
+        >
+          <span className="icon-reverse-wrapper">
+            <span className="btn-text">Tabşyrmak</span>
+            <span className="btn-icon">
+              <i className="feather-arrow-right"></i>
             </span>
-          </button>
+            <span className="btn-icon">
+              <i className="feather-arrow-right"></i>
+            </span>
+          </span>
+        </button>
       </div>
     </>
   );

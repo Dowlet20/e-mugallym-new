@@ -3,8 +3,10 @@
 
 import React, {useState, useEffect} from "react";
 
-const SingleSelect = ({ point, pointNum, question, index, upsertItem }) => {
+const SingleSelect = ({ point, pointNum, question, index, upsertItem, answers }) => {
   const [selectedValue, setSelectedValue]= useState("");
+  const exists = answers.find((item) => item.question_id === question.id);
+  console.log(exists);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -14,8 +16,8 @@ const SingleSelect = ({ point, pointNum, question, index, upsertItem }) => {
       "answer":event.target.value
     })
   };
+
   
-  console.log(selectedValue);
   return (
     <>
       <div className="rbt-single-quiz">
@@ -37,8 +39,8 @@ const SingleSelect = ({ point, pointNum, question, index, upsertItem }) => {
                 type="radio"
                 name="rbt-radio"
                 id="rbt-radio-1"
-                value={question.answer1 || ""}
-                checked={selectedValue === question.answer1}
+                value={"1"}
+                checked={selectedValue ? selectedValue === "1" : exists?.answer === "1"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="rbt-radio-1">
@@ -53,8 +55,8 @@ const SingleSelect = ({ point, pointNum, question, index, upsertItem }) => {
                 type="radio"
                 name="rbt-radio"
                 id="rbt-radio-2"
-                value={question.answer2 || ""}
-                checked={selectedValue === question.answer2}
+                value={"2"}
+                checked={selectedValue ? selectedValue === "2" : exists?.answer === "2"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="rbt-radio-2">
@@ -69,8 +71,8 @@ const SingleSelect = ({ point, pointNum, question, index, upsertItem }) => {
                 type="radio"
                 name="rbt-radio"
                 id="rbt-radio-3"
-                value={question.answer3 || ""}
-                checked={selectedValue === question.answer3}
+                value={"3"}
+                checked={selectedValue ? selectedValue === "3" : exists?.answer === "3"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="rbt-radio-3">
@@ -85,8 +87,8 @@ const SingleSelect = ({ point, pointNum, question, index, upsertItem }) => {
                 type="radio"
                 name="rbt-radio"
                 id="rbt-radio-4"
-                value={question.answer4 || ""}
-                checked={selectedValue === question.answer4}
+                value={"4"}
+                checked={selectedValue ? selectedValue === "4" : exists?.answer === "4"}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="rbt-radio-4">

@@ -1,9 +1,18 @@
 "use client"
 import React, {useState, useEffect} from "react";
 
-const Summary = ({ point, pointNum, question, index, upsertItem }) => {
+const Summary = ({ point, pointNum, question, index, upsertItem, answers }) => {
   const [inputs, setInputs] = useState([]);
-  let sendText ="";
+  const exists = answers.find((item) => item.question_id === question.id);
+  const matches = exists?.answer?.split(/(\w+)?_hide/g).map(part => part === undefined ? '' : part) || [];
+  if (matches?.[0] === '') matches.shift();
+  if (matches?.[matches.length - 1] === '') matches.pop();
+  console.log(question)
+  // console.log(exists?.answer)
+  // console.log(exists?.answer === question.question);
+  // console.log(inputs);
+  // console.log(matches)
+
 
   function splitByHide(text) {
     return text.split(/\b\w*_hide\b/).flatMap((part, index, arr) => {
@@ -22,47 +31,31 @@ const Summary = ({ point, pointNum, question, index, upsertItem }) => {
     const newInputs = splittedText.map(x=> '');
     setInputs(newInputs);
   }, []);
-
-  // const [selectedValue, setSelectedValue]= useState("");
   
-  //   const handleChange = (event) => {
-  //     setSelectedValue(event.target.value);
-  //     upsertItem({
-  //       "quiz_id":question.quiz, 
-  //       "question_id":question.id, 
-  //       "answer":event.target.value
-  //     })
-  //   };
-
 
   const handleInputChange = (index, event) => {
     const newInputs = [...inputs];
-    newInputs[index] = event.target.value.trim(); 
-    setInputs(newInputs); 
-  };
-
-  splittedText.forEach((x,i)=>{
-    if (x==='') {
-      sendText+=inputs[i]+"_hide";
-    } else {
-      sendText+=x;
-    }
-  })
-
-  useEffect(()=>{
-    upsertItem({
-      "quiz_id":question.quiz, 
-      "question_id":question.id, 
-      "answer":sendText || ""
-    })
-  },[inputs])
-
+    newInputs[index] = event.target.value.trim();
+    setInputs(newInputs);
   
-  // console.log(splittedText);
-
-  // const text = "new_hide another_hide Next.js is a popular javascript_hide framework built on top of react_hide.I enables developers to create extraordinary_hide applications with features. wow_hide";
-  // const result = splitByHide(text);
-  // console.log(result);
+    
+    let updatedSendText = "";
+    splittedText.forEach((x, i) => {
+      if (x === "") {
+        updatedSendText += newInputs[i] + "_hide";
+      } else {
+        updatedSendText += x;
+      }
+    });
+  
+    
+    upsertItem({
+      "quiz_id": question.quiz,
+      "question_id": question.id,
+      "answer": updatedSendText || ""
+    });
+  };
+  
 
   return (
     <>
@@ -89,7 +82,7 @@ const Summary = ({ point, pointNum, question, index, upsertItem }) => {
                     text === '' ? (
                       <>
                         <input 
-                          value={inputs[ind] || ""}
+                          value={inputs[ind] || matches[ind] || ""}
                           className="form-blank-input mx-2" 
                           type="text" 
                           onChange={(event) => handleInputChange(ind, event)}
