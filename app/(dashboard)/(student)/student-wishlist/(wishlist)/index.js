@@ -1,49 +1,18 @@
 "use client";
 
-import {useState, useEffect} from 'react';
 import Separator from "@/components/Common/Separator";
 import FooterOne from "@/components/Footer/Footer-One";
 import HeaderStyleTen from "@/components/Header/HeaderStyle-Ten";
 import MobileMenu from "@/components/Header/MobileMenu";
 import Cart from "@/components/Header/Offcanvas/Cart";
+import StudentDashboardHeader from "@/components/Student/StudentDashboardHeader";
 import StudentDashboardSidebar from "@/components/Student/StudentDashboardSidebar";
+import Wishlist from "@/components/Student/Wishlist";
 import Context from "@/context/Context";
 import Store from "@/redux/store";
 import { Provider } from "react-redux";
-import Link from "next/link";
-import axiosInstance from "@/utils/axiosInstance";
-import QuizAttempts from '@/components/Student/QuizAttempts';
 
-const StudentProfile = () => {
-  const [results, setResults] = useState([]);
-
-  useEffect(()=> {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get('/quiz/results/');
-        setResults(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    } 
-    fetchData();
-  }, [])
-
-  console.log(results);
-
-  const formattedDate = (isoString) => {
-    const date = new Date(isoString);
-    const day = String(date.getUTCDate()).padStart(2, '0');
-    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are 0-based
-    const year = date.getUTCFullYear();
-    const hours = String(date.getUTCHours()).padStart(2, '0');
-    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
-    const seconds = String(date.getUTCSeconds()).padStart(2, '0');
-
-    const formatDate = `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
-    return formatDate;
-  }
-
+const StudentWishlist = () => {
   return (
     <>
       <Provider store={Store}>
@@ -67,10 +36,7 @@ const StudentProfile = () => {
                     </div>
 
                     <div className="col-lg-9">
-                      <QuizAttempts 
-                          results={results}
-                          formattedDate={formattedDate}
-                      />
+                      <Wishlist />
                     </div>
                   </div>
                 </div>
@@ -86,4 +52,4 @@ const StudentProfile = () => {
   );
 };
 
-export default StudentProfile;
+export default StudentWishlist;

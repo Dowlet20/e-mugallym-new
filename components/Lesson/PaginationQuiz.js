@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import {
   DndContext,
@@ -19,14 +18,14 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import axiosInstance from "@/utils/axiosInstance";
 import CourseData from "../../data/course-details/courseData.json";
 
 import MutipleSelect from "./Quiz/MutipleSelect";
 import SingleSelect from "./Quiz/SingleSelect";
 import Summary from "./Quiz/Summary";
-import Ordering from "./Quiz/Ordering";
+import AlertDialog from "../AlertDialog";
+
 
 
 const usePersistedState = (key, defaultValue) => {
@@ -52,7 +51,7 @@ const usePersistedState = (key, defaultValue) => {
 
 
   
-const PaginationQuiz = ({test_slug}) => {
+const PaginationQuiz = ({test_slug,  setResult, setShowAlert}) => {
   const [questions, setQuestions] = useState([]);    
   const [length, setLength] = useState(0);
   const [answers, setAnswers] = usePersistedState("quizAnswers", []);
@@ -67,6 +66,8 @@ const PaginationQuiz = ({test_slug}) => {
   );
   
   console.log(answers);
+
+  
 
   const upsertItem = (newItem) => {
     setAnswers((prevItems) => {
@@ -170,10 +171,13 @@ const PaginationQuiz = ({test_slug}) => {
     ));
   };
 
+
   const postAnswers = async () => {
     try {
       const body= answers || [];
       const response = await axiosInstance.post('/answer/', body);
+      setResult(response.data);
+      setShowAlert(true);
       console.log(response.data);
       if (typeof window !== "undefined") {
         sessionStorage.removeItem('quizAnswers');

@@ -1,5 +1,6 @@
 import BackToTop from "@/app/backToTop";
 import PaginationQuizLayout from "./(pagination)";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export const metadata = {
   title: "Pagination Quiz - Online Courses & Education NEXTJS14 Template",
@@ -9,8 +10,10 @@ export const metadata = {
 const LessonLayout = () => {
   return (
     <>
-      <PaginationQuizLayout />
-      <BackToTop />
+      <ProtectedRoute>
+        <PaginationQuizLayout />
+        <BackToTop />
+      </ProtectedRoute>
     </>
   );
 };

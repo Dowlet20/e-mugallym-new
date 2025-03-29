@@ -1,17 +1,42 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonTop from "@/components/Lesson/LessonTop";
 import QuestionType from "@/components/Lesson/QuestionType";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import AlertDialog from "@/components/AlertDialog";
 
 const QuestionTypeLayout = () => {
   const [sidebar, setSidebar] = useState(true);
   const [details, setDetails] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [result, setResult] = useState({});
+  const router = useRouter();
   const params = useParams();
   const course_slug = params?.courseId;
+  
+  const handleConfirm = () =>{
+    console.log(`/questions-types/${course_slug}`);
+    setResult({})
+    router.push(`/questions-types/${course_slug}`);
+    
+  }
+  console.log(result);
+
+  if (Object.keys(result).length !== 0) {
+        return (
+        <>
+          <AlertDialog
+            isOpen={showAlert}
+            onClose={() => {setShowAlert(false)}}
+            result={result}
+            totalScore={"20"}
+            onConfirm={handleConfirm}
+          />
+        </>
+      )
+      }
   
 
   return (
@@ -25,6 +50,8 @@ const QuestionTypeLayout = () => {
           >
             <LessonSidebar 
               course_slug={course_slug}
+              setShowAlert={setShowAlert}
+              setResult={setResult}
             />
           </div>
 

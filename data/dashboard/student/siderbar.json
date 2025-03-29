@@ -1,24 +1,24 @@
 {
   "siderbar": [
     {
-      "link": "/student/student-dashboard",
+      "link": "/student-dashboard",
       "text": "Dolandyryş paneli",
       "icon": "feather-home"
     },
     {
-      "link": "/student/student-profile",
-      "text": "Meniň profilim",
+      "link": "/student-profile",
+      "text": "Test netijeleri",
       "icon": "feather-user"
     },
     {
-      "link": "/student/student-enrolled-course",
-      "text": "Bellenen kurslar",
-      "icon": "feather-book-open"
-    },
-    {
-      "link": "/halanlarym",
+      "link": "/student-wishlist",
       "text": "Halanlarym",
       "icon": "feather-bookmark"
+    },
+    {
+      "link": "/student-latest",
+      "text": "soňky giren kurslarym",
+      "icon": "feather-book-open"
     },
     {
       "link": "/student/student-reviews",

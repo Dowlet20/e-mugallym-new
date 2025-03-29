@@ -8,15 +8,36 @@ import { usePathname } from "next/navigation";
 
 import axiosInstance from "@/utils/axiosInstance";
 
-const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
+const LessonSidebar = ({ 
+  course_slug, 
+  lesson_slug, 
+  topic_id, 
+  setShowAlert ,
+  setResult
+}) => {
   const [activeTab, setActiveTab] = useState(false);
   const pathname = usePathname();
   const isActive = (href) => pathname === href;
   const [tests, setTests] = useState([]);
-
+  const [totalScore, setTotalScore] = useState(null);
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState("");
   const [quizToggle, setQuizToggle] = useState(false);
+
+  const handleClick = (e, is_passed, total_score) => {
+    if (is_passed !== null) {
+      console.log(is_passed)
+      console.log(total_score)
+      setResult({
+        is_passed:is_passed,
+        score:total_score,
+        pass_score:"20"
+      })
+      e.preventDefault(); 
+      setShowAlert(true); 
+      setTotalScore(total_score);
+    } 
+  };
 
 
   useEffect(()=>{
@@ -228,6 +249,7 @@ const LessonSidebar = ({course_slug, lesson_slug, topic_id}) => {
                             isActive(`/pagination-quiz/${test.slug}/${course_slug}`) ? "active" : ""
                           }
                           href={`/pagination-quiz/${test.slug}/${course_slug}`}
+                          onClick={(e) => handleClick(e, test?.passed?.is_passed, test?.passed?.total_score)}
                         >
                           <div className="course-content-left">
                             {/* <i

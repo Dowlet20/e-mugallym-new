@@ -8,12 +8,38 @@ import LessonTop from "@/components/Lesson/LessonTop";
 import PaginationQuiz from "@/components/Lesson/PaginationQuiz";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import AlertDialog from "@/components/AlertDialog";
+
 
 const PaginationQuizLayout = () => {
   const [sidebar, setSidebar] = useState(true);
+  const [result, setResult] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
+  const router = useRouter();
   const params = useParams();
   const test_slug = params?.testId;
   const course_slug= params?.courseId;
+  
+  const handleConfirm = () =>{
+    setResult({})
+    router.push(`/questions-types/${course_slug}`)
+  }
+
+
+  if (Object.keys(result).length !== 0) {
+      return (
+      <>
+        <AlertDialog
+          isOpen={showAlert}
+          onClose={() => setShowAlert(false)}
+          result={result}
+          totalScore={"20"}
+          onConfirm={handleConfirm}
+        />
+      </>
+    )
+    }
 
   return (
     <>
@@ -26,6 +52,8 @@ const PaginationQuizLayout = () => {
           >
             <LessonSidebar 
               course_slug={course_slug} 
+              setShowAlert={setShowAlert}
+              setResult={setResult}
             />
           </div>
 
@@ -40,6 +68,8 @@ const PaginationQuizLayout = () => {
                 <div className="rbt-dashboard-table table-responsive mobile-table-750 mt--30 overflow-hidden">
                   <PaginationQuiz
                     test_slug={test_slug}
+                    setResult={setResult}
+                    setShowAlert={setShowAlert}
                   />
                 </div>
               </div>
