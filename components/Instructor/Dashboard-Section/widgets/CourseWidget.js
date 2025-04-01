@@ -45,7 +45,7 @@ const CourseWidget = ({
               position: 'relative' 
             }}>
               <Image
-                src={"/images/course/course-01.jpg"}
+                src={data?.thumbnail ? data?.thumbnail : "/images/course/course-01.jpg"}
                 alt="Card image"
                 layout="fill"
                 objectFit="cover"
