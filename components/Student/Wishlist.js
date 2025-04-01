@@ -55,8 +55,9 @@ const Wishlist = () => {
       }
     }
     fetchData();
-  }, [setTotalPages, setCourses, page, taze]);
-  console.log(courses);
+  }, [setTotalPages, setCourses, page, taze, toggle]);
+  
+
   return (
     <>
       <div className="rbt-dashboard-content bg-color-white rbt-shadow-box">
@@ -75,7 +76,6 @@ const Wishlist = () => {
                 >
                   <CourseWidget
                     data={data}
-                    toggle={toggle}
                     handleRender={handleRender}
                     courseStyle="two"
                     isCompleted={false}

@@ -6,7 +6,7 @@ import React, {useState, useEffect} from "react";
 const SingleSelect = ({ point, pointNum, question, index, upsertItem, answers }) => {
   const [selectedValue, setSelectedValue]= useState("");
   const exists = answers.find((item) => item.question_id === question.id);
-  console.log(exists);
+  
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);

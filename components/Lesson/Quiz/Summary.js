@@ -7,11 +7,6 @@ const Summary = ({ point, pointNum, question, index, upsertItem, answers }) => {
   const matches = exists?.answer?.split(/(\w+)?_hide/g).map(part => part === undefined ? '' : part) || [];
   if (matches?.[0] === '') matches.shift();
   if (matches?.[matches.length - 1] === '') matches.pop();
-  console.log(question)
-  // console.log(exists?.answer)
-  // console.log(exists?.answer === question.question);
-  // console.log(inputs);
-  // console.log(matches)
 
 
   function splitByHide(text) {

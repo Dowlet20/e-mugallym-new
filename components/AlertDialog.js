@@ -52,11 +52,9 @@ export default function AlertDialog({
   isOpen,
   onClose,
   onConfirm,
-  result,
-  totalScore
+  result
 }) {
 
-    console.log("mend geldim")
     if (!isOpen) return null;
 
   const backdropStyle = {
@@ -147,7 +145,7 @@ export default function AlertDialog({
                         Siziň balyňyz: {result?.score}
                     </p>
                     <p>
-                       Max Ball: {totalScore}
+                      {result?.count_of_questions ? "Sorag san: "+result?.count_of_questions: ""}
                     </p>
                 </div>   
             )}

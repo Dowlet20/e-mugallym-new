@@ -27,7 +27,6 @@ const MutipleSelect = ({ point, pointNum, question, index, upsertItem, answers }
     setSelectedValues(updatedValues);
   };
 
-  console.log(selectedValues)
   return (
     <>
       <div className="rbt-single-quiz">

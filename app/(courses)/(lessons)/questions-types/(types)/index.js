@@ -17,12 +17,9 @@ const QuestionTypeLayout = () => {
   const course_slug = params?.courseId;
   
   const handleConfirm = () =>{
-    console.log(`/questions-types/${course_slug}`);
     setResult({})
-    router.push(`/questions-types/${course_slug}`);
-    
+    router.replace(`/questions-types/${course_slug}`);
   }
-  console.log(result);
 
   if (Object.keys(result).length !== 0) {
         return (
@@ -31,7 +28,6 @@ const QuestionTypeLayout = () => {
             isOpen={showAlert}
             onClose={() => {setShowAlert(false)}}
             result={result}
-            totalScore={"20"}
             onConfirm={handleConfirm}
           />
         </>
@@ -59,6 +55,7 @@ const QuestionTypeLayout = () => {
             <LessonTop
               sidebar={sidebar}
               setSidebar={() => setSidebar(!sidebar)}
+              course_slug={course_slug} 
             />
 
             <div className="inner py-0">
@@ -72,6 +69,8 @@ const QuestionTypeLayout = () => {
                 <div className="rbt-dashboard-table table-responsive mobile-table-750 mt--30">
                   <QuestionType 
                     course_slug={course_slug}
+                    setResult={setResult}
+                    setShowAlert={setShowAlert}
                     details={details} 
                     setDetails={setDetails} 
                   />

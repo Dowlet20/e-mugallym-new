@@ -7,30 +7,29 @@ import AlertDialog from "../AlertDialog";
 import { useRouter } from "next/navigation";
 
 
-const QuestionType = ({course_slug}) => {
+const QuestionType = ({
+    course_slug, 
+    setResult,
+    setShowAlert
+  }) => {
   const [tests, setTests] = useState([]);
-  const [result, setResult] = useState({});
-  const [showAlert, setShowAlert] = useState(false);
   const [totalScore, setTotalScore] = useState(null);
   const router = useRouter();
 
-  const handleClick = (e, is_passed, total_score) => {
-    if (is_passed !== null) {
-      e.preventDefault(); 
+  const handleClick = (e, passed) => {
+    if (passed?.is_passed !== null) {
       setResult({
-        is_passed:is_passed,
-        score:total_score,
-        pass_score:"20"
+        is_passed:passed?.passed,
+        score:passed?.score,
+        pass_score:passed?.pass_score,
+        count_of_questions:passed?.count_of_questions
       })
+      e.preventDefault(); 
       setShowAlert(true); 
-      setTotalScore(total_score);
+      setTotalScore("20");
     } 
   };
 
-  const handleConfirm = () =>{
-    setResult({});
-    router.push(`/questions-types/${course_slug}`)
-  }
 
   useEffect(() => {
        const fetchData = async () => {
@@ -46,7 +45,6 @@ const QuestionType = ({course_slug}) => {
        if (course_slug) fetchData();
     }, [course_slug]);
 
-    console.log(tests);
     
   return (
     <>
@@ -66,7 +64,7 @@ const QuestionType = ({course_slug}) => {
               <Link
                 className="rbt-btn btn-gradient hover-icon-reverse mt--30"
                 href={`/pagination-quiz/${test.slug}/${course_slug}`}
-                onClick={(e) => handleClick(e, test.passed.is_passed, test.passed.total_score)}
+                onClick={(e) => handleClick(e, test.passed)}
 
               >
                 <span className="icon-reverse-wrapper">
@@ -84,7 +82,7 @@ const QuestionType = ({course_slug}) => {
         </div>
       </div>
 
-      {showAlert && Object.keys(result).length !== 0 && (
+      {/* {showAlert && Object.keys(result).length !== 0 && (
         <AlertDialog
           isOpen={showAlert}
           onClose={() => {setShowAlert(false)}}
@@ -92,7 +90,7 @@ const QuestionType = ({course_slug}) => {
           totalScore={"20"}
           onConfirm={handleConfirm}
         />
-      )}
+      )} */}
     </>
   );
 };

@@ -10,10 +10,10 @@ export const metadata = {
 const LessonLayout = () => {
   return (
     <>
-      <ProtectedRoute>
         <QuestionTypeLayout />
         <BackToTop />
-      </ProtectedRoute>
+      {/* <ProtectedRoute>
+      </ProtectedRoute> */}
     </>
   );
 };

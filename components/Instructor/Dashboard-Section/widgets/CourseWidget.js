@@ -5,25 +5,26 @@ import Link from "next/link";
 import Image from "next/image";
 import axiosInstance from "@/utils/axiosInstance";
 import { Star } from "lucide-react";
+import { useAppContext } from "@/context/Context";
 
 const CourseWidget = ({
-  data,
-  toggle,
-  handleRender,
-  courseStyle,
-  showDescription,
-  showAuthor,
-  isProgress,
-  isCompleted,
-  isEdit,
-}) => {
+    data,
+    handleRender,
+    courseStyle,
+    showDescription,
+    showAuthor,
+    isProgress,
+    isCompleted,
+    isEdit,
+  }) => {
+    const { setToggle, toggle } = useAppContext();
   const [courseId, setCourseId] = useState(data?.id || 0);
     const [fav, setFav] = useState(data?.favourite || false);
 
     const isFavourite = async () => {
         try {
             await axiosInstance.post('/courses/favourite/', {"course_id":courseId});
-            console.log("123 ", courseId)
+            setToggle(toggle=>!toggle);
         } catch (error) {
             console.log(error);
         }
@@ -32,7 +33,7 @@ const CourseWidget = ({
         setFav((prev) => !prev); 
       };
 
-
+      
   return (
     <>
       <div className={`rbt-card variation-01 rbt-hover ${!toggle ? "card-list-2" : "" }`}>

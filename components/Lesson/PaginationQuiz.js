@@ -51,13 +51,14 @@ const usePersistedState = (key, defaultValue) => {
 
 
   
-const PaginationQuiz = ({test_slug,  setResult, setShowAlert}) => {
+const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
   const [questions, setQuestions] = useState([]);    
   const [length, setLength] = useState(0);
   const [answers, setAnswers] = usePersistedState("quizAnswers", []);
   const [courseList, setCourseList] = useState(CourseData.courseDetails);
   const [hydrated, setHydrated] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(1);
+  const [tabsyr, setTabsyr] = useState(false);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -65,9 +66,24 @@ const PaginationQuiz = ({test_slug,  setResult, setShowAlert}) => {
     })
   );
   
-  console.log(answers);
-
-  
+  useEffect(() => {
+    const fetchData = async () => {
+     try {
+       const url = `/quiz/${course_slug}`;
+       const response = await axiosInstance.get(url);
+       const result = response.data;
+       const findItem = result.find(item => item.slug === test_slug);
+        if (findItem?.passed?.is_passed !== null) {
+          setResult(findItem?.passed);
+          setTabsyr(true);
+        }
+      
+      } catch (error) {
+       console.log(error.message);
+     }
+    }
+    if (course_slug) fetchData();
+ }, [course_slug]);
 
   const upsertItem = (newItem) => {
     setAnswers((prevItems) => {
@@ -89,26 +105,20 @@ const PaginationQuiz = ({test_slug,  setResult, setShowAlert}) => {
      try {
        const url = `/questions/${test_slug}`;
        const response = await axiosInstance.get(url);
+       const res = response.data.reverse();
        setQuestions(response.data.reverse());
        setLength(response.data.length);
+       upsertItem({
+        "quiz_id":res[0].quiz, 
+        "question_id":res[0].id, 
+        "answer":""
+      })
      } catch (error) {
        console.log(error.message);
      }
     }
     if (test_slug) fetchData();
   }, [test_slug]);
-
- 
-  const handleAnswer = (questionId, answer) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: answer }));
-  };
-
-  // <div>
-  //     <h1>Quiz</h1>
-  //     <button onClick={() => handleAnswer(1, "A")}>Answer A</button>
-  //     <button onClick={() => handleAnswer(1, "B")}>Answer B</button>
-  //     <p>Saved Answers: {JSON.stringify(answers)}</p>
-  //   </div>
 
 
   const handlePaginationClick = (questionNumber) => {
@@ -178,7 +188,6 @@ const PaginationQuiz = ({test_slug,  setResult, setShowAlert}) => {
       const response = await axiosInstance.post('/answer/', body);
       setResult(response.data);
       setShowAlert(true);
-      console.log(response.data);
       if (typeof window !== "undefined") {
         sessionStorage.removeItem('quizAnswers');
         setAnswers([]);

@@ -7,8 +7,9 @@ import { useParams } from "next/navigation";
 import React from "react";
 import { base_URL } from "@/utils/axiosInstance";
 import { Ripple } from "react-css-spinners";
-
+import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic'
+import AlertDialog from "@/components/AlertDialog";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const DownloadButton = ({ fileUrl }) => {
@@ -82,30 +83,41 @@ const LessonPage = () => {
   const [loading, setLoading] = useState(true);
   const [baseUrl, setBaseUrl] = useState('');
 
-
-
-  useEffect(()=>{
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get(`/lesson/${lesson_slug}`);
-        setLesson(response.data);
-        setLesson_title(response.data?.title);
-        const parsedUrl = new URL(response.data?.material);
-        setBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
+  const router = useRouter();
+  const [result, setResult] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
+    
+    const handleConfirm = () =>{
+      setResult({})
+      router.replace(`/questions-types/${course_slug}`)
+    }
+  
+  
+    
+    
+    
+    useEffect(()=>{
+      const fetchData = async () => {
+        try {
+          const response = await axiosInstance.get(`/lesson/${lesson_slug}`);
+          setLesson(response.data);
+          setLesson_title(response.data?.title);
+          const parsedUrl = new URL(response.data?.material);
+          setBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
+          setLoading(false);
+        } catch (err) {
+          console.error(err);
+        }
       }
-    }
-
-    if (lesson_slug) {
-      fetchData();
-    }
-  }, []);
-
-  if (loading && !baseUrl) {
-    return (
-      <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
+      
+      if (lesson_slug) {
+        fetchData();
+      }
+    }, []);
+    
+    if (loading && !baseUrl) {
+      return (
+        <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
         <Ripple
           color="rgba(162,145,247,1)"
           size={115}
@@ -115,13 +127,33 @@ const LessonPage = () => {
       </div>
     );
   }
+  
+  if (Object.keys(result).length !== 0) {
+      return (
+      <>
+        <AlertDialog
+          isOpen={showAlert}
+          onClose={() => setShowAlert(false)}
+          result={result}
+          onConfirm={handleConfirm}
+        />
+      </>
+    )
+    }
 
   return (
     <>
       <div className="rbt-lesson-area bg-color-white">
         <div className="rbt-lesson-content-wrapper">
           <div className="rbt-lesson-leftsidebar">
-            <LessonSidebar course_slug={course_slug} lesson_slug={lesson_slug} topic_id={lesson?.topic} type={lesson?.type} />
+            <LessonSidebar 
+              course_slug={course_slug} 
+              lesson_slug={lesson_slug} 
+              topic_id={lesson?.topic} 
+              type={lesson?.type} 
+              setShowAlert={setShowAlert}
+              setResult={setResult}
+            />
           </div>
 
           <div className="rbt-lesson-rightsidebar overflow-hidden lesson-video">

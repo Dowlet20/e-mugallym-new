@@ -13,7 +13,8 @@ const LessonSidebar = ({
   lesson_slug, 
   topic_id, 
   setShowAlert ,
-  setResult
+  setResult,
+  type
 }) => {
   const [activeTab, setActiveTab] = useState(false);
   const pathname = usePathname();
@@ -24,18 +25,17 @@ const LessonSidebar = ({
   const [search, setSearch] = useState("");
   const [quizToggle, setQuizToggle] = useState(false);
 
-  const handleClick = (e, is_passed, total_score) => {
-    if (is_passed !== null) {
-      console.log(is_passed)
-      console.log(total_score)
+  const handleClick = (e, passed) => {
+    if (passed?.is_passed !== null) {
       setResult({
-        is_passed:is_passed,
-        score:total_score,
-        pass_score:"20"
+        is_passed:passed?.passed,
+        score:passed?.score,
+        pass_score:passed?.pass_score,
+        count_of_questions:passed?.count_of_questions
       })
       e.preventDefault(); 
       setShowAlert(true); 
-      setTotalScore(total_score);
+      setTotalScore("20");
     } 
   };
 
@@ -217,7 +217,7 @@ const LessonSidebar = ({
                     <li key="0">
                       <Link
                         className={
-                          isActive("/questions-types") ? "active" : ""
+                          isActive(`/questions-types/${course_slug}`) ? "active" : ""
                         }
                         href={`/questions-types/${course_slug}`}
                       >
@@ -249,7 +249,7 @@ const LessonSidebar = ({
                             isActive(`/pagination-quiz/${test.slug}/${course_slug}`) ? "active" : ""
                           }
                           href={`/pagination-quiz/${test.slug}/${course_slug}`}
-                          onClick={(e) => handleClick(e, test?.passed?.is_passed, test?.passed?.total_score)}
+                          onClick={(e) => handleClick(e, test?.passed)}
                         >
                           <div className="course-content-left">
                             {/* <i
