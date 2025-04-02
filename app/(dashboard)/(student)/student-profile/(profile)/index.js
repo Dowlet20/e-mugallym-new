@@ -36,7 +36,7 @@ const StudentProfile = () => {
     const day = String(date.getUTCDate()).padStart(2, '0');
     const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are 0-based
     const year = date.getUTCFullYear();
-    const hours = String(date.getUTCHours()).padStart(2, '0');
+    const hours = String((date.getUTCHours() + 5) % 24).padStart(2, '0');
     const minutes = String(date.getUTCMinutes()).padStart(2, '0');
     const seconds = String(date.getUTCSeconds()).padStart(2, '0');
 
@@ -77,7 +77,6 @@ const StudentProfile = () => {
               </div>
             </div>
           </div>
-
           <Separator />
           <FooterOne />
         </Context>

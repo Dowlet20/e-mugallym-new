@@ -1,7 +1,50 @@
-import Link from "next/link";
-import React from "react";
+"use client"
 
-const Content = ({ topics, courseSlug, course_duration }) => {
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import axiosInstance from "@/utils/axiosInstance";
+
+const Content = ({ 
+    topics, 
+    courseSlug, 
+    course_duration,
+    setShowAlert,
+    setResult 
+  }) => {
+
+    const [tests, setTests] = useState([]);
+
+    const handleClick = (e, passed) => {
+      if (passed?.is_passed !== null) {
+        setResult({
+          is_passed:passed?.passed,
+          score:passed?.score,
+          pass_score:passed?.pass_score,
+          count_of_questions:passed?.count_of_questions
+        })
+        e.preventDefault(); 
+        setShowAlert(true); 
+      } 
+    };
+
+    useEffect(()=>{
+      const fetchData = async () => {
+        try {
+          const url=`/quiz/${courseSlug}/`;
+          const response = await axiosInstance.get(url);
+          setTests(response.data.reverse());
+          
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+      if (courseSlug) {
+        fetchData();
+      }
+    },[courseSlug]);
+
+    console.log(tests);
+
   return (
     <>
       <div className="rbt-course-feature-inner">
@@ -82,6 +125,94 @@ const Content = ({ topics, courseSlug, course_duration }) => {
                 </div>
               </div>
             ))}
+            <div className="accordion-item card" key={"last"}>
+              <h2
+                className="accordion-header card-header"
+                id={`headingTwolast`}
+              >
+                <button
+                  className={`accordion-button ${
+                    true? "collapsed" : ""
+                  }`}
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#collapseTwolast1`}
+                  aria-expanded={true} 
+                  aria-controls={`collapseTwolast1`}
+                >
+                  E-mugallym testler
+                  {/* <span className="rbt-badge-5 ml--10">
+                    {item.topic_duration}
+                  </span> */}
+                </button>
+              </h2>
+              <div
+                id={`collapseTwolast1`}
+                className={`accordion-collapse collapse ${
+                  true ? "show" : "" //item.isShow
+                }`}
+                aria-labelledby={`headingTwolast`}
+                data-bs-parent="#accordionExampleb2"
+              >
+                <div className="accordion-body card-body pr--0">
+                  <ul className="rbt-course-main-content liststyle">
+                    <li key="0">
+                      <Link
+                        href={`/questions-types/${courseSlug}`}
+                      >
+                        <div className="course-content-left">
+                          {/* <i
+                            className={`feather-${
+                              lesson?.type !=="video"
+                                ? "file-text"
+                                : "play-circle"
+                            }`}
+                          ></i> */}
+                          <span className="text">
+                            Testler 
+                          </span>
+                        </div>
+                        {/* <div className="course-content-right">
+                          {lesson?.type ==="video" && (
+                            <span className="min-lable">
+                              {lesson.lesson_duration}
+                            </span>
+                          )}
+                        </div> */}
+                      </Link>
+                    </li>
+                    {tests?.map((test, index)=>(
+                      <li key={index+1}>
+                        <Link
+                          href={`/pagination-quiz/${test.slug}/${courseSlug}`}
+                          onClick={(e) => handleClick(e, test?.passed)}
+                        >
+                          <div className="course-content-left">
+                            {/* <i
+                              className={`feather-${
+                                lesson?.type !=="video"
+                                  ? "file-text"
+                                  : "play-circle"
+                              }`}
+                            ></i> */}
+                            <span className="text">
+                              {index+1}. {test.title}
+                            </span>
+                          </div>
+                          {/* <div className="course-content-right">
+                            {lesson?.type ==="video" && (
+                              <span className="min-lable">
+                                {lesson.lesson_duration}
+                              </span>
+                            )}
+                          </div> */}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

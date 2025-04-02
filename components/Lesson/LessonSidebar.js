@@ -20,7 +20,6 @@ const LessonSidebar = ({
   const pathname = usePathname();
   const isActive = (href) => pathname === href;
   const [tests, setTests] = useState([]);
-  const [totalScore, setTotalScore] = useState(null);
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState("");
   const [quizToggle, setQuizToggle] = useState(false);
@@ -35,7 +34,6 @@ const LessonSidebar = ({
       })
       e.preventDefault(); 
       setShowAlert(true); 
-      setTotalScore("20");
     } 
   };
 
@@ -230,7 +228,7 @@ const LessonSidebar = ({
                             }`}
                           ></i> */}
                           <span className="text">
-                            Question Types
+                            Testler 
                           </span>
                         </div>
                         {/* <div className="course-content-right">
@@ -260,7 +258,7 @@ const LessonSidebar = ({
                               }`}
                             ></i> */}
                             <span className="text">
-                              {test.title}
+                             {index+1}. {test.title}
                             </span>
                           </div>
                           {/* <div className="course-content-right">

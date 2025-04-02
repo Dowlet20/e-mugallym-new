@@ -1,11 +1,37 @@
+"use client"
+
+import { useState } from "react";
 import Content from "./Course-Sections/Content";
 import CourseBanner from "./Course-Sections/Course-Banner";
 import CourseMenu from "./Course-Sections/Course-Menu";
 import Instructor from "./Course-Sections/Instructor";
 import Overview from "./Course-Sections/Overview";
-import Requirements from "./Course-Sections/Requirements";
+import { useRouter } from "next/navigation";
+import AlertDialog from "../AlertDialog";
 
 const CourseDetailsOne = ({ checkMatchCourses, course }) => {
+  const [showAlert, setShowAlert] = useState(false);
+  const [result, setResult] = useState({});
+  const router = useRouter();
+
+  const handleConfirm = () =>{
+      setResult({})
+      router.replace(`/course-details/${course?.slug}`);
+    }
+  
+    if (Object.keys(result).length !== 0) {
+          return (
+          <>
+            <AlertDialog
+              isOpen={showAlert}
+              onClose={() => {setShowAlert(false)}}
+              result={result}
+              onConfirm={handleConfirm}
+            />
+          </>
+        )
+        }
+    
   
 
   return (
@@ -34,6 +60,8 @@ const CourseDetailsOne = ({ checkMatchCourses, course }) => {
               course_duration={course?.course_duration}  
               topics={course?.topics} 
               courseSlug={course?.slug}  
+              setShowAlert={setShowAlert}
+              setResult={setResult}
             />
           </div>
 

@@ -42,12 +42,12 @@ const QuizAttempts = ({
                             </span>
                           </th>
                           <th>
-                            <p className="b3 mb--5">
-                              {formattedDate(result.created_at)}
-                            </p>
                             <span className="h6 mb--5">
                               {result.quiz.title}
                             </span>
+                            <p className="b3 mb--5">
+                              {formattedDate(result.updated_at)}
+                            </p>
                           </th>
                           <td>
                             <p className="b3">{result.score}</p>
@@ -61,11 +61,11 @@ const QuizAttempts = ({
                           <td>
                             {result.is_passed ? (
                               <span className="rbt-badge-5 bg-color-success-opacity color-success">
-                                Pass
+                                Geçdi
                               </span>
                             ) : (
                               <span className="rbt-badge-5 bg-color-danger-opacity color-danger">
-                                Fail
+                                Geçmedi
                               </span>  
                             )}
                           </td>

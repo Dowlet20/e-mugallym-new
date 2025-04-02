@@ -3,8 +3,8 @@
 import React, {useState} from "react";
 
 const MutipleSelect = ({ point, pointNum, question, index, upsertItem, answers }) => {
-  const [selectedValues, setSelectedValues] = useState([]);
   const exists = answers.find((item) => item.question_id === question.id);
+  const [selectedValues, setSelectedValues] = useState([]);
 
   const handleCheckboxChange = (event, i) => {
     const { checked } = event.target;
@@ -17,6 +17,7 @@ const MutipleSelect = ({ point, pointNum, question, index, upsertItem, answers }
     }
 
     const answer=updatedValues.sort((a,b)=>a-b).join(",") || '';
+    
     
     upsertItem({
       "quiz_id":question.quiz, 

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import axiosInstance from "@/utils/axiosInstance";
-import AlertDialog from "../AlertDialog";
 import { useRouter } from "next/navigation";
 
 
@@ -30,6 +29,7 @@ const QuestionType = ({
     } 
   };
 
+  console.log(tests);
 
   useEffect(() => {
        const fetchData = async () => {
@@ -81,16 +81,6 @@ const QuestionType = ({
           ))}
         </div>
       </div>
-
-      {/* {showAlert && Object.keys(result).length !== 0 && (
-        <AlertDialog
-          isOpen={showAlert}
-          onClose={() => {setShowAlert(false)}}
-          result={result}
-          totalScore={"20"}
-          onConfirm={handleConfirm}
-        />
-      )} */}
     </>
   );
 };

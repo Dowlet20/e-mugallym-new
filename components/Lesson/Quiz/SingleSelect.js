@@ -17,6 +17,7 @@ const SingleSelect = ({ point, pointNum, question, index, upsertItem, answers })
     })
   };
 
+  console.log(exists);
   
   return (
     <>

@@ -108,11 +108,6 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
        const res = response.data.reverse();
        setQuestions(response.data.reverse());
        setLength(response.data.length);
-       upsertItem({
-        "quiz_id":res[0].quiz, 
-        "question_id":res[0].id, 
-        "answer":""
-      })
      } catch (error) {
        console.log(error.message);
      }

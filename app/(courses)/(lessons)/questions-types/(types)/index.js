@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonTop from "@/components/Lesson/LessonTop";
 import QuestionType from "@/components/Lesson/QuestionType";
@@ -61,8 +61,8 @@ const QuestionTypeLayout = () => {
             <div className="inner py-0">
               <div className="content">
                 <div className="section-title">
-                  <p className="mb--10">Quiz</p>
-                  <h5>Questions Types</h5>
+                  <p className="mb--10">Test</p>
+                  <h5>Testler barada</h5>
                 </div>
 
                 <hr />

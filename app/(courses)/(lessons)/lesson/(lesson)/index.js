@@ -2,10 +2,9 @@
 import {useEffect, useState} from "react";
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonTop from "@/components/Lesson/LessonTop";
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance, {base_URL} from "@/utils/axiosInstance";
 import { useParams } from "next/navigation";
 import React from "react";
-import { base_URL } from "@/utils/axiosInstance";
 import { Ripple } from "react-css-spinners";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic'
@@ -76,24 +75,22 @@ const LessonPage = () => {
   const params = useParams();
   const lesson_slug = params?.lessonId;
   const course_slug = params?.courseId;
-
   const [sidebar, setSidebar] = useState(false);
   const [lesson, setLesson] = useState({});
   const [lesson_title, setLesson_title] = useState('');
   const [loading, setLoading] = useState(true);
-  const [baseUrl, setBaseUrl] = useState('');
 
   const router = useRouter();
   const [result, setResult] = useState({});
   const [showAlert, setShowAlert] = useState(false);
-    
+
+  const url = lesson_slug ? `${base_URL}lesson/${lesson_slug}/material/` : "https://www.youtube.com/embed/qKzhrXqT6oE"
+  
+
     const handleConfirm = () =>{
       setResult({})
       router.replace(`/questions-types/${course_slug}`)
     }
-  
-  
-    
     
     
     useEffect(()=>{
@@ -102,8 +99,6 @@ const LessonPage = () => {
           const response = await axiosInstance.get(`/lesson/${lesson_slug}`);
           setLesson(response.data);
           setLesson_title(response.data?.title);
-          const parsedUrl = new URL(response.data?.material);
-          setBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
           setLoading(false);
         } catch (err) {
           console.error(err);
@@ -113,9 +108,9 @@ const LessonPage = () => {
       if (lesson_slug) {
         fetchData();
       }
-    }, []);
-    
-    if (loading && !baseUrl) {
+    }, [lesson_slug]);
+
+    if (loading) {
       return (
         <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
         <Ripple
@@ -127,6 +122,8 @@ const LessonPage = () => {
       </div>
     );
   }
+
+
   
   if (Object.keys(result).length !== 0) {
       return (
@@ -140,6 +137,8 @@ const LessonPage = () => {
       </>
     )
     }
+
+
 
   return (
     <>
@@ -165,15 +164,15 @@ const LessonPage = () => {
             />
             <div className="inner">
               <div className="plyr__video-embed rbtplayer">
-              {lesson?.type === "video" ? (
-                <ReactPlayer
-                  url={lesson_slug ? `${lesson.material}` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
-                  width="100%"
-                  height="100%"
-                  playing={false} 
-                  controls={true} 
-                  light={false}
-                />
+                {lesson?.type === "video" ? (
+                  <ReactPlayer
+                    url={url}
+                    width="100%"
+                    height="100%"
+                    playing={false} 
+                    controls={true} 
+                    light={false} 
+                  />
               ) : 
               (
                 <div>
