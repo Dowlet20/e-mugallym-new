@@ -118,6 +118,8 @@ export default function AlertDialog({
     transition: 'all 0.2s'
   };
 
+  console.log(result);
+
   return (
     <div style={containerStyle}>
       <div 
@@ -135,14 +137,15 @@ export default function AlertDialog({
                     <p>
                         {result?.is_passed ? 
                             "Siz bu testi üstünlikli tabşyrdyňyz! 🎉" : 
-                            "Siziň balyňyz testi geçmeklige ýetmedi! 😒 Siz bu testi administratoryň rugsady bilen täzeden tabşyryp bilersiňiz!"
+                            result==="Bosh" ? "Siz testiň hiç bir soragyny saýlamadyňyz! Testi täzeden tabşyryp bilersiňiz!" :
+                            result==="Confirm" ? "Siz bu testi tabşyrmakçymy?":"Siziň balyňyz testi geçmeklige ýetmedi! 😒 Siz bu testi administratoryň rugsady bilen täzeden tabşyryp bilersiňiz!"
                         }
                     </p>
                     <p>
-                        Geçmeli ball: {result?.pass_score}
+                        {result?.pass_score ? "Geçmeli ball: "+result?.pass_score: ""}
                     </p>
                     <p>
-                        Siziň balyňyz: {result?.score}
+                        {result?.score ? "Siziň balyňyz: "+result?.score: ""}
                     </p>
                     <p>
                       {result?.count_of_questions ? "Sorag san: "+result?.count_of_questions: ""}

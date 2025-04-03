@@ -58,6 +58,7 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
   const [courseList, setCourseList] = useState(CourseData.courseDetails);
   const [hydrated, setHydrated] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(1);
+  const [gorkezme, setGorkezme] = useState(false);
   const [tabsyr, setTabsyr] = useState(false);
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -192,6 +193,7 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
     }
   }
 
+  console.log(length)
 
   if (!hydrated) {
     return null;
@@ -321,13 +323,23 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
         <button
           className="rbt-btn btn-gradient hover-icon-reverse"
           onClick={() => {
-            if (window.confirm("Siz testi tabşyrmak isleýarsiňizmi?")) {
-              postAnswers();
-            }
+            if (activeQuestion === length) {
+                if (answers.length===0) {
+                  setShowAlert(true);
+                  setResult("Bosh")
+                } else {
+                  setGorkezme(true);
+                  // postAnswers()
+                }
+              } else {
+                handleNextClick()
+              }
           }}
         >
           <span className="icon-reverse-wrapper">
-            <span className="btn-text">Tabşyrmak</span>
+            <span className="btn-text">
+              {activeQuestion === length ? "Tabşyrmak" : "Indiki"}
+            </span>
             <span className="btn-icon">
               <i className="feather-arrow-right"></i>
             </span>
@@ -337,6 +349,14 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
           </span>
         </button>
       </div>
+      {gorkezme && (
+        <AlertDialog
+          isOpen={gorkezme}
+          onClose={() => setGorkezme(false)}
+          result={"Confirm"}
+          onConfirm={postAnswers}
+        />
+      )}
     </>
   );
 };

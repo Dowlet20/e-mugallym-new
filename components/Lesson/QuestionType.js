@@ -18,7 +18,7 @@ const QuestionType = ({
   const handleClick = (e, passed) => {
     if (passed?.is_passed !== null) {
       setResult({
-        is_passed:passed?.passed,
+        is_passed:passed?.is_passed,
         score:passed?.score,
         pass_score:passed?.pass_score,
         count_of_questions:passed?.count_of_questions
@@ -45,7 +45,7 @@ const QuestionType = ({
        if (course_slug) fetchData();
     }, [course_slug]);
 
-    
+    console.log(tests);
   return (
     <>
       <div className="rbt-lesson-area bg-color-white">
@@ -59,6 +59,40 @@ const QuestionType = ({
                 <p>
                   {test.description}
                 </p>
+                {test.passed.is_passed !== null && (
+                  <>
+                    <p
+                      style={{
+                        marginBottom:'2px',
+                        marginTop:'2px',
+                        color:"green",
+                      }}
+                    >
+                      Test tabşyrylan
+                    </p>
+                    <p  style={{
+                        marginBottom:'10px'
+                        
+                      }}>
+                      {test.passed.is_passed ? "Siz bu testi üstünlikli tabşyrdyňyz! 🎉" : "Siziň balyňyz testi geçmeklige ýetmedi! Siz bu testi administratoryň rugsady bilen täzeden tabşyryp bilersiňiz!"}
+                    </p>
+                    <p style={{
+                        marginBottom:'10px'
+                        
+                      }}>
+                      tabşyran balyňyz: {test.passed.score}
+                    </p>
+                    <p style={{
+                        marginBottom:'10px'
+                        
+                      }}>
+                      geçmeli bal: {test.passed.pass_score}
+                    </p>
+                    <p>
+                      Soraglaryň sany: {test.passed.count_of_questions}
+                    </p>
+                  </>
+                )}
               </div>
 
               <Link

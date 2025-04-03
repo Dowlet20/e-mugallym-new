@@ -75,11 +75,11 @@ const LessonPage = () => {
   const params = useParams();
   const lesson_slug = params?.lessonId;
   const course_slug = params?.courseId;
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
   const [lesson, setLesson] = useState({});
   const [lesson_title, setLesson_title] = useState('');
   const [loading, setLoading] = useState(true);
-
+  const [baseUrl, setBaseUrl] = useState(null);
   const router = useRouter();
   const [result, setResult] = useState({});
   const [showAlert, setShowAlert] = useState(false);
@@ -99,18 +99,20 @@ const LessonPage = () => {
           const response = await axiosInstance.get(`/lesson/${lesson_slug}`);
           setLesson(response.data);
           setLesson_title(response.data?.title);
+          const parsedUrl = new URL(response.data?.material);
+          setBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
           setLoading(false);
         } catch (err) {
           console.error(err);
         }
       }
-      
+  
       if (lesson_slug) {
         fetchData();
       }
     }, [lesson_slug]);
 
-    if (loading) {
+    if (loading && !baseUrl) {
       return (
         <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
         <Ripple
@@ -165,14 +167,14 @@ const LessonPage = () => {
             <div className="inner">
               <div className="plyr__video-embed rbtplayer">
                 {lesson?.type === "video" ? (
-                  <ReactPlayer
-                    url={url}
-                    width="100%"
-                    height="100%"
-                    playing={false} 
-                    controls={true} 
-                    light={false} 
-                  />
+                   <ReactPlayer
+                      url={lesson_slug ? `${baseUrl}/api/lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
+                      width="100%"
+                      height="100%"
+                      playing={false} 
+                      controls={true} 
+                      light={false}
+                    />
               ) : 
               (
                 <div>
