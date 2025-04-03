@@ -27,7 +27,7 @@ const QuestionType = ({
       setShowAlert(true); 
       setTotalScore("20");
     } 
-  };
+  };//salam
 
   console.log(tests);
 
