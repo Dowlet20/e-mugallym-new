@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Star } from "lucide-react";
 import axiosInstance from "@/utils/axiosInstance";
 import CourseCard from "./CourseCard";
 
