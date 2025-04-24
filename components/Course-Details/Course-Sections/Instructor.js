@@ -13,8 +13,8 @@ const Instructor = ({ checkMatchCourses, course }) => {
         <div className="media align-items-center">
             <div className="thumbnail">
               <Link href={`/source/${course?.source?.slug ? course?.source?.slug : ""}`}>
-                <Image
-                  src={course?.source?.icon ? course?.source?.icon : "/images/client/avatar-02.png"}
+                <img
+                  src={course?.source?.icon ? course?.source?.icon.replace("http://", "https://") : "/images/client/avatar-02.png"}
                   width={250}
                   height={250}
                   alt={course?.source?.title}

@@ -44,11 +44,12 @@ const CourseWidget = ({
               overflow: 'hidden', 
               position: 'relative' 
             }}>
-              <Image
-                src={data?.thumbnail ? data?.thumbnail : "/images/course/course-01.jpg"}
+              <img
+                src={data?.thumbnail ? data?.thumbnail.replace("http://", "https://") : "/images/course/course-01.jpg"}
                 alt="Card image"
-                layout="fill"
-                objectFit="cover"
+                // layout="fill"
+                // objectFit="cover"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
           </Link>
@@ -91,8 +92,8 @@ const CourseWidget = ({
           <div className="rbt-author-meta mb--10">
             <div className="rbt-avater">
               <Link href={`/source/${data?.source?.slug ? data?.source?.slug : ""}`}>
-                <Image
-                  src={data?.source?.icon ? data?.source?.icon : "/images/client/avatar-02.png"}
+                <img
+                  src={data?.source?.icon ? data?.source?.icon.replace("http://", "https://") : "/images/client/avatar-02.png"}
                   width={33}
                   height={33}
                   alt="Sophia Jaymes"

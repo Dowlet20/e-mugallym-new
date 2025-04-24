@@ -28,6 +28,7 @@ const CourseFilteTwoTogglePage = () => {
   const [selectedValues, setSelectedValues] = useState([]);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSources, setSelectedSources] = useState([]);
+  
 
   let category = "";
   let level = "";
@@ -87,6 +88,7 @@ const CourseFilteTwoTogglePage = () => {
         const url = `/courses/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && source ? `&source=${source}` : !search && !level && !category && source ? `?source=${source}` : ""}${(search || category || level || source) && page ? `&page=${page}` : !search && !category && !level && !source && page ? `?page=${page}` : ""}`;
         const response = await axiosInstance.get(url);
         const allCourse = response.data.items;
+        
         setCourse(allCourse);
         setTotalPages(response.data.total_pages);
         setTotal_items(response.data.total_items);

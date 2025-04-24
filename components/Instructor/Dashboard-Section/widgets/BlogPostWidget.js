@@ -8,7 +8,7 @@ const BlogPostWidget = ({ post, postStyle = "list" }) => {
         <div className="rbt-card card-list variation-02 rbt-hover mt--30">
           <div className="rbt-card-img">
             <Link href={`/blog/${post.slug}`}>
-              <Image
+              <img
                 width={290}
                 height={150}
                 src={post.postData.thumbnail.large}

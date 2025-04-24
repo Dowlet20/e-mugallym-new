@@ -53,8 +53,8 @@ const TeamThree = () => {
                   <div className="inner">
                     <div className="thumbnail">
                       <Link href={`/source/${source?.slug}`}>
-                        <Image
-                          src={source?.icon ? source?.icon : "/images/team/team-01.jpg"}
+                        <img
+                          src={source?.icon ? source?.icon.replace("http://", "https://") : "/images/team/team-01.jpg"}
                           width={415}
                           height={555}
                           priority

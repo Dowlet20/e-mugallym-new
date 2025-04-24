@@ -27,10 +27,10 @@ const CourseBreadcrumb = ({ getMatchCourse, course }) => {
             <div className="rbt-avater">
               <Link href={`/source/${course?.source?.slug}`}>
                 {getMatchCourse.userImg && (
-                  <Image
+                  <img
                     width={40}
                     height={40}
-                    src={course?.source?.icon ? course?.source?.icon : "/images/banner/gallery-banner-03.jpg"}
+                    src={course?.source?.icon ? course?.source?.icon.replace("http://", "https://") : "/images/banner/gallery-banner-03.jpg"}
                     alt={course?.source?.title}
                   />
                 )}
@@ -54,10 +54,10 @@ const CourseBreadcrumb = ({ getMatchCourse, course }) => {
       <div className="col-lg-5 mt-lg-0 mt--25">
         <div className="course-sidebar sticky-top rbt-shadow-box course-sidebar-top">
           <div className="inner">
-          <Image
+          <img
             width={800}
             height={660}
-            src={course?.thumbnail ? course?.thumbnail : "/images/banner/gallery-banner-03.jpg"}
+            src={course?.thumbnail ? course?.thumbnail.replace("http://", "https://") : "/images/banner/gallery-banner-03.jpg"}
             alt={course?.source?.title}
           />
           </div>

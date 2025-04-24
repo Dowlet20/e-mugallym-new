@@ -26,11 +26,12 @@ const UserCourses = ({ courses }) => {
           <div className="rbt-card-img">
                 <Link href={`/course-details/${course?.slug}`}>
                   <div style={{ height: '244px', overflow: 'hidden', position: 'relative' }}>
-                    <Image
-                      src={course?.thumbnail ? course?.thumbnail : "/images/course/course-01.jpg"}
+                    <img
+                      src={course?.thumbnail ? course?.thumbnail.replace("http://", "https://") : "/images/course/course-01.jpg"}
                       alt="Card image"
-                      layout="fill"
-                      objectFit="cover"
+                      // layout="fill"
+                      // objectFit="cover"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   </div>
                 </Link>
@@ -69,8 +70,8 @@ const UserCourses = ({ courses }) => {
               <div className="rbt-author-meta mb--10">
                 <div className="rbt-avater">
                   <Link href={`/source/${course?.source?.slug}`}>
-                    <Image
-                      src={course?.source?.icon ? course?.source?.icon : "/images/course/course-online-01.jpg"}
+                    <img
+                      src={course?.source?.icon ? course?.source?.icon.replace("http://", "https://") : "/images/course/course-online-01.jpg"}
                       width={33}
                       height={33}
                       alt="Sophia Jaymes"

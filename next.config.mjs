@@ -31,8 +31,21 @@ const nextConfig = {
     ];
   },
   images: {
-
-    domains: ['10.10.73.31','10.20.7.41','10.20.8.41','127.0.0.1', '216.250.14.39']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
+        port: '',
+        pathname: '**',
+      },
+    ],
+    domains:['emugallym.edu.tm']
   },
 
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],

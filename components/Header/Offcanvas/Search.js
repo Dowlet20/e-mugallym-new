@@ -88,11 +88,12 @@ const Search = () => {
                   <div className="rbt-card-img">
                     <a href={`/course-details/${data?.slug}`}>
                     <div style={{ height: '128px', overflow: 'hidden', position: 'relative' }}>
-                        <Image
-                            src={data?.thumbnail ? data?.thumbnail : "/images/course/course-01.jpg"}
+                        <img
+                            src={data?.thumbnail ? data?.thumbnail.replace("http://", "https://")  : "/images/course/course-01.jpg"}
                             alt="Card image"
-                            layout="fill" 
-                            objectFit="cover" 
+                            // layout="fill" 
+                            // objectFit="cover" 
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
                         />
                     </div>
                     </a>
