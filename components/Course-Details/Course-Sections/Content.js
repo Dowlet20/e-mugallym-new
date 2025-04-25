@@ -92,7 +92,7 @@ const Content = ({
                     <ul className="rbt-course-main-content liststyle">
                       {item?.lessons?.map((list, subIndex) => (
                         <li key={subIndex}>
-                          <Link href={`/lesson/${list.slug}/${courseSlug}`}>
+                          <Link href={`/sapak/${list.slug}/${courseSlug}`}>
                             <div className="course-content-left" style={{ width: '85%' }}>
                               {/* list.playIcon */}
                               <i
@@ -158,7 +158,7 @@ const Content = ({
                   <ul className="rbt-course-main-content liststyle">
                     <li key="0">
                       <Link
-                        href={`/questions-types/${courseSlug}`}
+                        href={`/test-barada/${courseSlug}`}
                       >
                         <div className="course-content-left">
                           {/* <i
@@ -184,7 +184,7 @@ const Content = ({
                     {tests?.map((test, index)=>(
                       <li key={index+1}>
                         <Link
-                          href={`/pagination-quiz/${test.slug}/${courseSlug}`}
+                          href={`/test/${test.slug}/${courseSlug}`}
                           onClick={(e) => handleClick(e, test?.passed)}
                         >
                           <div className="course-content-left">

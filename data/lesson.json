@@ -6,7 +6,7 @@
       "isShow": true,
       "listItem": [
         {
-          "lssonLink": "/lesson",
+          "lssonLink": "/sapak",
           "lssonIntroLink": false,
           "lessonName": "Course Intro",
           "lable": true,
@@ -31,7 +31,7 @@
       "isShow": false,
       "listItem": [
         {
-          "lssonLink": "/lesson",
+          "lssonLink": "/sapak",
           "lessonName": "Hello World!",
           "lable": true,
           "time": 2,
@@ -62,7 +62,7 @@
       "isShow": false,
       "listItem": [
         {
-          "lssonLink": "/questions-types",
+          "lssonLink": "/test-barada",
           "lessonName": "Questions Types",
           "lable": true,
           "time": 0,
@@ -80,7 +80,7 @@
           "iconHelp": true
         },
         {
-          "lssonLink": "/pagination-quiz",
+          "lssonLink": "/test",
           "lessonName": "Pagination Quiz Style",
           "lable": true,
           "time": 0,

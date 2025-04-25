@@ -30,7 +30,7 @@ const CourseDetailsTwo = ({ checkMatchCourses }) => {
       <div className="col-lg-12">
         {checkMatchCourses.courseImg && (
           <Link
-            href="/lesson"
+            href="/sapak"
           >
             <div className="video-content">
               {/* <Image

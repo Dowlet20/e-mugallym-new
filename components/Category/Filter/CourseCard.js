@@ -26,7 +26,7 @@ const CourseCard = ({data, toggle, handleRender}) => {
     return (
         <div className={`rbt-card variation-01 rbt-hover ${!toggle ? "card-list-2" : "" }`}>
             <div className="rbt-card-img">
-                <Link href={`/course-details/${data?.slug}`}>
+                <Link href={`/kurs-barada/${data?.slug}`}>
                     <div style={{ height: toggle ? '244px' : '304px', overflow: 'hidden', position: 'relative' }}>
                     <img
                         src={data?.thumbnail ? data?.thumbnail.replace("http://", "https://") : "/images/course/course-01.jpg"}
@@ -51,7 +51,7 @@ const CourseCard = ({data, toggle, handleRender}) => {
                         textOverflow: 'ellipsis',
                         lineHeight: '1.5em',
                     }}>
-                        <Link href={`/course-details/${data?.slug}`}>
+                        <Link href={`/kurs-barada/${data?.slug}`}>
                             {data?.title}
                         </Link>
                     </div>
@@ -76,7 +76,7 @@ const CourseCard = ({data, toggle, handleRender}) => {
                 </div>
                 <div className="rbt-author-meta mb--10">
                     <div className="rbt-avater">
-                        <Link href={`/source/${data?.source?.slug ? data?.source?.slug : ""}`}>
+                        <Link href={`/cesme/${data?.source?.slug ? data?.source?.slug : ""}`}>
                             <img
                                 src={data?.source?.icon ? data?.source?.icon.replace("http://", "https://") : "/images/client/avatar-02.png"}
                                 width={33}
@@ -97,7 +97,7 @@ const CourseCard = ({data, toggle, handleRender}) => {
                     >
                         <div className="rbt-author-info">
                             <Link 
-                                href={`/source/${data?.source?.slug ? data?.source?.slug : ""}`}
+                                href={`/cesme/${data?.source?.slug ? data?.source?.slug : ""}`}
                             >
                                 {data?.source?.title}
                             </Link>

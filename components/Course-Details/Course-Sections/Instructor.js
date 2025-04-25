@@ -12,7 +12,7 @@ const Instructor = ({ checkMatchCourses, course }) => {
         </div>
         <div className="media align-items-center">
             <div className="thumbnail">
-              <Link href={`/source/${course?.source?.slug ? course?.source?.slug : ""}`}>
+              <Link href={`/cesme/${course?.source?.slug ? course?.source?.slug : ""}`}>
                 <img
                   src={course?.source?.icon ? course?.source?.icon.replace("http://", "https://") : "/images/client/avatar-02.png"}
                   width={250}
@@ -26,7 +26,7 @@ const Instructor = ({ checkMatchCourses, course }) => {
                 <h5 className="title">
                   <Link
                     className="hover-flip-item-wrapper"
-                    href={`/source/${course?.source?.slug ? course?.source?.slug : ""}`}
+                    href={`/cesme/${course?.source?.slug ? course?.source?.slug : ""}`}
                   >
                     {course?.source?.title}
                   </Link>

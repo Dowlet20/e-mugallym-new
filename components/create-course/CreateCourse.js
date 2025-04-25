@@ -559,7 +559,7 @@ const CreateCourse = () => {
             <div className="col-lg-4">
               <Link
                 className="rbt-btn hover-icon-reverse bg-primary-opacity w-100 text-center"
-                href="/course-details"
+                href="/kurs-barada"
               >
                 <span className="icon-reverse-wrapper">
                   <span className="btn-text">

@@ -1,12 +1,12 @@
 {
   "siderbar": [
     {
-      "link": "/student/student-dashboard",
+      "link": "/student/talyp-paneli",
       "text": "Dashboard",
       "icon": "feather-home"
     },
     {
-      "link": "/student/student-profile",
+      "link": "/student/test-netije",
       "text": "My Profile",
       "icon": "feather-user"
     },
@@ -16,7 +16,7 @@
       "icon": "feather-book-open"
     },
     {
-      "link": "/student/student-wishlist",
+      "link": "/student/halanlarym",
       "text": "Wishlist",
       "icon": "feather-bookmark"
     },

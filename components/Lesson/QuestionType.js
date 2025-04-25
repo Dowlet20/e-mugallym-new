@@ -97,7 +97,7 @@ const QuestionType = ({
 
               <Link
                 className="rbt-btn btn-gradient hover-icon-reverse mt--30"
-                href={`/pagination-quiz/${test.slug}/${course_slug}`}
+                href={`/test/${test.slug}/${course_slug}`}
                 onClick={(e) => handleClick(e, test.passed)}
 
               >

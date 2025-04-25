@@ -39,7 +39,7 @@ const CategoryBanner = ({ category }) => {
                      Biz size iň ýokary hilli okuw kurslaryny hödürleýäris – mugt!
                      Maksadyňyz näme bolsa-da, E-Mugallym bilen maksatlaryňyza ýakynlaşyň.
                     🎓 Bilim mugt.
-                    📚 Geljek seniň eliňde.
+                    📚 Geljek siziň eliňizde.
                     💻 Häzirki zaman tehnologiýasy bilen okaň.`}
                 </p>
               </div>

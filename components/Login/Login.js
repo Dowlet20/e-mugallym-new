@@ -45,7 +45,7 @@ const Login = () => {
                 window.location.href = '/';
             }
         } catch (err) {
-            setError(err.response?.data?.message || 'Invalid login');
+            setError(err.response?.data?.message || 'Ýalňyş girizilen');
             sessionStorage.removeItem('authToken');
             sessionStorage.removeItem('refreshToken');
             delete axiosInstance.defaults.headers.common['Authorization'];
@@ -90,7 +90,7 @@ const Login = () => {
                                     name="username"
                                     type="text"
                                     required
-                                    placeholder="ulanyjy ady *"
+                                    placeholder="Ulanyjy ady *"
                                     onChange={handleChange}
                                     value={credentials.username}
                                 />

@@ -1,22 +1,17 @@
+"use client";
 
-import BackToTop from "@/app/backToTop";
-import InstructorPage from "./(team)";
-import ProtectedRoute from "@/components/ProtectedRoute";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title: "Instructor - Online Courses & Education NEXTJS14 Template",
-  description: "Online Courses & Education NEXTJS14 Template",
+const Profile = ({ params }) => {
+  const router = useRouter();
+  const postId = params.profileId;
+
+  useEffect(() => {
+    if (postId === undefined) {
+      router.push("/");
+    }
+  }, []);
 };
 
-const InstructorLayout = () => {
-  return (
-    <>
-      <ProtectedRoute>
-        <InstructorPage />
-        <BackToTop />
-      </ProtectedRoute>
-    </>
-  );
-};
-
-export default InstructorLayout;
+export default Profile;

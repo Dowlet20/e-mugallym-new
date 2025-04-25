@@ -17,7 +17,7 @@ const Card = ({ start, end, col, mt, isDesc, isUser }) => {
           >
             <div className="rbt-card variation-01 rbt-hover">
               <div className="rbt-card-img">
-                <Link href={`/course-details/${data.id}`}>
+                <Link href={`/kurs-barada/${data.id}`}>
                   <Image
                     src={data.courseImg}
                     width={355}
@@ -56,7 +56,7 @@ const Card = ({ start, end, col, mt, isDesc, isUser }) => {
                 </div>
 
                 <h4 className="rbt-card-title">
-                  <Link href={`/course-details/${data.id}`}>
+                  <Link href={`/kurs-barada/${data.id}`}>
                     {data.courseTitle}
                   </Link>
                 </h4>
@@ -101,14 +101,14 @@ const Card = ({ start, end, col, mt, isDesc, isUser }) => {
                   {data.button ? (
                     <Link
                       className="rbt-btn-link left-icon"
-                      href={`/course-details/${data.id}`}
+                      href={`/kurs-barada/${data.id}`}
                     >
                       <i className="feather-shopping-cart"></i> Add To Cart
                     </Link>
                   ) : (
                     <Link
                       className="rbt-btn-link"
-                      href={`/course-details/${data.id}`}
+                      href={`/kurs-barada/${data.id}`}
                     >
                       Learn More<i className="feather-arrow-right"></i>
                     </Link>

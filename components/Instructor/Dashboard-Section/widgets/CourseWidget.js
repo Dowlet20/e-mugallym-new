@@ -38,7 +38,7 @@ const CourseWidget = ({
     <>
       <div className={`rbt-card variation-01 rbt-hover ${!toggle ? "card-list-2" : "" }`}>
         <div className="rbt-card-img">
-          <Link href={`/course-details/${data?.slug}`}>
+          <Link href={`/kurs-barada/${data?.slug}`}>
             <div style={{ 
               height: toggle ? '214px' : '304px', 
               overflow: 'hidden', 
@@ -66,7 +66,7 @@ const CourseWidget = ({
               textOverflow: 'ellipsis',
               lineHeight: '1.3em',
             }}>
-              <Link href={`/course-details/${data?.slug}`}>
+              <Link href={`/kurs-barada/${data?.slug}`}>
                   {data?.title}
               </Link>
             </div>
@@ -91,7 +91,7 @@ const CourseWidget = ({
           </div> */}
           <div className="rbt-author-meta mb--10">
             <div className="rbt-avater">
-              <Link href={`/source/${data?.source?.slug ? data?.source?.slug : ""}`}>
+              <Link href={`/cesme/${data?.source?.slug ? data?.source?.slug : ""}`}>
                 <img
                   src={data?.source?.icon ? data?.source?.icon.replace("http://", "https://") : "/images/client/avatar-02.png"}
                   width={33}
@@ -112,7 +112,7 @@ const CourseWidget = ({
             >
               <div className="rbt-author-info">
                 <Link 
-                  href={`/source/${data?.source?.slug ? data?.source?.slug : ""}`}
+                  href={`/cesme/${data?.source?.slug ? data?.source?.slug : ""}`}
                 >
                   {data?.source?.title}
                 </Link>

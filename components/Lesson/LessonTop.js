@@ -23,7 +23,7 @@ const LessonTop = ({ sidebar, setSidebar, lesson_title, course_slug }) => {
         <div className="lesson-top-right">
           <div className="rbt-btn-close">
             <Link
-              href={`/course-details/${course_slug}`}
+              href={`/kurs-barada/${course_slug}`}
               title="Go Back to Course"
               className="rbt-round-btn"
             >

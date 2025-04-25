@@ -1,23 +1,23 @@
 {
   "siderbar": [
     {
-      "link": "/student-dashboard",
+      "link": "/talyp-paneli",
       "text": "Dolandyryş paneli",
       "icon": "feather-home"
     },
     {
-      "link": "/student-profile",
+      "link": "/test-netije",
       "text": "Test netijeleri",
       "icon": "feather-user"
     },
     {
-      "link": "/student-wishlist",
+      "link": "/halanlarym",
       "text": "Halanlarym",
       "icon": "feather-bookmark"
     },
     {
-      "link": "/student-latest",
-      "text": "soňky giren kurslarym",
+      "link": "/giren-kurslarym",
+      "text": "Soňky giren kurslarym",
       "icon": "feather-book-open"
     },
     {

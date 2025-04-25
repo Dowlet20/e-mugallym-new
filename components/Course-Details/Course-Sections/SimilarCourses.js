@@ -101,7 +101,7 @@ const SimilarCourses = ({ checkMatchCourses }) => {
                         <span className="current-price">${item.price}</span>
                         <span className="off-price">${item.offPrice}</span>
                       </div>
-                      <Link className="rbt-btn-link" href="/course-details">
+                      <Link className="rbt-btn-link" href="/kurs-barada">
                         Learn More<i className="feather-arrow-right"></i>
                       </Link>
                     </div>

@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
 
 const QuizAttempts = ({
     results,
     formattedDate
   }) => {
-    
+
     return (
       <>
         <div className="rbt-dashboard-content bg-color-white rbt-shadow-box">
@@ -25,7 +23,7 @@ const QuizAttempts = ({
                     <th>Kurs</th>
                     <th>Test</th>
                     <th>Ball</th>
-                    <th>Jemi</th>
+                    <th>Geç/ball</th>
                     {/* <th>GB</th> */}
                     <th>Netijesi</th>
                   </tr>

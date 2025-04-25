@@ -25,7 +25,7 @@ const CourseBreadcrumb = ({ getMatchCourse, course }) => {
 
           <div className="rbt-author-meta mb--20">
             <div className="rbt-avater">
-              <Link href={`/source/${course?.source?.slug}`}>
+              <Link href={`/cesme/${course?.source?.slug}`}>
                 {getMatchCourse.userImg && (
                   <img
                     width={40}
@@ -37,7 +37,7 @@ const CourseBreadcrumb = ({ getMatchCourse, course }) => {
               </Link>
             </div>
             <div className="rbt-author-info">
-              <Link href={`/source/${course?.source?.slug}`}>
+              <Link href={`/cesme/${course?.source?.slug}`}>
                 {course?.source?.title}
               </Link>
             </div>

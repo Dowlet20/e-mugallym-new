@@ -25,7 +25,7 @@ const CartItems = ({ id, product, amount }) => {
               ? `/single-product/${id}`
               : product.title
               ? `/event-details/${id}`
-              : `/course-details/${id}`
+              : `/kurs-barada/${id}`
           }
         >
           <Image
@@ -43,7 +43,7 @@ const CartItems = ({ id, product, amount }) => {
               ? `/single-product/${id}`
               : product.title
               ? `/event-details/${id}`
-              : `/course-details/${id}`
+              : `/kurs-barada/${id}`
           }
         >
           {product.courseTitle || product.title}

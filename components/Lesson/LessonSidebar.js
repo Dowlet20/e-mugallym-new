@@ -146,7 +146,7 @@ const LessonSidebar = ({
                             className={
                               lesson?.slug === lesson_slug ? "active" : ""
                             }
-                            href={`/lesson/${lesson?.slug}/${course_slug}`}
+                            href={`/sapak/${lesson?.slug}/${course_slug}`}
                             onClick={() => setActiveTab(topic?.id)}
                           >
                             <div className="course-content-left">
@@ -215,9 +215,9 @@ const LessonSidebar = ({
                     <li key="0">
                       <Link
                         className={
-                          isActive(`/questions-types/${course_slug}`) ? "active" : ""
+                          isActive(`/test-barada/${course_slug}`) ? "active" : ""
                         }
-                        href={`/questions-types/${course_slug}`}
+                        href={`/test-barada/${course_slug}`}
                       >
                         <div className="course-content-left">
                           {/* <i
@@ -244,9 +244,9 @@ const LessonSidebar = ({
                       <li key={index+1}>
                         <Link
                           className={
-                            isActive(`/pagination-quiz/${test.slug}/${course_slug}`) ? "active" : ""
+                            isActive(`/test/${test.slug}/${course_slug}`) ? "active" : ""
                           }
-                          href={`/pagination-quiz/${test.slug}/${course_slug}`}
+                          href={`/test/${test.slug}/${course_slug}`}
                           onClick={(e) => handleClick(e, test?.passed)}
                         >
                           <div className="course-content-left">

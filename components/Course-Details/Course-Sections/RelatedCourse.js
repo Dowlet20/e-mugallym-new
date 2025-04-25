@@ -36,7 +36,7 @@ const RelatedCourse = ({ checkMatchCourses }) => {
           >
             <div className="rbt-card variation-01 rbt-hover">
               <div className="rbt-card-img">
-                <Link href={`/course-details/${data.id}`}>
+                <Link href={`/kurs-barada/${data.id}`}>
                   <Image
                     src={data.img}
                     width={355}
@@ -75,7 +75,7 @@ const RelatedCourse = ({ checkMatchCourses }) => {
                 </div>
 
                 <h4 className="rbt-card-title">
-                  <Link href={`/course-details/${data.id}`}>{data.title}</Link>
+                  <Link href={`/kurs-barada/${data.id}`}>{data.title}</Link>
                 </h4>
 
                 <ul className="rbt-meta">
@@ -114,14 +114,14 @@ const RelatedCourse = ({ checkMatchCourses }) => {
                   {data.button ? (
                     <Link
                       className="rbt-btn-link left-icon"
-                      href={`/course-details/${data.id}`}
+                      href={`/kurs-barada/${data.id}`}
                     >
                       <i className="feather-shopping-cart"></i> Add To Cart
                     </Link>
                   ) : (
                     <Link
                       className="rbt-btn-link"
-                      href={`/course-details/${data.id}`}
+                      href={`/kurs-barada/${data.id}`}
                     >
                       Learn More<i className="feather-arrow-right"></i>
                     </Link>

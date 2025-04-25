@@ -16,7 +16,7 @@ const CourseDetailsOne = ({ checkMatchCourses, course }) => {
 
   const handleConfirm = () =>{
       setResult({})
-      router.replace(`/course-details/${course?.slug}`);
+      router.replace(`/kurs-barada/${course?.slug}`);
     }
   
     if (Object.keys(result).length !== 0) {

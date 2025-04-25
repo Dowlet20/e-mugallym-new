@@ -23,27 +23,27 @@ const Nav = () => {
       <ul className="mainmenu">
         <li className="has-dropdown has-menu-child-item">
           <Link
-            className={isActive("/student-dashboard") ? "active" : ""}
-            href="/student-dashboard"
+            className={isActive("/talyp-paneli") ? "active" : ""}
+            href="/talyp-paneli"
             >
               Talyp paneli
           </Link>
         </li>
         <li className="has-dropdown has-menu-child-item">
           <Link
-            className={isActive("/kitaphana") ? "active" : ""}
-            href="/kitaphana"
-            onClick={(e) => {
-              e.preventDefault(); 
-            }}
+            className={isActive("/biz-barada") ? "active" : ""}
+            href="/biz-barada"
+            // onClick={(e) => {
+            //   e.preventDefault(); 
+            // }}
             >
-              Kitaphana
+              Biz barada
           </Link>
         </li>
         <li className="has-dropdown has-menu-child-item">
           <Link
-            className={isActive("/cesme") ? "active" : ""}
-            href="/cesme"
+            className={isActive("/cesmeler") ? "active" : ""}
+            href="/cesmeler"
             >
               Çeşmeler
           </Link>

@@ -166,7 +166,7 @@
         },
         {
           "title": "Filter Two Toggle",
-          "link": "/course-filter-two-toggle"
+          "link": "/kurs-filter"
         },
         {
           "title": "Filter Two Open",
@@ -198,7 +198,7 @@
         },
         {
           "title": "Course Details",
-          "link": "/course-details"
+          "link": "/kurs-barada"
         },
         {
           "title": "Course Details Two",
@@ -206,7 +206,7 @@
         },
         {
           "title": "Course Lesson",
-          "link": "/lesson",
+          "link": "/sapak",
           "subTitle": "New"
         },
         {
@@ -277,16 +277,16 @@
         },
         {
           "title": "Okyjy paneli",
-          "link":"/student-dashboard",
+          "link":"/talyp-paneli",
           "hasSubmenu": true,
           "submenuItems": [
             {
               "title": "Dashboard",
-              "link": "/student/student-dashboard"
+              "link": "/student/talyp-paneli"
             },
             {
               "title": "Profile",
-              "link": "/student/student-profile"
+              "link": "/student/test-netije"
             },
             {
               "title": "Enrolled Courses",
@@ -294,7 +294,7 @@
             },
             {
               "title": "Wishlist",
-              "link": "/student/student-wishlist"
+              "link": "/student/halanlarym"
             },
             {
               "title": "Reviews",

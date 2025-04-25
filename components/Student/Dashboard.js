@@ -7,7 +7,7 @@ const Dashboard = () => {
       <div className="rbt-dashboard-content bg-color-white rbt-shadow-box mb--60">
         <div className="content">
           <div className="section-title">
-            <h4 className="rbt-title-style-3">Dashboard</h4>
+            <h4 className="rbt-title-style-3">Talyp paneli</h4>
           </div>
           <div className="row g-5">
             <div className="col-lg-4 col-md-4 col-sm-6 col-12">
@@ -17,7 +17,7 @@ const Dashboard = () => {
                 iconClass="bg-primary-opacity"
                 numberClass="color-primary"
                 icon="feather-book-open"
-                title="Enrolled Courses"
+                title="Ýazylan kurslarym"
                 value={30}
               />
             </div>
@@ -28,7 +28,7 @@ const Dashboard = () => {
                 iconClass="bg-secondary-opacity"
                 numberClass="color-secondary"
                 icon="feather-monitor"
-                title="ACTIVE COURSES"
+                title="Görýän kurslarym"
                 value={10}
               />
             </div>
@@ -39,7 +39,7 @@ const Dashboard = () => {
                 iconClass="bg-violet-opacity"
                 numberClass="color-violet"
                 icon="feather-award"
-                title="Completed Courses"
+                title="Doly dynan kurslarym"
                 value={7}
               />
             </div>

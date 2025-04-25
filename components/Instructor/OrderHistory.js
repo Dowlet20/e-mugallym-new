@@ -35,7 +35,7 @@ const OrderHistory = ({
                   <th>Kurs ady</th>
                   <th>Topic ady</th>
                   <th>Sapak ady</th>
-                  <th>giren wagty</th>
+                  <th>Giren wagty</th>
                 </tr>
               </thead>
 
@@ -50,7 +50,7 @@ const OrderHistory = ({
                         whiteSpace: 'normal'
                     }}>
                       <Link 
-                        href={`/lesson/${analytic.lesson.slug}/${analytic.course.slug}`}
+                        href={`/sapak/${analytic.lesson.slug}/${analytic.course.slug}`}
                       >
                         {analytic.course.title}
                       </Link>
@@ -62,7 +62,7 @@ const OrderHistory = ({
                         whiteSpace: 'normal'
                     }}>
                       <Link 
-                        href={`/lesson/${analytic.lesson.slug}/${analytic.course.slug}`}
+                        href={`/sapak/${analytic.lesson.slug}/${analytic.course.slug}`}
                       >
                         {analytic.topic.title}
                       </Link>
@@ -73,12 +73,12 @@ const OrderHistory = ({
                         wordWrap: 'break-word',
                         whiteSpace: 'normal'
                     }}>
-                      <Link href={`/lesson/${analytic.lesson.slug}/${analytic.course.slug}`}>
+                      <Link href={`/sapak/${analytic.lesson.slug}/${analytic.course.slug}`}>
                         {analytic.lesson.title}
                       </Link>
                     </td>
                     <td>
-                      <Link href={`/lesson/${analytic.lesson.slug}/${analytic.course.slug}`}>
+                      <Link href={`/sapak/${analytic.lesson.slug}/${analytic.course.slug}`}>
                         {formattedDate(analytic.updated_at)}
                       </Link>
                     </td>

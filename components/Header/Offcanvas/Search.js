@@ -59,7 +59,7 @@ const Search = () => {
               <form action="#">
                 <input 
                   type="text" 
-                  placeholder="Siz näme gözleýäňiz?"
+                  placeholder="Siz näme gözleýärsiňiz?"
                   onChange={(e)=>setSearchapi(e.target.value)} 
                 />
                 <div className="submit-btn">
@@ -86,7 +86,7 @@ const Search = () => {
               <div className="col-lg-3 col-md-4 col-sm-6 col-12" key={index}>
                 <div className="rbt-card variation-01 rbt-hover">
                   <div className="rbt-card-img">
-                    <a href={`/course-details/${data?.slug}`}>
+                    <a href={`/kurs-barada/${data?.slug}`}>
                     <div style={{ height: '128px', overflow: 'hidden', position: 'relative' }}>
                         <img
                             src={data?.thumbnail ? data?.thumbnail.replace("http://", "https://")  : "/images/course/course-01.jpg"}
@@ -111,7 +111,7 @@ const Search = () => {
                       textOverflow: 'ellipsis',
                       lineHeight: '1.5em',
                     }}>
-                      <a href={`/course-details/${data?.slug}`}>
+                      <a href={`/kurs-barada/${data?.slug}`}>
                         {data?.title}
                       </a>
                     </div>

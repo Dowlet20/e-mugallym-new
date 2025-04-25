@@ -24,7 +24,7 @@ const UserCourses = ({ courses }) => {
         >
           <div className="rbt-card variation-01 rbt-hover">
           <div className="rbt-card-img">
-                <Link href={`/course-details/${course?.slug}`}>
+                <Link href={`/kurs-barada/${course?.slug}`}>
                   <div style={{ height: '244px', overflow: 'hidden', position: 'relative' }}>
                     <img
                       src={course?.thumbnail ? course?.thumbnail.replace("http://", "https://") : "/images/course/course-01.jpg"}
@@ -48,7 +48,7 @@ const UserCourses = ({ courses }) => {
                   textOverflow: 'ellipsis',
                   lineHeight: '1.5em',
                 }}>
-                  <Link href={`/course-details/${course?.slug}`}>
+                  <Link href={`/kurs-barada/${course?.slug}`}>
                     {course?.title}
                   </Link>
                 </div>
@@ -69,7 +69,7 @@ const UserCourses = ({ courses }) => {
               </div>
               <div className="rbt-author-meta mb--10">
                 <div className="rbt-avater">
-                  <Link href={`/source/${course?.source?.slug}`}>
+                  <Link href={`/cesme/${course?.source?.slug}`}>
                     <img
                       src={course?.source?.icon ? course?.source?.icon.replace("http://", "https://") : "/images/course/course-online-01.jpg"}
                       width={33}
@@ -79,7 +79,7 @@ const UserCourses = ({ courses }) => {
                   </Link>
                 </div>
                 <div className="rbt-author-info">
-                  <Link href={`/source/${course?.source?.slug}`}>
+                  <Link href={`/cesme/${course?.source?.slug}`}>
                     {course?.source?.title}
                   </Link>
                 </div>

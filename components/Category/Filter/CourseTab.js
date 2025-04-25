@@ -21,7 +21,7 @@ const CourseTab = ({ course, start, end }) => {
               }`}
             >
               <div className="rbt-card-img">
-                <Link href={`/course-details/${data.id}`}>
+                <Link href={`/kurs-barada/${data.id}`}>
                   <Image
                     className="h-100"
                     src={data.courseImg}
@@ -57,7 +57,7 @@ const CourseTab = ({ course, start, end }) => {
                 </div>
 
                 <h4 className="rbt-card-title">
-                  <Link href={`/course-details/${data.id}`}>
+                  <Link href={`/kurs-barada/${data.id}`}>
                     {data.courseTitle}
                   </Link>
                 </h4>
@@ -97,7 +97,7 @@ const CourseTab = ({ course, start, end }) => {
                   </div>
                   <Link
                     className="rbt-btn-link"
-                    href={`/course-details/${data.id}`}
+                    href={`/kurs-barada/${data.id}`}
                   >
                     Learn More<i className="feather-arrow-right"></i>
                   </Link>

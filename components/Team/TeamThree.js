@@ -52,7 +52,7 @@ const TeamThree = () => {
                 >
                   <div className="inner">
                     <div className="thumbnail">
-                      <Link href={`/source/${source?.slug}`}>
+                      <Link href={`/cesme/${source?.slug}`}>
                         <img
                           src={source?.icon ? source?.icon.replace("http://", "https://") : "/images/team/team-01.jpg"}
                           width={415}
@@ -74,7 +74,7 @@ const TeamThree = () => {
                           textOverflow: 'ellipsis',
                           lineHeight: '1.5em'
                         }}>
-                          <Link href={`/source/${source?.slug}`}>
+                          <Link href={`/cesme/${source?.slug}`}>
                             {source.title}
                           </Link>
                         </div>

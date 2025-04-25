@@ -61,7 +61,7 @@ const Cart = () => {
                           href={
                             data.product.title
                               ? `/event-details/${data.id}`
-                              : `/course-details/${data.id}`
+                              : `/kurs-barada/${data.id}`
                           }
                         >
                           <Image
@@ -80,7 +80,7 @@ const Cart = () => {
                             href={
                               data.product.title
                                 ? `/event-details/${data.id}`
-                                : `/course-details/${data.id}`
+                                : `/kurs-barada/${data.id}`
                             }
                           >
                             {data.product.courseTitle || data.product.title}

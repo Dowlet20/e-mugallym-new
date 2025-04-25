@@ -28,7 +28,7 @@ const CardSix = ({ parentClass, childClass, types }) => {
           <div className={parentClass} key={index}>
             <div className={childClass}>
               <div className="rbt-card-img">
-                <Link href={`/course-details/${data.id}`}>
+                <Link href={`/kurs-barada/${data.id}`}>
                   <Image
                     src={data.courseImg}
                     width={597}
@@ -59,7 +59,7 @@ const CardSix = ({ parentClass, childClass, types }) => {
                 </div>
 
                 <h4 className="rbt-card-title">
-                  <Link href={`/course-details/${data.id}`}>
+                  <Link href={`/kurs-barada/${data.id}`}>
                     {data.courseTitle}
                   </Link>
                 </h4>
@@ -110,7 +110,7 @@ const CardSix = ({ parentClass, childClass, types }) => {
                   </div>
                   <Link
                     className="rbt-btn-link left-icon"
-                    href={`/course-details/${data.id}`}
+                    href={`/kurs-barada/${data.id}`}
                   >
                     <i className="feather-shopping-cart"></i> Add To Cart
                   </Link>
