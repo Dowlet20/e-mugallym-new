@@ -9,12 +9,11 @@ import { Ripple } from "react-css-spinners";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic'
 import AlertDialog from "@/components/AlertDialog";
+// import SimplePDFViewer from "@/components/SimplePDFViewer";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
+
 const DownloadButton = ({ fileUrl }) => {
-  
-  
-  
   const handleMouseOver = (e) => {
     e.currentTarget.style.background = '#2f57ef'; 
   };
@@ -182,7 +181,8 @@ const LessonPage = () => {
               (
                 <div>
                   <DownloadButton fileUrl={lesson?.material} />
-                </div>
+                  {/* <SimplePDFViewer fileUrl={"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"} /> */}
+                 </div>
               )}
               </div>
             </div>

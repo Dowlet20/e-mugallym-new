@@ -62,7 +62,7 @@ const SplitTwo = ({ isImg }) => {
                     height={424}
                     alt="Video Images"
                   />
-                  <Link
+                  {/* <Link
                     className="popup-video position-to-top"
                     data-vbtype="video"
                     href="https://www.youtube.com/watch?v=nA1Aqp0sPQo"
@@ -75,7 +75,7 @@ const SplitTwo = ({ isImg }) => {
                         alt=""
                       />
                     </span>
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             )}
