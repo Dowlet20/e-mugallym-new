@@ -60,7 +60,11 @@ const LessonSidebar = ({
     setActiveTab(topic_id)
     const fetchData = async () => {
       try {
-        const url=`/topics/?course_slug=${course_slug}${search ? "&search="+search : ""}`;
+        const queryParams = new URLSearchParams();
+        if (search) queryParams.set('search', search);
+        if (course_slug) queryParams.set('course', course_slug);
+        const url = `/topics/?${queryParams.toString()}`
+        console.log(url)
         const response = await axiosInstance.get(url);
         setTopics(response.data);
       } catch (err) {
@@ -70,7 +74,7 @@ const LessonSidebar = ({
     if (course_slug) {
       fetchData();
     }
-  },[topic_id, course_slug,search]);
+  },[topic_id, course_slug, search]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -124,9 +128,10 @@ const LessonSidebar = ({
                       <p style={{ width: '250px' }} className="mb-0"> 
                         {topic.title}
                       </p>
+                      {topic?.lessons[0]?.type ==="video" && (
                       <p className="rbt-badge-5 ml--30 mb-0">   
                         {topic.topic_duration}
-                      </p>
+                      </p>)}
                     </div>
                   </button>
                 </h2>

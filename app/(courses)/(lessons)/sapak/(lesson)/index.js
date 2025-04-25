@@ -12,60 +12,65 @@ import AlertDialog from "@/components/AlertDialog";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const DownloadButton = ({ fileUrl }) => {
-
-  const buttonStyle = {
-      background: 'linear-gradient(45deg, #2f57ef, #1a3e9e)',
-      color: 'white',
-      border: 'none',
-      borderRadius: '8px', 
-      padding: '12px 24px',
-      fontSize: '1.8rem',
-      cursor: 'pointer',
-      transition: 'background 0.3s, transform 0.2s',
-      display: 'inline-block',
-
-    };
-
+  
+  
+  
   const handleMouseOver = (e) => {
     e.currentTarget.style.background = '#2f57ef'; 
+  };
+
+  const handleClick = () => {
+    window.open(fileUrl, '_blank');
+  };
+  
+  const buttonStyle = {
+    background: 'linear-gradient(45deg, #2f57ef, #1a3e9e)',
+    color: 'white',
+    border: 'none',
+    borderRadius: '8px', 
+    padding: '12px 24px',
+    fontSize: '1.8rem',
+    cursor: 'pointer',
+    transition: 'background 0.3s, transform 0.2s',
+    display: 'inline-block',
   };
 
   const handleMouseOut = (e) => {
       e.currentTarget.style.background = '#2f57ef';
   };
-
-  const downloadFile = async () => {
-      try {
-          const response = await fetch(fileUrl);
+  
+  // const downloadFile = async () => {
+  //     try {
+  //         const response = await fetch(fileUrl);
           
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
+  //         if (!response.ok) {
+  //             throw new Error('Network response was not ok');
+  //         }
 
-          const blob = await response.blob();
-          const url = window.URL.createObjectURL(blob);
+  //         const blob = await response.blob();
+  //         const url = window.URL.createObjectURL(blob);
 
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'downloaded_file.html'; 
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          window.URL.revokeObjectURL(url); 
-      } catch (error) {
-          console.error('Error downloading the file:', error);
-      }
-  };
+  //         const a = document.createElement('a');
+  //         a.href = url;
+  //         a.download = 'downloaded_file.html'; 
+  //         document.body.appendChild(a);
+  //         a.click();
+  //         a.remove();
+  //         window.URL.revokeObjectURL(url); 
+  //     } catch (error) {
+  //         console.error('Error downloading the file:', error);
+  //     }
+  // };
 
   return (
     <div className="flex items-center justify-content-center m-5">
       <button 
         style={buttonStyle}
-        onClick={downloadFile}
+        onClick={handleClick}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-          Faýly ýükläň
+        Faýly açyň
       </button>
     </div>
   );
@@ -84,7 +89,7 @@ const LessonPage = () => {
   const [result, setResult] = useState({});
   const [showAlert, setShowAlert] = useState(false);
 
-  const url = lesson_slug ? `${base_URL}lesson/${lesson_slug}/material/` : "https://www.youtube.com/embed/qKzhrXqT6oE"
+  //const url = lesson_slug ? `${base_URL}lesson/${lesson_slug}/material/` : "https://www.youtube.com/embed/qKzhrXqT6oE"
   
 
     const handleConfirm = () =>{
@@ -140,8 +145,6 @@ const LessonPage = () => {
     )
     }
 
-
-
   return (
     <>
       <div className="rbt-lesson-area bg-color-white">
@@ -171,7 +174,7 @@ const LessonPage = () => {
                       url={lesson_slug ? `${baseUrl}/api/lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
                       width="100%"
                       height="100%"
-                      playing={false} 
+                      playing={true} 
                       controls={true} 
                       light={false}
                     />

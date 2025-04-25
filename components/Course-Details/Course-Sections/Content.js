@@ -43,7 +43,6 @@ const Content = ({
       }
     },[courseSlug]);
 
-    console.log(tests);
 
   return (
     <>
@@ -75,9 +74,10 @@ const Content = ({
                     aria-controls={`collapseTwo${innerIndex + 1}`}
                   >
                     {item?.title}
-                    <span className="rbt-badge-5 ml--10">
-                      {item.topic_duration}
-                    </span>
+                    {item?.lessons[0]?.type ==="video" && (
+                      <p className="rbt-badge-5 ml--30 mb-0">   
+                        {item.topic_duration}
+                      </p>)}
                   </button>
                 </h2>
                 <div
@@ -106,9 +106,11 @@ const Content = ({
                             </div>
                             {true ? (
                               <div className="course-content-right">
+                                {list?.type ==="video" && (
                                 <span className="min-lable">
                                   {list.lesson_duration}
                                 </span>
+                              )}
                               </div>
                             ) : (
                               <div className="course-content-right">
