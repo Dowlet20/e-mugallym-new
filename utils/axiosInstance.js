@@ -2,7 +2,7 @@
 // utils/axiosInstance.js
 import axios from 'axios';
 
-export const base_URL = 'https://emugallym.edu.tm/api/';
+export const base_URL = 'http://216.250.13.144/course/api/v1';
 
 const axiosInstance = axios.create({
     baseURL: base_URL,

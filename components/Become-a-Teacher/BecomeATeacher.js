@@ -8,19 +8,29 @@ const BecomeATeacher = () => {
     <>
       {Teacher &&
         Teacher.becomeATeacher.map((data, index) => (
-          <div className="container" key={index}>
-            <div className="row">
+          <div 
+            className="container" 
+            key={index}
+            style={
+              {
+                marginTop:"-120px"
+              }
+            }
+          >
+            {/* <div className="row">
               <div className="col-lg-12">
                 <div className="section-title text-center">
-                  <span className="subtitle bg-pink-opacity">{data.tag}</span>
+                  <span className="subtitle bg-pink-opacity">
+                    {data.tag}
+                  </span>
                   <h2 className="title">{data.title}</h2>
                   <p className="description has-medium-font-size mt--20 mb--40">
                     {data.desc}
                   </p>
                 </div>
               </div>
-            </div>
-            <div className="row row row--30">
+            </div> */}
+            {/* <div className="row row row--30">
               <div className="col-lg-12 mt_md--40 mt_sm--40 order-2 order-lg-1">
                 <div className="advance-tab-button">
                   <ul
@@ -66,7 +76,7 @@ const BecomeATeacher = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <InstructorRegistration />
           </div>

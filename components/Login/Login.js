@@ -44,6 +44,8 @@ const Login = () => {
                 axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
                 window.location.href = '/';
             }
+            
+
         } catch (err) {
             setError(err.response?.data?.message || 'Ýalňyş girizilen');
             sessionStorage.removeItem('authToken');

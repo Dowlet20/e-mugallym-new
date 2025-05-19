@@ -4,7 +4,7 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 const Layout = ({ children }) => (
     <>
         <ProtectedRoute>
-        {children}
+            {children}
         </ProtectedRoute>
     </>
   );
