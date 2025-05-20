@@ -124,7 +124,7 @@ const CreateCourse = () => {
     try {
 
       if (formData?.title && formData?.course) {
-        const response = await axiosInstance.post("/topics/", formData, {
+        const response = await axiosInstance.post("/topic/", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -267,7 +267,7 @@ const CreateCourse = () => {
 
     try {
       const response = await axiosInstance.post(
-        "/courses/",
+        "/course/",
         formData,
         {
           headers: {
@@ -1016,7 +1016,7 @@ export default CreateCourse;
 
 
 // const loadOptions = async (inputValue) => {
-//   const url = !inputValue ? "/api/courses" : `/api/courses/?search=${inputValue}`; 
+//   const url = !inputValue ? "/api/courses" : `/api/course/?search=${inputValue}`; 
 
 //   try {
 

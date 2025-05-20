@@ -27,7 +27,7 @@ const UserCourses = ({ courses }) => {
                 <Link href={`/kurs-barada/${course?.slug}`}>
                   <div style={{ height: '244px', overflow: 'hidden', position: 'relative' }}>
                     <img
-                      src={course?.thumbnail ? course?.thumbnail.replace("http://", "https://") : "/images/course/course-01.jpg"}
+                      src={course?.thumbnail ? course?.thumbnail : "/images/course/course-01.jpg"}
                       alt="Card image"
                       // layout="fill"
                       // objectFit="cover"
@@ -71,7 +71,7 @@ const UserCourses = ({ courses }) => {
                 <div className="rbt-avater">
                   <Link href={`/cesme/${course?.source?.slug}`}>
                     <img
-                      src={course?.source?.icon ? course?.source?.icon.replace("http://", "https://") : "/images/course/course-online-01.jpg"}
+                      src={course?.source?.icon ? course?.source?.icon : "/images/course/course-online-01.jpg"}
                       width={33}
                       height={33}
                       alt="Sophia Jaymes"

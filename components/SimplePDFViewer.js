@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 const SimplePDFViewer = ({ fileUrl }) => {
-  const formattedUrl = fileUrl.replace("http://", "https://");
+  const formattedUrl = fileUrl;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

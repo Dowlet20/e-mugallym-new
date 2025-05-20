@@ -63,10 +63,10 @@ const LessonSidebar = ({
         const queryParams = new URLSearchParams();
         if (search) queryParams.set('search', search);
         if (course_slug) queryParams.set('course', course_slug);
-        const url = `/topics/?${queryParams.toString()}`
+        const url = `/topic/?${queryParams.toString()}`
         console.log(url)
         const response = await axiosInstance.get(url);
-        setTopics(response.data);
+        setTopics(response.data.data);
       } catch (err) {
         console.log(err.message);
       }

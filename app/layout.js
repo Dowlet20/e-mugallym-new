@@ -20,6 +20,7 @@ import "swiper/css/thumbs";
 // ========= Plugins CSS END =========
 
 import "../public/scss/styles.scss";
+import Context from "@/context/Context";
 
 
 export default function RootLayout({ children }) {
@@ -29,7 +30,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr">
       <body className="" suppressHydrationWarning={true}>
-        {children}
+        {/* <Context>
+        </Context> */}
+          {children}
       </body>
     </html>
   );

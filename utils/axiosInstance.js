@@ -2,10 +2,10 @@
 // utils/axiosInstance.js
 import axios from 'axios';
 
-export const base_URL = 'http://216.250.13.144/course/api/v1';
+export const base_URL = process.env.NEXT_PUBLIC_BASE_URL+"/course/api/v1";
 
 const axiosInstance = axios.create({
-    baseURL: base_URL,
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL+"/course/api/v1",
     timeout: 20000,
     headers: {
         'Content-Type': 'application/json',

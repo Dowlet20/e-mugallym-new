@@ -9,7 +9,6 @@ import { Ripple } from "react-css-spinners";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic'
 import AlertDialog from "@/components/AlertDialog";
-// import SimplePDFViewer from "@/components/SimplePDFViewer";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 
@@ -37,29 +36,6 @@ const DownloadButton = ({ fileUrl }) => {
   const handleMouseOut = (e) => {
       e.currentTarget.style.background = '#2f57ef';
   };
-  
-  // const downloadFile = async () => {
-  //     try {
-  //         const response = await fetch(fileUrl);
-          
-  //         if (!response.ok) {
-  //             throw new Error('Network response was not ok');
-  //         }
-
-  //         const blob = await response.blob();
-  //         const url = window.URL.createObjectURL(blob);
-
-  //         const a = document.createElement('a');
-  //         a.href = url;
-  //         a.download = 'downloaded_file.html'; 
-  //         document.body.appendChild(a);
-  //         a.click();
-  //         a.remove();
-  //         window.URL.revokeObjectURL(url); 
-  //     } catch (error) {
-  //         console.error('Error downloading the file:', error);
-  //     }
-  // };
 
   return (
     <div className="flex items-center justify-content-center m-5">
@@ -83,12 +59,11 @@ const LessonPage = () => {
   const [lesson, setLesson] = useState({});
   const [lesson_title, setLesson_title] = useState('');
   const [loading, setLoading] = useState(true);
-  const [baseUrl, setBaseUrl] = useState(null);
   const router = useRouter();
   const [result, setResult] = useState({});
   const [showAlert, setShowAlert] = useState(false);
 
-  //const url = lesson_slug ? `${base_URL}lesson/${lesson_slug}/material/` : "https://www.youtube.com/embed/qKzhrXqT6oE"
+  const new_base_URL = process.env.NEXT_PUBLIC_VIDEO_BASE_URL
   
 
     const handleConfirm = () =>{
@@ -100,11 +75,9 @@ const LessonPage = () => {
     useEffect(()=>{
       const fetchData = async () => {
         try {
-          const response = await axiosInstance.get(`/lesson/${lesson_slug}`);
+          const response = await axiosInstance.get(`/lesson/${lesson_slug}/`);
           setLesson(response.data);
-          setLesson_title(response.data?.title);
-          const parsedUrl = new URL(response.data?.material);
-          setBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
+          setLesson_title(response.data?.title);tBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
           setLoading(false);
         } catch (err) {
           console.error(err);
@@ -116,7 +89,7 @@ const LessonPage = () => {
       }
     }, [lesson_slug]);
 
-    if (loading && !baseUrl) {
+    if (loading) {
       return (
         <div className="d-flex bg-transparent"  style={{height: '100vh'}}>
         <Ripple
@@ -143,7 +116,7 @@ const LessonPage = () => {
       </>
     )
     }
-
+    
   return (
     <>
       <div className="rbt-lesson-area bg-color-white">
@@ -169,19 +142,18 @@ const LessonPage = () => {
             <div className="inner">
               <div className="plyr__video-embed rbtplayer">
                 {lesson?.type === "video" ? (
-                   <ReactPlayer
-                      url={lesson_slug ? `${baseUrl}/api/lesson/${lesson_slug}/material` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
-                      width="100%"
-                      height="100%"
-                      playing={true} 
-                      controls={true} 
-                      light={false}
-                    />
-              ) : 
+                  <ReactPlayer
+                     url={lesson_slug ? `${new_base_URL}/video/${lesson?.video_name}` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
+                     width="100%"
+                     height="100%"
+                     playing={true} 
+                     controls={true} 
+                     light={false}
+                   />
+                ) : 
               (
                 <div>
                   <DownloadButton fileUrl={lesson?.material} />
-                  {/* <SimplePDFViewer fileUrl={"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"} /> */}
                  </div>
               )}
               </div>

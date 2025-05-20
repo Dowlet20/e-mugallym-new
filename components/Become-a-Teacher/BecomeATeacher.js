@@ -1,9 +1,20 @@
 import Link from "next/link";
 
 import Teacher from "../../data/pages/become-A-Teacher.json";
+import { useEffect } from "react";
 import InstructorRegistration from "./InstructorRegis";
+import { useRouter } from "next/navigation";
 
 const BecomeATeacher = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+          const token = sessionStorage.getItem('authToken');
+          if (token) {
+              router.push("/");
+          }
+      }, []);
+
   return (
     <>
       {Teacher &&

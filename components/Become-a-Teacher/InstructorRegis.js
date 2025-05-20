@@ -41,7 +41,7 @@ const InstructorRegistration = () => {
   }
   )
   const [loading, setLoading] = useState(false);
-  
+
   
   // const handleChange = (e) => {
   //   setSelectedRole(e.target.value);

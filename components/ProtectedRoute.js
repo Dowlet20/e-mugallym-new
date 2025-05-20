@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '@/utils/axiosInstance_user';
 import { Ripple } from 'react-css-spinners';
+import { useAppContext } from '@/context/Context';
 
 const ProtectedRoute = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
+    const { token, setToken } = useAppContext();
 
     useEffect(() => {
         const verifyAuth = async () => {
@@ -34,10 +36,12 @@ const ProtectedRoute = ({ children }) => {
                   sessionStorage.setItem('authToken', response.data.access);
                   axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
                   setIsAuthenticated(true);
+                  setToken(true)
                 }
               } catch (refreshError) {
                 sessionStorage.removeItem('authToken');
                 sessionStorage.removeItem('refreshToken');
+                setToken(false)
                 delete axiosInstance.defaults.headers.common['Authorization'];
                 window.location.href = '/login';
               }

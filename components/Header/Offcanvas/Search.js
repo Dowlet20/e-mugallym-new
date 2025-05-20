@@ -37,7 +37,7 @@ const Search = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url =`/courses/${slug ? `?category_slug=${slug}` : ""}${slug && paid ? `&paid=${paid}` : !slug && paid ? `?paid=${paid}` : ""}${(slug || paid) && user ? `&user=${user}` : !slug && !paid && user ? `?user=${user}` : ""}${(slug || paid || user) && searchapi ? `&search=${searchapi}` : !slug && !paid && !user && searchapi ? `?search=${searchapi}` : ""}${(slug || paid || user || searchapi) && ordering ? `&ordering=${ordering}` : !slug && !paid && !user && !searchapi && ordering ? `?ordering${ordering}` : ""}`;
+        const url =`/course/${slug ? `?category_slug=${slug}` : ""}${slug && paid ? `&paid=${paid}` : !slug && paid ? `?paid=${paid}` : ""}${(slug || paid) && user ? `&user=${user}` : !slug && !paid && user ? `?user=${user}` : ""}${(slug || paid || user) && searchapi ? `&search=${searchapi}` : !slug && !paid && !user && searchapi ? `?search=${searchapi}` : ""}${(slug || paid || user || searchapi) && ordering ? `&ordering=${ordering}` : !slug && !paid && !user && !searchapi && ordering ? `?ordering${ordering}` : ""}`;
         const response = await axiosInstance.get(url);
         const allCourse = response.data.items;
         setCourse(allCourse);
@@ -89,7 +89,7 @@ const Search = () => {
                     <a href={`/kurs-barada/${data?.slug}`}>
                     <div style={{ height: '128px', overflow: 'hidden', position: 'relative' }}>
                         <img
-                            src={data?.thumbnail ? data?.thumbnail.replace("http://", "https://")  : "/images/course/course-01.jpg"}
+                            src={data?.thumbnail ? data?.thumbnail  : "/images/course/course-01.jpg"}
                             alt="Card image"
                             // layout="fill" 
                             // objectFit="cover" 

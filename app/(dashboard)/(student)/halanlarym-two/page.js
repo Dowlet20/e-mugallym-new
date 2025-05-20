@@ -50,7 +50,7 @@ const WishlistPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = '/courses/favourite/';
+        const url = '/course/favourite/';
         const response = await axiosInstance.get(url);
         const allCourse = response.data.items;
         setCourse(allCourse);

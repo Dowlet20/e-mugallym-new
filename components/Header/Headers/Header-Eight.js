@@ -23,8 +23,7 @@ const HeaderEight = ({
   container,
 }) => {
   const [isSticky, setIsSticky] = useState(false);
-  const { isLightTheme } = useAppContext();
-
+  const { isLightTheme, token } = useAppContext();
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
@@ -87,7 +86,7 @@ const HeaderEight = ({
             />
           </div>
         </div>
-        <Search />
+        {token && <Search />}
       </div>
     </>
   );

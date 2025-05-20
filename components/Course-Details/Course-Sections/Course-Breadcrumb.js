@@ -30,7 +30,7 @@ const CourseBreadcrumb = ({ getMatchCourse, course }) => {
                   <img
                     width={40}
                     height={40}
-                    src={course?.source?.icon ? course?.source?.icon.replace("http://", "https://") : "/images/banner/gallery-banner-03.jpg"}
+                    src={course?.source?.icon ? course?.source?.icon : "/images/banner/gallery-banner-03.jpg"}
                     alt={course?.source?.title}
                   />
                 )}
@@ -57,7 +57,7 @@ const CourseBreadcrumb = ({ getMatchCourse, course }) => {
           <img
             width={800}
             height={660}
-            src={course?.thumbnail ? course?.thumbnail.replace("http://", "https://") : "/images/banner/gallery-banner-03.jpg"}
+            src={course?.thumbnail ? course?.thumbnail  : "/images/banner/gallery-banner-03.jpg"}
             alt={course?.source?.title}
           />
           </div>

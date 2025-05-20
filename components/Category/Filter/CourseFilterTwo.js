@@ -19,11 +19,11 @@ const CourseFilterTwo = ({
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get("/category/");
-        setCategories(response.data);
+        setCategories(response.data.data);
         const response_level = await axiosInstance.get("/level/");
-        setLevels(response_level.data);
-        const response_source = await axiosInstance.get("/source");
-        setSources(response_source.data);
+        setLevels(response_level.data.data);
+        const response_source = await axiosInstance.get("/source/");
+        setSources(response_source.data.data);
       } catch (err) {
         console.error(err);
       }

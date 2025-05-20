@@ -71,7 +71,7 @@ const Viedo = ({ checkMatchCourses, course }) => {
             {checkMatchCourses.courseImg && (
               <img
                 className="w-100 rbt-radius"
-                src={course.thumbnail ? course.thumbnail.replace("http://", "https://") : checkMatchCourses.courseImg}
+                src={course.thumbnail ? course.thumbnail  : checkMatchCourses.courseImg}
                 width={355}
                 height={255}
                 alt="Video Images"

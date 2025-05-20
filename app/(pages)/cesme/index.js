@@ -43,7 +43,7 @@ const SingleProfile = ({ getParams }) => {
         const response_s = await axiosInstance.get(`/source/${postId}`);
         setSource(response_s.data);
 
-        const response = await axiosInstance.get(`/courses/?source=${postId}&page=${page}`);
+        const response = await axiosInstance.get(`/course/?source=${postId}&page=${page}`);
         setCourses(response.data.items);
         setTotalPages(response.data.total_pages)
         setLoading(false);

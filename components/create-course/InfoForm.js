@@ -655,7 +655,7 @@ export default InfoForm;
     
   //   try {
   //     const response = await axiosInstance.post(
-  //       "/api/courses/", 
+  //       "/api/course/", 
   //       formData, 
   //       {
   //         headers: {

@@ -20,7 +20,7 @@ const StudentProfile = () => {
   useEffect(()=> {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get('/courses/analytics/');
+        const response = await axiosInstance.get('/course/analytics/');
         setAnalytics(response.data);
       } catch (error) {
         console.log(error);

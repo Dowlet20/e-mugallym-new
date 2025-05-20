@@ -14,7 +14,7 @@ const CourseCard = ({data, toggle, handleRender}) => {
 
     const isFavourite = async () => {
         try {
-            await axiosInstance.post('/courses/favourite/', {"course_id":courseId});
+            await axiosInstance.post('/course/favourite/', {"course_id":courseId});
             console.log("123 ", courseId)
         } catch (error) {
             console.log(error);
@@ -23,13 +23,15 @@ const CourseCard = ({data, toggle, handleRender}) => {
     const toggleFavorite = () => {
         setFav((prev) => !prev); 
       };
+
+      console.log(data?.thumbnail);
     return (
         <div className={`rbt-card variation-01 rbt-hover ${!toggle ? "card-list-2" : "" }`}>
             <div className="rbt-card-img">
                 <Link href={`/kurs-barada/${data?.slug}`}>
                     <div style={{ height: toggle ? '244px' : '304px', overflow: 'hidden', position: 'relative' }}>
                     <img
-                        src={data?.thumbnail ? data?.thumbnail.replace("http://", "https://") : "/images/course/course-01.jpg"}
+                        src={data?.thumbnail ? data?.thumbnail: "/images/course/course-01.jpg"}
                         alt="Card image"
                         // layout="fill"
                         // objectFit="cover"
@@ -78,7 +80,7 @@ const CourseCard = ({data, toggle, handleRender}) => {
                     <div className="rbt-avater">
                         <Link href={`/cesme/${data?.source?.slug ? data?.source?.slug : ""}`}>
                             <img
-                                src={data?.source?.icon ? data?.source?.icon.replace("http://", "https://") : "/images/client/avatar-02.png"}
+                                src={data?.source?.icon ? data?.source?.icon : "/images/client/avatar-02.png"}
                                 width={33}
                                 height={33}
                                 alt="Sophia Jaymes"

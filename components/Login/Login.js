@@ -1,24 +1,25 @@
 
 
 // pages/login.js
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/utils/axiosInstance_user";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Ripple } from "react-css-spinners";
 import { useAppContext } from "@/context/Context";
 import logo from "../../public/images/logo/logo.png";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 const Login = () => {
-    const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const [credentials, setCredentials] = useState({phone_number: '', password: ''});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const { isLightTheme } = useAppContext();
+    const { isLightTheme, token, setToken } = useAppContext();
+    const router = useRouter();
 
     useEffect(() => {
         const token = sessionStorage.getItem('authToken');
         if (token) {
-            window.location.href = '/';
+            router.push("/");
         }
     }, []);
 
@@ -41,8 +42,10 @@ const Login = () => {
             if (response.data.access) {
                 sessionStorage.setItem('authToken', response.data.access);
                 sessionStorage.setItem('refreshToken', response.data.refresh);
+                setToken(true)
                 axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
-                window.location.href = '/';
+                //router.push("/");
+                
             }
             
 
@@ -50,6 +53,7 @@ const Login = () => {
             setError(err.response?.data?.message || 'Ýalňyş girizilen');
             sessionStorage.removeItem('authToken');
             sessionStorage.removeItem('refreshToken');
+            setToken(false)
             delete axiosInstance.defaults.headers.common['Authorization'];
         } finally {
             setLoading(false);
@@ -89,12 +93,12 @@ const Login = () => {
                         <form onSubmit={handleSubmit} className="max-width-auto">
                             <div className="form-group">
                                 <input
-                                    name="username"
+                                    name="phone_number"
                                     type="text"
                                     required
-                                    placeholder="Ulanyjy ady *"
+                                    placeholder="Email ýa-da tel nomeriňiz *"
                                     onChange={handleChange}
-                                    value={credentials.username}
+                                    value={credentials.phone_number}
                                 />
                                 <span className="focus-border"></span>
                             </div>

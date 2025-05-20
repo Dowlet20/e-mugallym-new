@@ -12,8 +12,8 @@ const TeamThree = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get("/source");
-        setSources(response.data);
+        const response = await axiosInstance.get("/source/");
+        setSources(response.data.data);
         setLoading(false);
       }
       catch (err) {
@@ -54,7 +54,7 @@ const TeamThree = () => {
                     <div className="thumbnail">
                       <Link href={`/cesme/${source?.slug}`}>
                         <img
-                          src={source?.icon ? source?.icon.replace("http://", "https://") : "/images/team/team-01.jpg"}
+                          src={source?.icon ? source?.icon : "/images/team/team-01.jpg"}
                           width={415}
                           height={555}
                           priority

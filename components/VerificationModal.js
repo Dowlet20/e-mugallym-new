@@ -2,19 +2,22 @@
 
 import React, { useRef, useState } from "react";
 import axiosInstance from "@/utils/axiosInstance_user";
+import { useAppContext } from "@/context/Context";
+import { useRouter } from "next/navigation";
 
 const VerificationModal = ({
         email,
         password
     }) => {
-
+  
+  const router = useRouter();
   const codeInputRef =useRef(null);
   const closeModalButtonRef=useRef(null);
   const [verificationCode, setVerificationCode] = useState("");
   const orderInputRef =useRef(null);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+  const {token, setToken} = useAppContext();
 
   const newVeriPost = async () => {
     setIsSubmitting(true);
@@ -41,9 +44,6 @@ const VerificationModal = ({
       codeInputRef.current.value = "";
     } catch (err) {
       console.log("Error during lesson post:", err);
-      sessionStorage.removeItem('authToken');
-      sessionStorage.removeItem('refreshToken');
-      delete axiosInstance.defaults.headers.common['Authorization'];
     } finally {
       setIsSubmitting(false);
     }
@@ -79,9 +79,11 @@ const VerificationModal = ({
             // }
             //   if (response.status === 201) {
               //     }
-              console.log(response.data)
-              console.log(response2.data)
-              window.location.href = '/';
+          setToken(true)
+          console.log(response.data)
+          console.log(response2.data)
+          //router.push("/");
+          window.location.href = "/";
 
         }
         if (email?.slice(0,4) === "+993") {
@@ -99,13 +101,15 @@ const VerificationModal = ({
            sessionStorage.setItem('authToken', response2.data.access);
            sessionStorage.setItem('refreshToken', response2.data.refresh);
            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+           setToken(true)
            //    if (response.data.access) {
             //    }
             //    if (response.status === 201) {
               //     }
               console.log(response)
               console.log(response2.data)
-              window.location.href = '/';
+              //router.push("/")
+              window.location.href = "/";
         }
 
       setVerificationCode("");
@@ -115,6 +119,7 @@ const VerificationModal = ({
       console.log("Error during lesson post:", err);
       sessionStorage.removeItem('authToken');
       sessionStorage.removeItem('refreshToken');
+      setToken(false)
       delete axiosInstance.defaults.headers.common['Authorization'];
     } finally {
       setIsSubmitting(false);

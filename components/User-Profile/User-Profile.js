@@ -10,7 +10,7 @@ const UserProfile = ({  source }) => {
         <div className="rbt-dashboard-content-wrapper">
           <div className="bg-white height-350">
             <img 
-              src={source?.thumbnail ? source?.thumbnail.replace("http://", "https://")  : bgImage} 
+              src={source?.thumbnail ? source?.thumbnail : bgImage} 
               // layout="fill"
               // objectFit="cover" 
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -21,7 +21,7 @@ const UserProfile = ({  source }) => {
               <div className="rbt-tutor-information-left">
                 <div className="thumbnail rbt-avatars size-lg">
                   <img
-                    src={source?.icon ? source?.icon.replace("http://", "https://") : bgImage}
+                    src={source?.icon ? source?.icon : bgImage}
                     width={250}
                     height={250}
                     alt="Instructor"

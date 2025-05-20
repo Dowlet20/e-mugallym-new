@@ -4,6 +4,8 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 // Create the context with an initial default value
 const AppContext = createContext({
+  token: false,
+  setToken: ()=> {},
   tazele: false,
   setTazele: () => {},
   toggle: true,
@@ -39,6 +41,7 @@ export const useAppContext = () => {
 };
 
 const Context = ({ children }) => {
+  const [token, setToken] = useState(false);
   const [tazele, setTazele] = useState(false);
   const [cartToggle, setCart] = useState(true);
   const [toggle, setToggle] = useState(true);
@@ -69,11 +72,23 @@ const Context = ({ children }) => {
     }
   }, [isLightTheme]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') { 
+      const storedToken = sessionStorage.getItem('authToken');
+      console.log("context")
+      if (storedToken) {
+        setToken(true);
+      }
+    }
+  }, []);
+
   const toggleTheme = () => {
     setLightTheme((prevTheme) => !prevTheme);
   };
 
   const value = {
+    token,
+    setToken,
     tazele,
     setTazele,
     toggle,

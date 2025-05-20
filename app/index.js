@@ -80,12 +80,12 @@ const CourseFilteTwoTogglePage = () => {
     setTaze((prev)=>!prev)
   }
 
-  // const url =`/courses/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && search ? `&search=${search}` : !slug && !paid && !user && search ? `?search=${search}` : ""}${(slug || paid || user || search) && ordering ? `&ordering=${ordering}` : !slug && !paid && !user && !search && ordering ? `?ordering=${ordering}` : ""}`;
+  // const url =`/course/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && search ? `&search=${search}` : !slug && !paid && !user && search ? `?search=${search}` : ""}${(slug || paid || user || search) && ordering ? `&ordering=${ordering}` : !slug && !paid && !user && !search && ordering ? `?ordering=${ordering}` : ""}`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `/courses/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && source ? `&source=${source}` : !search && !level && !category && source ? `?source=${source}` : ""}${(search || category || level || source) && page ? `&page=${page}` : !search && !category && !level && !source && page ? `?page=${page}` : ""}`;
+        const url = `/course/${search ? `?search=${search}` : ""}${search && category ? `&category=${category}` : !search && category ? `?category=${category}` : ""}${(search || category) && level ? `&level=${level}` : !search && !category && level ? `?level=${level}` : ""}${(search || category || level) && source ? `&source=${source}` : !search && !level && !category && source ? `?source=${source}` : ""}${(search || category || level || source) && page ? `&page=${page}` : !search && !category && !level && !source && page ? `?page=${page}` : ""}`;
         const response = await axiosInstance.get(url);
         const allCourse = response.data.items;
         
