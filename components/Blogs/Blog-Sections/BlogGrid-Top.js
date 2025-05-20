@@ -12,7 +12,7 @@ const BlogGridTop = ({ BlogData, selectedGridBlogs }) => {
           data-sal-duration="800"
         >
           {BlogData &&
-            BlogData.blogGrid.slice(0, 1).map((data, index) => (
+            BlogData?.blogGrid?.slice(0, 1)?.map((data, index) => (
               <div
                 className="rbt-card variation-02 height-330 rbt-hover"
                 key={index}
@@ -67,7 +67,7 @@ const BlogGridTop = ({ BlogData, selectedGridBlogs }) => {
           data-sal-duration="800"
         >
           {BlogData &&
-            BlogData.blogGrid.slice(1, 4).map((data, index) => (
+            BlogData?.blogGrid?.slice(1, 4)?.map((data, index) => (
               <div
                 className={`rbt-card card-list variation-02 rbt-hover ${
                   data.mt ? "mt--30" : ""

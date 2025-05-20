@@ -1,21 +1,39 @@
-import BackToTop from "@/app/backToTop";
-import CourseFilteTwoTogglePage from "./index";
-import ProtectedRoute from "@/components/ProtectedRoute";
+import BackToTop from "./backToTop";
+import HomePage from "./01-main-demo/page";
 
 export const metadata = {
-  title: "E-Mugallym",
-  description: "E-Mugallym",
+  title: "Home - Online Courses & Education NEXTJS14 Template",
+  description: "Online Courses & Education NEXTJS14 Template",
 };
 
-const CourseFilteTwoToggleLayout = () => {
+export default function Home() {
   return (
-    <>
-    <ProtectedRoute>
-      <CourseFilteTwoTogglePage />
-      <BackToTop />
-    </ProtectedRoute>
-    </>
-  );
-};
+    <main>
+      <HomePage />
 
-export default CourseFilteTwoToggleLayout;
+      <BackToTop />
+    </main>
+  );
+}
+
+// import BackToTop from "@/app/backToTop";
+// import CourseFilteTwoTogglePage from "./index";
+// import ProtectedRoute from "@/components/ProtectedRoute";
+
+// export const metadata = {
+//   title: "E-Mugallym",
+//   description: "E-Mugallym",
+// };
+
+// const CourseFilteTwoToggleLayout = () => {
+//   return (
+//     <>
+//     <ProtectedRoute>
+//       <CourseFilteTwoTogglePage />
+//       <BackToTop />
+//     </ProtectedRoute>
+//     </>
+//   );
+// };
+
+// export default CourseFilteTwoToggleLayout;

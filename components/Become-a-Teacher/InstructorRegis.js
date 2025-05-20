@@ -146,6 +146,8 @@ const InstructorRegistration = () => {
   //   fetchData();
   // }, []);
 
+  console.log(info?.email?.includes("@gmail.com"))
+
   return (
     <>
       {loading && (

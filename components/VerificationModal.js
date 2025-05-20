@@ -7,15 +7,48 @@ const VerificationModal = ({
         email,
         password
     }) => {
+
   const codeInputRef =useRef(null);
-  const orderInputRef =useRef(null);
   const closeModalButtonRef=useRef(null);
   const [verificationCode, setVerificationCode] = useState("");
+  const orderInputRef =useRef(null);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
 
+  const newVeriPost = async () => {
+    setIsSubmitting(true);
 
-  console.log(email)
+    try {
+        if (email?.includes("@gmail.com")) {
+            const response = await axiosInstance.post(
+                "/registration/resend-email/", 
+                {
+                    "email":email
+                }
+          );
+        }
+        if (email?.slice(0,4) === "+993") {
+            const response = await axiosInstance.post(
+                "/registration/resend-phone/", 
+                {
+                    "phone_number":email
+                }
+           );
+        }
+
+      setVerificationCode("");
+      codeInputRef.current.value = "";
+    } catch (err) {
+      console.log("Error during lesson post:", err);
+      sessionStorage.removeItem('authToken');
+      sessionStorage.removeItem('refreshToken');
+      delete axiosInstance.defaults.headers.common['Authorization'];
+    } finally {
+      setIsSubmitting(false);
+    }
+    
+  } 
 
   const verificationPost = async () => {
     setIsSubmitting(true);
@@ -39,16 +72,16 @@ const VerificationModal = ({
               "phone_number":email,
               "password":password
           });    
-          sessionStorage.setItem('authToken', response.data.access);
-          sessionStorage.setItem('refreshToken', response.data.refresh);
+          sessionStorage.setItem('authToken', response2.data.access);
+          sessionStorage.setItem('refreshToken', response2.data.refresh);
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
-          window.location.href = '/';
-              // if (response.status === 200) {
-              // }
-        //   if (response.status === 201) {
-        //     }
-          console.log(response)
-          console.log(response2)
+          // if (response.status === 200) {
+            // }
+            //   if (response.status === 201) {
+              //     }
+              console.log(response.data)
+              console.log(response2.data)
+              window.location.href = '/';
 
         }
         if (email?.slice(0,4) === "+993") {
@@ -56,23 +89,23 @@ const VerificationModal = ({
                 "/registration/verify-phone/", 
                 {
                     "phone_number":email,
-                    "code": verificationCode.toString()
+                    "code": verificationCode
                 }
            );
            const response2 = await axiosInstance.post('/token/', {
                "phone_number":email,
                "password":password
            });    
-           sessionStorage.setItem('authToken', response.data.access);
-           sessionStorage.setItem('refreshToken', response.data.refresh);
+           sessionStorage.setItem('authToken', response2.data.access);
+           sessionStorage.setItem('refreshToken', response2.data.refresh);
            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
-           window.location.href = '/';
-            //    if (response.data.access) {
+           //    if (response.data.access) {
             //    }
-        //    if (response.status === 201) {
-        //     }
-           console.log(response)
-           console.log(response2)
+            //    if (response.status === 201) {
+              //     }
+              console.log(response)
+              console.log(response2.data)
+              window.location.href = '/';
         }
 
       setVerificationCode("");
@@ -115,11 +148,16 @@ const VerificationModal = ({
                 <div className="row">
                   <div className="col-lg-12">
                     <h5 className="modal-title mb--20" id="VerificationLabel">
-                      Sapak goş
+                      Tassyklanyş kody
                     </h5>
                     <div className="course-field mb--20">
                       <label htmlFor="modal-field-1">
-                        Email poçtaňyza gelen tassyklanyş kody giriz:
+                        {email?.includes("@gmail.com") ? 
+                        "Email poçtaňyza gelen tassyklanyş kody giriz:" : 
+                        email?.slice(0,4) === "+993" ? 
+                        "Telefon nomeriňize gelen tassyklanyş kody giriz:" : 
+                        `Email ýa-da tel nomer "@gmail.com" ýa-da "+993" ýazgyny saklamaly.` 
+                      }
                       </label>
                       <input 
                         ref={codeInputRef}
@@ -127,10 +165,10 @@ const VerificationModal = ({
                         type="text" 
                         onChange={(e)=>setVerificationCode(e.target.value)}
                       />
-                      <small>
+                      {/* <small>
                         <i className="feather-info"> </i> 
                         Tassyklanyş kodyny giriz.
-                      </small>
+                      </small> */}
                     </div>
                   </div>
                 </div>
@@ -146,14 +184,31 @@ const VerificationModal = ({
               >
                 Çyk
               </button>
-              <div className="content">
-                <button 
-                  type="button" 
-                  className="rbt-btn btn-md"
-                  onClick={verificationPost}
-                >
-                  Sapagy goş
-                </button>
+              <div 
+                style={{
+                  display:"flex",
+                  alignItems:"center",
+                  gap:"20px"
+                }}
+              >
+                <div className="content">
+                  <button 
+                    type="button" 
+                    className="rbt-btn btn-md"
+                    onClick={newVeriPost}
+                  >
+                    Täzeden ibermek
+                  </button>
+                </div>
+                <div className="content">
+                  <button 
+                    type="button" 
+                    className="rbt-btn btn-md"
+                    onClick={verificationPost}
+                  >
+                    Tassykla
+                  </button>
+                </div>
               </div>
             </div>
           </div>
