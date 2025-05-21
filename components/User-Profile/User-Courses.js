@@ -13,8 +13,6 @@ const UserCourses = ({ courses }) => {
     });
   }, []);
 
-  
-
   return (
     <>
       {courses.isEmpty ? [] : courses.map((course, index) => (

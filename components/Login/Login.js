@@ -44,7 +44,7 @@ const Login = () => {
                 sessionStorage.setItem('refreshToken', response.data.refresh);
                 setToken(true)
                 axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
-                //router.push("/");
+                router.push("/");
                 
             }
             

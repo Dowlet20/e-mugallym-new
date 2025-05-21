@@ -31,6 +31,7 @@ const SingleProfile = ({ getParams }) => {
   const postId = getParams.profileId;
   let getCourse;
   const [loading, setLoading] = useState(true);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
   getCourse = JSON.parse(JSON.stringify(CourseData.courseDetails));
 
@@ -40,7 +41,7 @@ const SingleProfile = ({ getParams }) => {
     const fetchData = async () => {
       try {
 
-        const response_s = await axiosInstance.get(`/source/${postId}`);
+        const response_s = await axiosInstance.get(`/source/${postId}/`);
         setSource(response_s.data);
 
         const response = await axiosInstance.get(`/course/?source=${postId}&page=${page}`);

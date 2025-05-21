@@ -8,6 +8,7 @@ import { Ripple } from "react-css-spinners";
 const TeamThree = () => {
   const [sources, setSources] = useState();
   const [loading, setLoading] = useState(true);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +38,7 @@ const TeamThree = () => {
       </div>
     );
   }
+  
 
   return (
     <>
@@ -54,7 +56,7 @@ const TeamThree = () => {
                     <div className="thumbnail">
                       <Link href={`/cesme/${source?.slug}`}>
                         <img
-                          src={source?.icon ? source?.icon : "/images/team/team-01.jpg"}
+                          src={source?.icon ? `${baseUrl}${source?.icon}` : "/images/team/team-01.jpg"}
                           width={415}
                           height={555}
                           priority
