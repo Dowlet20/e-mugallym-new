@@ -24,6 +24,10 @@
         color: var(--color-white);
     }
 
+    ol li {
+        color: var(--color-white-dark);
+    }
+
     .bg-color-white {
         background: var(--color-darker) !important;
         // background: var(--color-bodyest) !important;
@@ -68,7 +72,7 @@
 
     .rbt-team-area {
         &.bg-color-extra2 {
-            background: var(--color-grey) !important;
+            background: var(--color-bodyest) !important;
         }
     }
 
@@ -446,11 +450,11 @@
 
     .rbt-instructor .about-author .media-body .rbt-meta li,
     a {
-        color: var(--color-white);
+        color: var(--color-white) !important;
     }
 
     .nav-category-item .thumbnail a {
-        color: var(--color-bodyest);
+        color: var(--color-bodyest) !important;
 
         &:hover {
             color: var(--color-primary);
@@ -1327,7 +1331,7 @@
     }
 
     .rbt-category-menu-wrapper .category-dropdown-menu .category-menu-item .rbt-vertical-nav-list-wrapper li:hover a {
-        color: var(--color-primary) !important;
+        color: var(--color-white) !important;
     }
 
     .rbt-admin-profile {
@@ -1352,7 +1356,7 @@
     }
 
     .rbt-header .mainmenu-nav .mainmenu li.with-megamenu .rbt-megamenu .wrapper {
-        background-color: var(--color-darker);
+        background-color: var(--color-bodyest);
         box-shadow: var(--dark-shadow-1);
         border-top: 1px solid transparent;
     }
@@ -2748,8 +2752,8 @@
     }
 
     .rbt-modern-select .bootstrap-select button.btn-light {
-        background-color: var(--color-bodyest);
-        box-shadow: var(--dark-shadow-3);
+        background-color: var(--color-bodyest-2);
+        box-shadow: none;
         color: var(--color-white-off);
     }
 
@@ -3001,11 +3005,740 @@
     .rbt-default-form textarea {
         border: 2px solid var(--dark-color-border-2);
     }
-}
+
+    .active-icon-white {
+        color: var(--color-white);
+
+    }
+
+    .side-nav-opened .active-dark-mode .rbt-header.rbt-transparent-header .rbt-header-wrapper:not(.bg-not-transparent) {
+        background-color: var(--color-bodyest) !important;
+        box-shadow: var(--dark-shadow-3);
+    }
+
+    .jodit-toolbar-editor-collection.jodit-toolbar-editor-collection_mode_horizontal.jodit-toolbar-editor-collection_size_middle svg {
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(100%);
+    }
+
+    .jodit-toolbar__box:not(:empty):not(:empty) {
+        background-color: #192335;
+    }
+
+    .jodit-toolbar__box:not(:empty) {
+        border: 1px solid #6b7385;
+    }
+
+    .jodit-container:not(.jodit_inline) .jodit-workplace {
+        background-color: #273041;
+        border: 0 solid #6b7385;
+    }
+
+    .jodit-toolbar__box:not(:empty) .jodit-toolbar-editor-collection:after {
+        background-color: #6b7385;
+    }
+
+    .jodit-ui-group_separated_true:not(:last-child):not(.jodit-ui-group_before-spacer_true):after {
+        border-right: 1px solid #6b7385;
+    }
+
+    .jodit-container:not(.jodit_inline) {
+        background-color: #273041;
+        border: 1px solid #6b7385;
+    }
+
+    .jodit-workplace+.jodit-status-bar:not(:empty) {
+        border-top: 1px solid #6b7385;
+    }
+
+    .jodit-status-bar {
+        background-color: #273041;
+    }
+
+    .rbt-banner-17 {
+        .banner-wrap {
+            .feature {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .feature-title {
+                    color: var(--color-white);
+                }
+            }
+
+            .enrolled {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .feature-title {
+                    color: var(--color-white);
+                }
+            }
+        }
+
+        .inner {
+            .subtitle {
+                color: var(--color-white-dark);
+
+                .trustpilot-white {
+                    display: inline-block;
+                }
+
+                .trustpilot-dark {
+                    display: none;
+                }
+            }
+        }
+
+        .shape-wrap {
+            .shape-bg {
+                opacity: 0.01;
+            }
+
+            .shadow-bg {
+                opacity: 0.4;
+            }
+
+            .shape-1 {
+                opacity: 0.3;
+            }
+
+            .shape-2 {
+                opacity: 0.3;
+            }
+        }
+    }
+
+    .category-section-02 {
+        .gradient-shape {
+            opacity: 0;
+        }
+    }
+
+    .rbt-course-tab-button {
+        li {
+            button {
+                color: var(--color-white-dark);
+
+                &.active {
+                    color: var(--color-white);
+                }
+            }
+        }
+    }
+
+    .rbt-sec-cir-shadow-1 {
+        .gradient-shape-top {
+            opacity: 0;
+        }
+
+        .gradient-shape-bottom {
+            opacity: 0;
+        }
+    }
+
+    .rbt-megamenu {
+        .load-demo-btn {
+            background: var(--color-bodyest);
+        }
+    }
+
+    .rbt-banner-18 {
+        .shape-wrap {
+            .glass {
+                opacity: 0.003;
+            }
+
+            .shadow-1 {
+                opacity: 0;
+            }
+
+            .shadow-2 {
+                opacity: 1;
+            }
+        }
+
+        .banner-wrap {
+            .feature {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .feature-title {
+                    color: var(--color-white);
+                }
+            }
+
+            .enrolled {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .feature-title {
+                    color: var(--color-white);
+                }
+            }
+        }
+
+        .brand-box-wrap {
+            .brand-box {
+                background: var(--color-bodyest) !important;
+
+                &::before {
+                    background: rgb(70 70 70 / 20%);
+                }
+
+                &::after {
+                    background: rgb(70 70 70 / 20%);
+                }
+            }
+        }
+    }
+
+    .about-style-4 {
+        ul {
+            li {
+                .text {
+                    color: var(--color-white-dark);
+                }
+            }
+        }
+
+        .about-thumb {
+            .title {
+                color: var(--color-white-dark);
+            }
+
+            .since {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .subtitle {
+                    color: var(--color-white-dark);
+                }
+            }
+
+            .satisfied {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .item-title {
+                    color: var(--color-white);
+                }
+
+                .subtitle {
+                    color: var(--color-white-dark);
+                }
+            }
+        }
+
+        &.version-03 {
+            .light-shadow {
+                display: none;
+            }
+        }
+    }
+
+    .video-popup-wrapper {
+        &.version-02 {
+            .feature-1 {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .number {
+                    color: var(--color-white);
+                }
+
+                .subtitle {
+                    color: var(--color-white-dark);
+                }
+            }
+        }
+    }
+
+    .rbt-banner-20 {
+        background-color: var(--color-darker);
+
+        .circle-sd-wrapper {
+            .circle-shadow-1 {
+                opacity: 0;
+            }
+
+            .circle-shadow-3 {
+                opacity: 0.4;
+            }
+        }
+
+        .shapes-wrapper {
+            .curve-line-1 {
+                opacity: 0.3;
+            }
+
+            .curve-line-2 {
+                opacity: 0.3;
+            }
+
+            .curve-line-3 {
+                opacity: 0.3;
+            }
+
+            .curve-line-4 {
+                opacity: 0.3;
+            }
+        }
+
+        .language-world {
+            .flages {
+                border-color: var(--color-bodyest);
+
+                .flag {
+                    background-color: var(--color-bodyest-2);
+                }
+            }
+        }
+    }
+
+    .rbt-feature-card {
+        box-shadow: var(--shadow-7);
+        background: var(--color-bodyest);
+
+        .card-title {
+            color: var(--color-white);
+        }
+    }
+
+    .rbt-banner-21 {
+        .subtitle {
+            color: var(--color-white-dark);
+        }
+
+        .title {
+            color: var(--color-white);
+
+            .text-outline {
+                -webkit-text-stroke-color: var(--color-white);
+            }
+        }
+
+        .rbt-offer {
+            background: var(--color-bodyest);
+            border-color: var(--dark-color-border);
+            box-shadow: var(--shadow-7);
+
+            .offer-bg {
+                display: none;
+            }
+
+            .enroll {
+                .number {
+                    color: var(--color-white);
+                }
+            }
+
+            .description {
+                .bold {
+                    color: var(--color-white-dark);
+                }
+            }
+
+            .satisfied {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .number {
+                    color: var(--color-white);
+                }
+            }
+        }
+
+        .shape-wrap {
+            .shape-1 {
+                display: none;
+            }
+        }
+    }
+
+    .rbt-card {
+        &.rbt-card-latest {
+            border-radius: var(--radius);
+
+            .rbt-card-body {
+                padding: 27px 30px;
+
+                @media #{$md-layout, $sm-layout, $large-mobile} {
+                    padding: 20px;
+                }
+            }
+        }
+    }
+
+    .footer-style-1 {
+        &.footer-art-section {
+            .shapes {
+                .shape-2 {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .course-section-01 {
+        .circle-shadow {
+            opacity: 0.6;
+        }
+    }
+
+    .rbt-banner-22 {
+        .inner {
+            .content {
+                .title {
+                    color: var(--color-white);
+                }
+            }
+        }
+    }
+
+    .section-title-2 {
+        .title {
+            color: var(--color-white);
+        }
+    }
+
+    .rbt-banner-23 {
+        .wrapper {
+            .shape-wrap {
+                .main-bg {
+                    opacity: 0.1;
+                }
+
+                .bg-shape {
+                    opacity: 0.1;
+                }
+
+                .light-shadow {
+                    opacity: 0.02;
+                }
+
+                .shape-gd-1 {
+                    opacity: 0.8;
+                }
+            }
+
+            .inner {
+                .subtitle {
+                    background: var(--color-bodyest);
+                    box-shadow: var(--shadow-7);
+                }
+
+                .action {
+                    .sucess {
+                        .number {
+                            color: var(--color-white);
+                        }
+                    }
+                }
+            }
+
+            .content-wrap {
+                .main-img-wrap {
+                    .social-media {
+                        .social-bg {
+                            display: none;
+                        }
+
+                        .social-bg-dark {
+                            display: block;
+                        }
+
+                        .social-title {
+                            color: var(--color-white);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .multi-step-form {
+        &::after {
+            background: var(--color-bodyest);
+        }
+
+        &::before {
+            background: linear-gradient(180deg, rgba(81, 99, 255, 0.612) 0%, rgba(197, 134, 238, 0.071) 50%, var(--color-darker) 100%);
+        }
+    }
+
+    .multi-step-form-row {
+        border-color: var(--dark-color-border);
+    }
+
+    .multisteps-form__panel {
+        .btn-wrap {
+            border-top-color: var(--dark-color-border);
+        }
+
+        input {
+            border-color: var(--dark-color-border);
+        }
+    }
+
+    .about-style-4 {
+        &.version-04 {
+            .enrolled {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .enrolled-title {
+                    color: var(--color-white);
+                }
+            }
+        }
+    }
+
+    .service-section-01 {
+        &::after {
+            opacity: 0.1;
+        }
+    }
+
+    .rbt-feature {
+        .number {
+            color: var(--color-white);
+        }
+    }
+
+    .ready-section-01 {
+        .title {
+            color: var(--color-heading);
+        }
+
+        .description {
+            color: var(--color-body);
+        }
+    }
+
+    .rbt-banner-24 {
+        .wrapper {
+            .inner {
+                .number {
+                    margin-bottom: 0;
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .rbt-banner-25 {
+        .wrapper {
+            .shape-wrapper {
+                .shape-2 {
+                    opacity: 0.3;
+                }
+
+                .shape-1 {
+                    opacity: 0.2;
+                }
+            }
+
+            .inner {
+                .rbt-new-badge.rbt-new-badge-one {
+                    background: var(--color-bodyest);
+
+                    &::before {
+                        background: var(--color-bodyest);
+                    }
+                }
+            }
+        }
+
+        &-satisfied {
+            background: var(--color-bodyest);
+            border-color: var(--dark-color-border);
+
+            .satis-title {
+                color: var(--color-white);
+            }
+        }
+
+        &-review {
+            background: var(--color-bodyest);
+            border-color: var(--dark-color-border);
+
+            .review-title {
+                color: var(--color-white);
+            }
+        }
+
+        &-team {
+            background: var(--color-bodyest);
+            border-color: var(--dark-color-border);
+
+            .profile-share {
+                .number {
+                    background: var(--color-bodyest);
+                    border-color: var(--dark-color-border);
+                }
+            }
+        }
+    }
+
+    .newsletter-style-3 {
+        background: var(--color-bodyest);
+
+        .shape-1 {
+            display: none;
+        }
+    }
+
+    .about-style-3 {
+        .thumbnail-wrapper {
+            .experience {
+                background: var(--color-bodyest);
+                border-color: var(--dark-color-border);
+
+                .number {
+                    color: var(--color-white);
+                }
+            }
+        }
+    }
+
+    .brand-section-01 {
+        .title {
+            color: var(--color-heading);
+        }
+    }
 
 
+    .video-popup-wrapper {
+        &.version-02 {
+            .rbt-btn.btn-white {
+                &:hover {
+                    background: var(--color-white);
+                }
+            }
+        }
+    }
 
-.side-nav-opened .active-dark-mode .rbt-header.rbt-transparent-header .rbt-header-wrapper:not(.bg-not-transparent) {
-    background-color: var(--color-bodyest) !important;
-    box-shadow: var(--dark-shadow-3);
+    .rbt-banner-26 {
+        .wrapper {
+            .inner {
+                .subtitle {
+                    background: var(--color-darker);
+                    border-color: var(--dark-color-border);
+                }
+            }
+        }
+
+        &-satisfied {
+            background: var(--color-bodyest);
+            border-color: var(--dark-color-border);
+
+            .satis-title {
+                color: var(--color-white);
+            }
+        }
+
+        &-album {
+            background: var(--color-bodyest);
+            border-color: var(--dark-color-border);
+
+            .cont {
+                .satis-title {
+                    color: var(--color-white);
+                }
+            }
+        }
+
+        &-team {
+            background: var(--color-bodyest);
+            border-color: var(--dark-color-border);
+
+            .team-cont {
+                .cont {
+                    .satis-title {
+                        color: var(--color-white);
+                    }
+                }
+            }
+        }
+    }
+
+    .rbt-feature-card-two {
+        &::after {
+            opacity: 0.05;
+        }
+    }
+
+    .rbt-footer-shadow-1 {
+        .gradient-shadow-top {
+            display: none;
+        }
+
+        .gradient-shadow-bottom {
+            display: none;
+        }
+    }
+
+    .feature-style-1 {
+        .bg-primary-opacity {
+            background: var(--primary-opacity) !important;
+        }
+    }
+
+    .popup-mobile-menu .inner-wrapper,
+    .popup-mobile-menu .inner-wrapper .inner-top .close-button {
+        background: var(--color-darker) !important;
+    }
+
+    .demo-single .inner .content .title a {
+        color: var(--color-white);
+    }
+
+    .rbt-table tbody tr:nth-child(even) th,
+    .rbt-table tbody tr:nth-child(even) td {
+        background: var(--color-bodyest-2) !important;
+    }
+
+    .rbt-banner-24 {
+        .banner-img {
+            opacity: 0.4;
+        }
+
+        .wrapper {
+            .title-wrap {
+                .title {
+                    color: var(--color-white);
+                }
+            }
+
+            .inner {
+                .description {
+                    color: var(--color-white);
+                }
+
+                .number {
+                    color: var(--color-white);
+                }
+
+                .number-title {
+                    color: var(--color-white);
+                }
+            }
+        }
+    }
+
+    .rbt-btn.border-rounded {
+        border-color: var(--color-primary);
+    }
+
+    .filter-select.rbt-modern-select {
+        select {
+            box-shadow: none;
+        }
+    }
+
+    .service-select {
+        background-color: transparent;
+        border-color: var(--dark-color-border);
+    }
 }

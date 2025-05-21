@@ -8,11 +8,18 @@ import CategoryBanner from "./Category-Banner";
 
 import CourseFilterTwo from "./Filter/CourseFilterTwo";
 import { useAppContext } from "@/context/Context";
+import SearchThree from "../Search/Search-Three";
 
 const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLevels, setSelectedSources, total_items, page }) => {
   const pathname = usePathname();
   const { toggle, setToggle } = useAppContext();
   const [filterToggle, setFilterToggle] = useState(true);
+  const [activeTab, setActiveTab] = useState("All Course");
+  const handleButtonClick = (courseType) => {
+    //setCourseFilter(getAllCourse);
+    setActiveTab(courseType);
+    //filterItem(courseType);
+  };
 
   return (
     <>
@@ -67,6 +74,9 @@ const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLe
                     )}
                   </div>
                 </div>
+                <div className="rbt-elements-area rbt-section-gap">
+                  <SearchThree />
+                </div>
                 <div className="col-lg-7 col-md-12">
                   <div className="rbt-sorting-list d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end">
                     <div className="rbt-short-item">
@@ -115,6 +125,52 @@ const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLe
                   setSelectedSources={setSelectedSources}
                 />
               </div>
+              <div className="container">
+            <div className="row mb--30">
+              <div className="col-lg-12">
+                <div className="section-title text-center">
+                  <span className="subtitle bg-primary-opacity">
+                    Top Popular Course
+                  </span>
+                  <h2 className="title w-600">
+                    Histudy Course Student <br /> Can{" "}
+                    <span className="theme-gradient">Join With Us</span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div className="row mb--40 mb_sm--30">
+              <div className="col-lg-12">
+                <div className="rbt-course-tab-button-wrap">
+                  <ul
+                    className="rbt-course-tab-button nav nav-tabs"
+                    id="rbt-myTab"
+                    role="tablist"
+                  >
+                    {[
+                      "All Course",
+                      "featured",
+                      "popular",
+                      "trending",
+                      "latest",
+                    ].map((courseType, index) => (
+                      <li key={index} className="nav-item" role="presentation">
+                        <button
+                          className={activeTab === courseType ? "active" : ""}
+                          type="button"
+                          onClick={() => handleButtonClick(courseType)}
+                        >
+                          <span className="filter-text text-capitalize">
+                            {courseType}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            </div>
             </div>
           </div>
         </div>

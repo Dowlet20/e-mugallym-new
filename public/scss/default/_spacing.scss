@@ -18,16 +18,22 @@
 .mt_dec--100 {
     margin-top: -100px;
 }
+
 .mt_dec--5 {
     margin-top: -5px !important;
 }
 
+.wdt-100 {
+    width: 100px;
+}
 
 .rbt-section-gap {
     padding: 120px 0;
+
     @media #{$md-layout} {
         padding: 80px 0;
     }
+
     @media #{$sm-layout} {
         padding: 80px 0;
     }
@@ -35,9 +41,23 @@
 
 .rbt-section-gap2 {
     padding: 80px 0;
+
     @media #{$md-layout} {
         padding: 80px 0;
     }
+
+    @media #{$sm-layout} {
+        padding: 80px 0;
+    }
+}
+
+.rbt-section-gap3 {
+    padding: 100px 0;
+
+    @media #{$md-layout} {
+        padding: 80px 0;
+    }
+
     @media #{$sm-layout} {
         padding: 80px 0;
     }
@@ -45,18 +65,35 @@
 
 .rbt-section-gapBottom {
     padding-bottom: 120px;
+
     @media #{$md-layout} {
         padding-bottom: 80px;
     }
+
     @media #{$sm-layout} {
         padding-bottom: 80px;
     }
 }
+
 .rbt-section-gap2Bottom {
     padding-bottom: 80px;
+
     @media #{$md-layout} {
         padding-bottom: 80px;
     }
+
+    @media #{$sm-layout} {
+        padding-bottom: 80px;
+    }
+}
+
+.rbt-section-gap3Bottom {
+    padding-bottom: 100px;
+
+    @media #{$md-layout} {
+        padding-bottom: 80px;
+    }
+
     @media #{$sm-layout} {
         padding-bottom: 80px;
     }
@@ -64,9 +101,11 @@
 
 .rbt-section-gapTop {
     padding-top: 120px;
+
     @media #{$md-layout} {
         padding-top: 80px;
     }
+
     @media #{$sm-layout} {
         padding-top: 80px;
     }
@@ -78,9 +117,23 @@
 
 .rbt-section-gap2Top {
     padding-top: 80px;
+
     @media #{$md-layout} {
         padding-top: 80px;
     }
+
+    @media #{$sm-layout} {
+        padding-top: 80px;
+    }
+}
+
+.rbt-section-gap3Top {
+    padding-top: 100px;
+
+    @media #{$md-layout} {
+        padding-top: 80px;
+    }
+
     @media #{$sm-layout} {
         padding-top: 80px;
     }
@@ -91,6 +144,7 @@
     @media #{$md-layout} {
         padding-bottom: 100px;
     }
+
     @media #{$sm-layout} {
         padding-bottom: 60px;
     }
@@ -112,6 +166,14 @@
     margin-top: -30px !important;
 }
 
+.mt_dec--40 {
+    margin-top: -40px !important;
+}
+
+.mt_dec--20 {
+    margin-top: -20px !important;
+}
+
 .ml_dec_20 {
     margin-left: -20px !important;
 }
@@ -121,12 +183,13 @@
 }
 
 
-
 .default-callto-action-overlap {
     padding-top: 276px;
+
     @media #{$md-layout} {
         padding-top: 80px;
     }
+
     @media #{$sm-layout} {
         padding-top: 80px;
     }
@@ -221,6 +284,7 @@
 .plr--340 {
     padding: 0 340px;
 }
+
 .plr--0 {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -229,18 +293,23 @@
 .ptb--300 {
     padding: 300px 0;
 }
+
 .ptb--340 {
     padding: 340px 0;
 }
+
 .ptb--450 {
     padding: 450px 0;
 }
+
 .plr_dec--15 {
     margin: 0 -15px;
 }
+
 .pt--300 {
     padding-top: 300px;
 }
+
 .pl--300 {
     padding-left: 300px;
 }
@@ -330,6 +399,7 @@
     .plr--120 {
         padding: 0 80px !important;
     }
+
     .mt_lp_dec--30 {
         margin-top: -30px !important;
     }
@@ -344,7 +414,7 @@
     .mt_lg_dec--30 {
         margin-top: -30px !important;
     }
-    
+
     @for $i from 1 through 20 {
         .ptb_lg--#{5 * $i} {
             padding: 5px *$i 0 !important;
@@ -389,6 +459,7 @@
     .ptb--170 {
         padding: 80px 0 !important;
     }
+
     .mt_md_dec--30 {
         margin-top: -30px !important;
     }
@@ -396,6 +467,7 @@
     .pl_md--0 {
         padding-left: 0 !important;
     }
+
     .ptb_md--0 {
         padding: 0 !important;
     }
@@ -456,12 +528,15 @@
         .pl_md--#{5 * $i} {
             padding-left: 5px *$i !important;
         }
+
         .pr_md--#{5 * $i} {
             padding-right: 5px *$i !important;
         }
+
         .mt_md--#{5 * $i} {
             margin-top: 5px *$i !important;
         }
+
         .mb_md--#{5 * $i} {
             margin-bottom: 5px *$i !important;
         }

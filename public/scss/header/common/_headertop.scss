@@ -3,6 +3,10 @@
 ----------------------*/
 
 .rbt-header-top {
+    .container-fluid {
+        max-width: 1920px;
+    }
+
     &.rbt-header-top-1 {
         position: relative;
         display: flex;
@@ -72,11 +76,13 @@
 
             .rbt-header-sec-col {
                 @media #{$laptop-device} {
-                    flex-basis: 33.33%;
+                    // flex-basis: 33.33%;
+                    flex-basis: auto;
                 }
 
                 @media #{$lg-layout} {
-                    flex-basis: 50%;
+                    // flex-basis: 50%;
+                    flex-basis: auto;
                 }
 
                 @media #{$md-layout} {
@@ -135,7 +141,7 @@
             width: auto;
             height: auto;
             line-height: inherit;
-            transform: rotate(45deg);
+            transform: rotate(0deg);
 
             &::after {
                 display: none;

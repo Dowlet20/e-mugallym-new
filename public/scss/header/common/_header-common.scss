@@ -204,6 +204,17 @@ ul {
     Header Section
 ----------------------------*/
 
+.rbt-header-4-container-var {
+    .rbt-header-sec {
+        .rbt-header-sec-col {
+            flex-basis: auto;
+
+            @media #{$laptop-device} {
+                flex-basis: auto;
+            }
+        }
+    }
+}
 .rbt-header-sec {
     display: flex;
 

@@ -107,3 +107,35 @@
     animation-name: bounceSlide;
 }
 
+@keyframes edu_scale_down_up {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes edu_scale_up_down {
+    0% {
+        transform: scale(0.4);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.4);
+    }
+}
+
+@keyframes edu_clip_show_left_to_right {
+    0% {
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    }
+    100% {
+        clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+    }
+}

@@ -2,6 +2,7 @@
     Back To Top  
 ---------------------------*/
 @-webkit-keyframes border-transform {
+
     0%,
     100% {
         border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
@@ -53,6 +54,10 @@
     -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 
+    @media #{$md-layout,$sm-layout} {
+        right: 10px;
+    }
+
     &.rbt-backto-top-active {
         opacity: 1;
         visibility: visible;
@@ -83,6 +88,7 @@
             color: var(--color-primary);
         }
     }
+
     &::before {
         position: absolute;
         font-family: 'feather' !important;
@@ -105,10 +111,12 @@
         transition: all 200ms linear;
         color: var(--color-primary);
     }
+
     svg {
         path {
             fill: none;
         }
+
         &.rbt-back-circle {
             path {
                 stroke: var(--color-primary);

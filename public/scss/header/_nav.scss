@@ -572,9 +572,27 @@
 
     .inner {
         text-align: center;
+        position: relative;
 
         @media #{$smlg-device} {
             text-align: left;
+        }
+
+        .new-batch {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: var(--gradient-8);
+            color: var(--color-white);
+            font-size: 10px;
+            border-radius: 2px;
+            padding: 0 4px;
+            font-weight: 500;
+
+            @media #{$large-mobile} {
+                font-size: 8px;
+                padding: 0 2px;
+            }
         }
 
         .thumbnail {
@@ -675,13 +693,22 @@
     Load More Btn  
 -----------------------*/
 .rbt-megamenu {
-    .load-demo-btn {
+    .load-demo-btn-wrap {
+        padding: 0 7px;
         position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1;
-        display: none;
+        left: 0;
+        bottom: -25px;
+        width: 100%;
+
+        .load-demo-btn {
+            background: var(--color-bodyest);
+            padding: 5px 0 10px 0;
+            border-radius: 0 0 10px 10px;
+
+            @media #{$lg-layout, $md-layout, $sm-layout, $large-mobile} {
+                display: none;
+            }
+        }
     }
 }
 

@@ -149,6 +149,12 @@
                     max-height: 25px;
                 }
             }
+
+            &:hover {
+                img {
+                    animation: bounceIn 0.8s ease;
+                }
+            }
         }
     }
     &.variation-2 {
@@ -165,4 +171,31 @@
             }
         }
     }
+}
+
+
+// Brand titel 
+.rbt-brand-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &::before {
+        content: "";
+        height: 1px;;
+        flex: 1;
+        background: linear-gradient(90deg, rgba(81, 99, 255, 0.50) 0%, rgba(25, 35, 53, 0.00) 100%);
+        transform: rotate(180deg);
+    }
+
+    &::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: linear-gradient(90deg, rgba(81, 99, 255, 0.50) 0%, rgba(25, 35, 53, 0.00) 100%);
+    }
+}
+
+.rbt-brand-title {
+    font-size: var(--font-size-b1);
 }

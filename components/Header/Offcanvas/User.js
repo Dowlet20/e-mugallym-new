@@ -2,15 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 
 import UserData from "../../../data/user.json";
+import { useRouter } from "next/navigation";
+import { useAppContext } from "@/context/Context";
 
 const User = () => {
+  const router = useRouter();
+  const {setToken} = useAppContext();
   return (
     <>
       <div className="rbt-user-menu-list-wrapper">
         {UserData &&
           UserData.user.map((person, index) => (
             <div className="inner" key={index}>
-              <div className="rbt-admin-profile">
+              {/* <div className="rbt-admin-profile">
                 <div className="admin-thumbnail">
                   <Image
                     src={person.img}
@@ -28,7 +32,7 @@ const User = () => {
                     Profile geç
                   </Link>
                 </div>
-              </div>
+              </div> */}
               <ul className="user-list-wrapper">
                 {person.userList.map((list, innerIndex) => (
                   <li key={innerIndex}>
@@ -57,7 +61,16 @@ const User = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/">
+                  <Link 
+                      href="/"
+                      onClick={(e) => {
+                      e.preventDefault();
+                      sessionStorage.removeItem("authToken");
+                      sessionStorage.removeItem("refreshToken");
+                      setToken(false)
+                      router.push("/")
+                    }}
+                  >
                     <i className="feather-log-out"></i>
                     <span>Çykyş</span>
                   </Link>

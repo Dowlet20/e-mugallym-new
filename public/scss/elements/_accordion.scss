@@ -219,7 +219,6 @@
 
     &.rbt-accordion-06 {
         .card {
-            .card-header {}
 
             .card-body {
                 background: transparent;
@@ -237,6 +236,62 @@
     }
 }
 
+
+// Accordion Thumbails 
+.accordion-thumbnail {
+    position: relative;
+
+    .thumb-1 {
+        max-width: 390px;
+        margin-left: auto;
+
+        img {
+            @media #{$large-mobile} {
+                pointer-events: none;
+                transform: none !important;
+            }
+        }
+    }
+
+    .thumb-2 {
+        margin-top: -244px;
+
+        @media #{$large-mobile} {
+            margin-top: -100px;
+        }
+
+        img {
+            border-radius: var(--radius-10);
+            border: 3px solid var(--color-white);
+
+            @media #{$large-mobile} {
+                pointer-events: none;
+                transform: none !important;
+            }
+        }
+    }
+
+    .moon {
+        position: absolute;
+        top: 55px;
+        left: 85px;
+
+        @media #{$lg-layout, $md-layout, $sm-layout, $large-mobile} {
+            display: none;
+        }
+    }
+
+    .shape {
+        position: absolute;
+        right: 20px;
+        bottom: 9px;
+        z-index: 2;
+
+        @media #{$md-layout, $sm-layout, $large-mobile} {
+            display: none;
+        }
+    }
+}
 
 
 
@@ -440,5 +495,29 @@
                 }
             }
         }
+    }
+}
+
+
+.accordion-section-02 {
+    overflow: hidden;
+
+    .union-shape {
+        position: absolute;
+        top: -50px;
+        right: -59px;
+
+        @media #{$lg-layout, $md-layout, $sm-layout, $large-mobile} {
+            display: none;
+        }
+
+        img {
+            animation: edu_rotatation_round 25s linear infinite reverse;
+        }
+    }
+
+    .thumbnail {
+        position: relative;
+        z-index: 2;
     }
 }

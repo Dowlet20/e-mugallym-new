@@ -702,3 +702,50 @@ ul {
         transform: translateX(0);
     }
 }
+
+
+
+/* ------------------------------
+    Testimonial Section Shapes 
+-------------------------------- */
+
+.rbt-testimonial-shapes-2 {
+    position: relative;
+
+    .shapes {
+        .star {
+            position: absolute;
+            top: 142px;
+            right: 162px;
+
+            @media #{$laptop-device, $lg-layout, $md-layout, $sm-layout, $large-mobile} {
+                display: none;
+            }
+        }
+
+        .dubble-shape {
+            position: absolute;
+            left: 113px;
+            bottom: 256px;
+            max-width: 100px;
+
+            @media #{$laptop-device, $lg-layout, $md-layout, $sm-layout, $large-mobile} {
+                display: none;
+            }
+        }
+    }
+}
+
+.testimonial-section-02 {
+    position: relative;
+
+    .shape-1 {
+        position: absolute;
+        left: 64px;
+        bottom: 72px;
+
+        @media #{$md-layout, $sm-layout, $large-mobile} {
+            display: none;
+        }
+    }
+}

@@ -23,14 +23,14 @@ const CategoryBanner = ({ category }) => {
                       : "Ähli kurslar"}
                   </li>
                 </ul>
-                <div className=" title-wrapper">
+                {/* <div className=" title-wrapper">
                   <h1 className="title mb--0">
                     {category && category.category
                       ? category.category
                       : "Ähli kurslar"}
                   </h1>
-                </div>
-                <p className="description">
+                </div> */}
+                {/* <p className="description">
                   {category && category.desc
                     ? category.desc
                     : `"Geljegiňi Döret!"
@@ -41,7 +41,7 @@ const CategoryBanner = ({ category }) => {
                     🎓 Bilim mugt.
                     📚 Geljek siziň eliňizde.
                     💻 Häzirki zaman tehnologiýasy bilen okaň.`}
-                </p>
+                </p> */}
               </div>
             </div>
           )}

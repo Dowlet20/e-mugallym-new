@@ -53,4 +53,18 @@
             }
         }
     }
+
+    &.version-02 {
+        li {
+            a {
+                &::before {
+                    background: var(--color-primary);
+                }
+
+                &:hover {
+                    color: var(--color-white);
+                }
+            }
+        }
+    }
 }

@@ -5,6 +5,7 @@
     position: relative;
     display: inline-block;
     z-index: 1;
+
     &.rbt-new-badge-one {
         color: var(--color-heading);
         font-size: 16px;
@@ -14,10 +15,12 @@
         box-shadow: 0 15px 40px #d2d3e2a1;
         background: #fff;
         border-radius: 4px;
+
         @media #{$sm-layout} {
             font-size: 14px;
             padding: 18px 10px 18px 10px;
         }
+
         &:before {
             position: absolute;
             top: 50%;
@@ -29,7 +32,7 @@
             height: 45px;
             width: -moz-calc(100% + 38px);
             width: calc(100% + 38px);
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
             -webkit-box-shadow: 0 0 29px #d1d3ed63;
             box-shadow: 0 0 29px #d1d3ed63;
             z-index: -1;
@@ -69,25 +72,31 @@
         .description {
             padding: 0 23%;
             letter-spacing: -0.5px;
+
             @media #{$lg-layout} {
                 padding: 0 10%;
             }
+
             @media #{$md-layout} {
                 padding: 0;
             }
+
             @media #{$sm-layout} {
                 padding: 0;
             }
+
             &.has-medium-font-size {
                 padding: 0 23%;
                 letter-spacing: -0.5px;
-                
+
                 @media #{$lg-layout} {
                     padding: 0 10%;
                 }
+
                 @media #{$md-layout} {
                     padding: 0 10%;
                 }
+
                 @media #{$sm-layout} {
                     padding: 0;
                 }
@@ -98,12 +107,15 @@
     &.text-xl-start {
         .description {
             padding: 0;
+
             @media #{$lg-layout} {
                 padding: 0;
             }
+
             @media #{$md-layout} {
                 padding: 0;
             }
+
             @media #{$sm-layout} {
                 padding: 0;
             }
@@ -112,7 +124,65 @@
 }
 
 
+.section-title-2 {
+    .title {
+        color: var(--color-darker);
+        font-size: 80px;
+        font-weight: var(--f-semi-bold);
+        line-height: 125%;
+        letter-spacing: -0.03em;
+        margin-bottom: 0;
 
+        @media #{$laptop-device} {
+            font-size: 70px;
+        }
+
+        @media #{$lg-layout} {
+            font-size: 54px;
+        }
+
+        @media #{$md-layout} {
+            font-size: 48px;
+        }
+
+        @media #{$sm-layout} {
+            font-size: 42px;
+        }
+
+        @media #{$large-mobile} {
+            font-size: 32px;
+        }
+    }
+
+    &.with-shape {
+        position: relative;
+        max-width: 1167px;
+        margin: 0 auto;
+
+        .shape-1 {
+            position: absolute;
+            top: -53px;
+            left: 32%;
+            z-index: -1;
+
+            @media #{$lg-layout} {
+                max-width: 210px;
+            }
+
+            @media #{$md-layout} {
+                max-width: 180px;
+            }
+
+            @media #{$sm-layout} {
+                max-width: 150px;
+            }
+
+            @media #{$large-mobile} {
+                max-width: 120px;
+            }
+        }
+    }
+}
 
 .select-label,
 .rbt-label-style {
@@ -153,4 +223,3 @@
     margin-bottom: 6px;
     border-bottom: 1px solid var(--color-border);
 }
-

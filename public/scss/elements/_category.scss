@@ -184,7 +184,21 @@
 }
 
 
+.category-section-02 {
+    position: relative;
 
+    .gradient-shape {
+        position: absolute;
+        width: 254px;
+        height: 254px;
+        border-radius: 50%;
+        right: 26%;
+        top: 294px;
+        background: linear-gradient(180deg, #FB64AD 0%, #C586EE 100%);
+        filter: blur(200px);
+        transform: rotate(-45deg);
+    }
+}
 
 
 

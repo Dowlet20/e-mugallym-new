@@ -47,6 +47,12 @@
     border-radius: 6px;
     color: var(--color-body);
 
+    @media #{$sm-layout} {
+        padding: 0 12px;
+        margin-top: 0;
+        font-size: 12px;
+    }
+
     &.variation-02 {
         padding: 0 16px;
         height: 30px;

@@ -4,11 +4,13 @@ import Link from "next/link";
 
 import { useSelector } from "react-redux";
 import { useAppContext } from "@/context/Context";
+import { useRouter } from "next/navigation";
+import User from "../Offcanvas/User";
 
 const HeaderRightTwo = ({ btnClass, btnText, userType }) => {
   const { mobile, setMobile, search, setSearch, cartToggle, setCart, token, setToken } =
     useAppContext();
-
+  const router = useRouter();
   const { total_items } = useSelector((state) => state.CartReducer);
 
   return (
@@ -26,6 +28,15 @@ const HeaderRightTwo = ({ btnClass, btnText, userType }) => {
               <i className="feather-search"></i>
             </Link>
           </li>
+        )}
+        {token && (
+          <li className="account-access rbt-user-wrapper d-none d-xl-block">
+          <Link href="#">
+            <i className="feather-user"></i>
+            {userType}
+          </Link>
+          <User />
+        </li>
         )}
         {!token ? (
           <li className="container px-4 py-3 d-flex justify-content-between align-items-center">
@@ -56,27 +67,29 @@ const HeaderRightTwo = ({ btnClass, btnText, userType }) => {
             </div>
           </li>
         ) :(
-          <li className="container px-4 py-3 d-flex justify-content-between align-items-center">
+          // <li className="container px-4 py-3 d-flex justify-content-between align-items-center">
 
-            <div className="d-flex gap-3">
-              <button 
-                className="btn  px-5 py-3"
-                style={{
-                  borderColor: '#705fec',
-                  color: '#705fec',
-                  fontSize:"15px",
-                }}
+          //   <div className="d-flex gap-3">
+          //     <button 
+          //       className="btn  px-5 py-3"
+          //       style={{
+          //         borderColor: '#705fec',
+          //         color: '#705fec',
+          //         fontSize:"15px",
+          //       }}
 
-                onClick={() => {
-                  localStorage.removeItem("authToken");
-                  localStorage.removeItem("refreshToken");
-                  setToken(false)
-                }}
-              >
-                Çykyş
-              </button>
-            </div>
-          </li>
+          //       onClick={() => {
+          //         sessionStorage.removeItem("authToken");
+          //         sessionStorage.removeItem("refreshToken");
+          //         setToken(false)
+          //         router.push("/")
+          //       }}
+          //     >
+          //       Çykyş
+          //     </button>
+          //   </div>
+          // </li>
+          <></>
         )}
       </ul>
 

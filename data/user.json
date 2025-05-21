@@ -7,22 +7,27 @@
         {
           "icon": "feather-home",
           "text": "Dolandyryş panelim",
-          "link": "/instructor/instructor-dashboard"
+          "link": "/talyp-paneli"
+        },
+        {
+          "icon": "feather-heart",
+          "text": "Halanlarym",
+          "link": "/halanlarym"
         },
         {
           "icon": "feather-bookmark",
-          "text": "Bellik",
-          "link": "#"
+          "text": "Testiň netijesi",
+          "link": "/test-netije"
+        },
+        {
+          "icon": "feather-clock",
+          "text": "Giren kurslarym",
+          "link": "/giren-kurslarym"
         },
         {
           "icon": "feather-shopping-bag",
           "text": "Bellenen kurslar",
           "link": "/instructor/instructor-enrolled-course"
-        },
-        {
-          "icon": "feather-heart",
-          "text": "Halanlarym",
-          "link": "/instructor/instructor-wishlist"
         },
         {
           "icon": "feather-star",
@@ -35,9 +40,52 @@
           "link": "/instructor/instructor-my-quiz-attempts"
         },
         {
+          "icon": "feather-message-square",
+          "text": "Sorag & Jogap",
+          "link": "/instructor/instructor-quiz-attempts"
+        }
+      ]
+    }
+  ],
+  "user_instructor": [
+    {
+      "name": "Rainbow Dev",
+      "img": "/images/team/avatar.jpg",
+      "userList": [
+        {
+          "icon": "feather-home",
+          "text": "Dolandyryş panelim",
+          "link": "/talyp-paneli"
+        },
+        {
+          "icon": "feather-heart",
+          "text": "Halanlarym",
+          "link": "/halanlarym"
+        },
+        {
+          "icon": "feather-bookmark",
+          "text": "Testiň netijesi",
+          "link": "/test-netije"
+        },
+        {
           "icon": "feather-clock",
-          "text": "Sargyt taryhy",
-          "link": "/instructor/instructor-order-history"
+          "text": "Giren kurslarym",
+          "link": "/giren-kurslarym"
+        },
+        {
+          "icon": "feather-shopping-bag",
+          "text": "Bellenen kurslar",
+          "link": "/instructor/instructor-enrolled-course"
+        },
+        {
+          "icon": "feather-star",
+          "text": "Teswir",
+          "link": "/instructor/instructor-reviews"
+        },
+        {
+          "icon": "feather-list",
+          "text": "Soragnamalar",
+          "link": "/instructor/instructor-my-quiz-attempts"
         },
         {
           "icon": "feather-message-square",

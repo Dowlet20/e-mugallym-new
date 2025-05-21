@@ -52,6 +52,10 @@
         z-index: 9;
     }
 
+    .wrapper {
+        max-width: 1920px;
+    }
+
     .banner-top {
         display: flex;
         margin: 0 -40px;
@@ -649,6 +653,9 @@
             font-size: 300px;
         }
 
+        @media #{$large-mobile} {
+            font-size: 170px;
+        }
     }
 }
 
@@ -835,6 +842,12 @@
 ------------------------------*/
 
 .rbt-inner-page-layout-area {
+
+    .wrapper {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+
     .rbt-splite-style {
         .split-inner {
             padding-left: 200px;
@@ -1237,6 +1250,11 @@
     margin-bottom: -220px;
     position: relative;
 
+    .wrapper {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+
     .inner {
         background-color: var(--color-bodyest);
         background-image: url(../../images/splash/cta-01.png);
@@ -1557,6 +1575,9 @@
 .scroll-animation-all-wrapper {
     position: relative;
     padding: 30px 0;
+    max-width: 1920px;
+    margin: 0 auto;
+    overflow: hidden;
 
     &::before,
     &::after {

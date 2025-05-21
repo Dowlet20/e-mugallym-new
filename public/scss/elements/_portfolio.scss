@@ -86,6 +86,7 @@
         margin: 3px;
         flex-grow: 1;
         text-align: center;
+
         a {
             margin: 0;
             position: relative;
@@ -95,6 +96,7 @@
             padding: 10px 25px;
             border-radius: 500px;
             outline: none;
+
             &::after {
                 position: absolute;
                 content: "";
@@ -108,10 +110,12 @@
                 z-index: -1;
                 border-radius: 500px;
             }
+
             &.current,
             &.active,
             &:hover {
                 color: var(--color-white);
+
                 &::after {
                     width: 100%;
                     opacity: 1;
@@ -187,6 +191,11 @@
             width: 100%;
         }
     }
+}
+
+.demo-presentation-mesonry-wrap {
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 .demo-presentation-mesonry {

@@ -73,8 +73,13 @@
                     position: absolute;
                     content: "+";
                     right: 0;
-                    // width: 20px;
                     font-size: 42px;
+                }
+
+                &.rv-plus {
+                    &::after {
+                        content: "";
+                    }
                 }
 
                 &.witdollar-icon {
@@ -385,5 +390,23 @@
     }
     @media #{$sm-layout} {
         bottom: calc(100% + 23px);
+    }
+}
+
+.counterup-section-02 {
+    position: relative;
+
+    .shape-1 {
+        position: absolute;
+        top: 190px;
+        right: 195px;
+
+        @media #{$laptop-device} {
+            right: 80px;
+        }
+
+        @media #{$lg-layout, $md-layout, $sm-layout, $large-mobile} {
+            display: none;
+        }
     }
 }

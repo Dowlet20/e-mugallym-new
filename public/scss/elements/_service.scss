@@ -428,3 +428,24 @@
         }
     }
 }
+
+
+.service-section-01 {
+    position: relative;
+
+    &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background: url(../../images/bg/bg-image-28.jpg) no-repeat center / cover;
+        border-radius: var(--radius-10);
+
+        @media #{$lg-layout, $md-layout, $sm-layout, $large-mobile} {
+            border-radius: 0;
+        }
+    }
+}

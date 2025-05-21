@@ -96,8 +96,7 @@ Copyright (c) 2015 Daniel Eden
     -webkit-animation-name: bounce;
     animation-name: bounce;
     -webkit-transform-origin: center bottom;
-    -ms-transform-origin: center bottom;
-        transform-origin: center bottom;
+    transform-origin: center bottom;
   }
   
   @-webkit-keyframes flash {
@@ -340,8 +339,7 @@ Copyright (c) 2015 Daniel Eden
   
   .swing {
     -webkit-transform-origin: top center;
-    -ms-transform-origin: top center;
-        transform-origin: top center;
+    transform-origin: top center;
     -webkit-animation-name: swing;
     animation-name: swing;
   }
@@ -574,8 +572,7 @@ Copyright (c) 2015 Daniel Eden
     -webkit-animation-name: jello;
     animation-name: jello;
     -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-        transform-origin: center;
+    transform-origin: center;
   }
   
   @-webkit-keyframes bounceIn {
@@ -3279,8 +3276,7 @@ Copyright (c) 2015 Daniel Eden
   
   .animated{
     opacity: 0;
-    -ms-transform: translateY(200%);
-        transform: translateY(200%);
+    transform: translateY(200%);
     -webkit-transform: translateY(200%);
   }
   
