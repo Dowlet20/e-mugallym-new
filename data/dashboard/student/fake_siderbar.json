@@ -1,0 +1,49 @@
+{
+  "siderbar": [
+    {
+      "link": "/student/talyp-paneli",
+      "text": "Dashboard",
+      "icon": "feather-home"
+    },
+    {
+      "link": "/student/test-netije",
+      "text": "My Profile",
+      "icon": "feather-user"
+    },
+    {
+      "link": "/student/student-enrolled-course",
+      "text": "Enrolled Courses",
+      "icon": "feather-book-open"
+    },
+    {
+      "link": "/student/halanlarym",
+      "text": "Wishlist",
+      "icon": "feather-bookmark"
+    },
+    {
+      "link": "/student/student-reviews",
+      "text": "Reviews",
+      "icon": "feather-star"
+    },
+    {
+      "link": "/student/student-quiz-attempts",
+      "text": "My Quiz Attempts",
+      "icon": "feather-help-circle"
+    },
+    {
+      "link": "/student/student-order-history",
+      "text": "Order History",
+      "icon": "feather-shopping-bag"
+    },
+    {
+      "link": "/student/student-settings",
+      "text": "Settings",
+      "icon": "feather-settings"
+    },
+    {
+      "link": "/",
+      "text": "Logout",
+      "icon": "feather-log-out"
+    }
+  ]
+}
