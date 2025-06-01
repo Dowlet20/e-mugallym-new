@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 const Summary = ({ point, pointNum, question, index, upsertItem, answers }) => {
   const [inputs, setInputs] = useState([]);
   const exists = answers.find((item) => item.question_id === question.id);
-  const matches = exists?.answer?.split(/(\w+)?_hide/g).map(part => part === undefined ? '' : part) || [];
+  const matches = exists?.answer?.[0]?.split(/(\w+)?_hide/g).map(part => part === undefined ? '' : part) || [];
   if (matches?.[0] === '') matches.shift();
   if (matches?.[matches.length - 1] === '') matches.pop();
 
@@ -45,11 +45,15 @@ const Summary = ({ point, pointNum, question, index, upsertItem, answers }) => {
   
     
     upsertItem({
-      "quiz_id": question.quiz,
+      //"quiz_id": question.quiz,
       "question_id": question.id,
-      "answer": updatedSendText || ""
+      "answer": 
+      [
+        updatedSendText
+       ] || []
     });
   };
+  
   
 
   return (

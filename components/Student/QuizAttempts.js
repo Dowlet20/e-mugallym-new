@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 
 const QuizAttempts = ({
     results,
@@ -20,10 +21,10 @@ const QuizAttempts = ({
               <table className="rbt-table table table-borderless">
               <thead>
                   <tr>
-                    <th>Kurs</th>
+                    {/* <th>Kurs</th> */}
                     <th>Test</th>
                     <th>Ball</th>
-                    <th>Geç/ball</th>
+                    <th>jemi ball</th>
                     {/* <th>GB</th> */}
                     <th>Netijesi</th>
                   </tr>
@@ -31,44 +32,44 @@ const QuizAttempts = ({
 
                 <tbody>
                   {
-                    results.map((result, index) => (
-                      <>
-                        <tr>
-                          <th>
-                            <span className="h6 mb--5">
-                              {result.quiz.course.title}
-                            </span>
-                          </th>
-                          <th>
+                    results?.map((result, index) => (
+                      <tr key={index}>
+                        {/* <th>
+                          <span className="h6 mb--5">
+                            {result.quiz.title}
+                          </span>
+                        </th> */}
+                        <th>
+                          <Link href={`/test-barada/${result.quiz.course_slug}`}>
                             <span className="h6 mb--5">
                               {result.quiz.title}
                             </span>
                             <p className="b3 mb--5">
                               {formattedDate(result.updated_at)}
                             </p>
-                          </th>
-                          <td>
-                            <p className="b3">{result.score}</p>
-                          </td>
-                          <td>
-                            <p className="b3">{result.quiz.total_score}</p>
-                          </td>
-                          {/* <td>
-                            <p className="b3">{result.pass_score}</p>
-                          </td> */}
-                          <td>
-                            {result.is_passed ? (
-                              <span className="rbt-badge-5 bg-color-success-opacity color-success">
-                                Geçdi
-                              </span>
-                            ) : (
-                              <span className="rbt-badge-5 bg-color-danger-opacity color-danger">
-                                Geçmedi
-                              </span>  
-                            )}
-                          </td>
-                        </tr>
-                      </>
+                          </Link>
+                        </th>
+                        <td>
+                          <p className="b3">{result.score}</p>
+                        </td>
+                        <td>
+                          <p className="b3">{result.quiz.total_score}</p>
+                        </td>
+                        {/* <td>
+                          <p className="b3">{result.pass_score}</p>
+                        </td> */}
+                        <td>
+                          {result.is_passed ? (
+                            <span className="rbt-badge-5 bg-color-success-opacity color-success">
+                              Geçdi
+                            </span>
+                          ) : (
+                            <span className="rbt-badge-5 bg-color-danger-opacity color-danger">
+                              Geçmedi
+                            </span>  
+                          )}
+                        </td>
+                      </tr>
                     ))
                   }
                   

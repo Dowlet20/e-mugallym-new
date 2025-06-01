@@ -27,18 +27,18 @@ const PaginationQuizLayout = () => {
   }
 
 
-  if (Object.keys(result).length !== 0) {
-      return (
-      <>
-        <AlertDialog
-          isOpen={showAlert}
-          onClose={() => setShowAlert(false)}
-          result={result}
-          onConfirm={handleConfirm}
-        />
-      </>
-    )
-    }
+  // if (Object.keys(result).length !== 0) {
+  //     return (
+  //     <>
+  //       <AlertDialog
+  //         isOpen={showAlert}
+  //         onClose={() => setShowAlert(false)}
+  //         result={result}
+  //         onConfirm={handleConfirm}
+  //       />
+  //     </>
+  //   )
+  //   }
 
   return (
     <>

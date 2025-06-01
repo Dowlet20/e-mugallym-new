@@ -11,7 +11,7 @@ import Context from "@/context/Context";
 import Store from "@/redux/store";
 import { Provider } from "react-redux";
 import Link from "next/link";
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/utils/axiosInstance_quiz";
 import QuizAttempts from '@/components/Student/QuizAttempts';
 
 const StudentProfile = () => {
@@ -20,8 +20,8 @@ const StudentProfile = () => {
   useEffect(()=> {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get('/quiz/results/');
-        setResults(response.data);
+        const response = await axiosInstance.get('/result/user/');
+        setResults(response.data.data);
       } catch (error) {
         console.log(error);
       }

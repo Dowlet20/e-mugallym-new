@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance_quiz from "@/utils/axiosInstance_quiz";
 
 const LessonSidebar = ({ 
   course_slug, 
@@ -41,8 +42,8 @@ const LessonSidebar = ({
   useEffect(()=>{
     const fetchData = async () => {
       try {
-        const url=`/quiz/${course_slug}/`;
-        const response = await axiosInstance.get(url);
+        const url=`/quiz/?course_slug=${course_slug}/`;
+        const response = await axiosInstance_quiz.get(url);
         setTests(response.data.reverse());
         
       } catch (err) {

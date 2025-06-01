@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/utils/axiosInstance_quiz";
 import { useRouter } from "next/navigation";
 
 
@@ -34,9 +34,9 @@ const QuestionType = ({
   useEffect(() => {
        const fetchData = async () => {
         try {
-          const url = `/quiz/${course_slug}`;
+          const url = `/quiz/?course_slug=${course_slug}`;
           const response = await axiosInstance.get(url);
-          const result = response.data.reverse();
+          const result = response.data.data.reverse();
           setTests(result);
         } catch (error) {
           console.log(error.message);
@@ -45,7 +45,6 @@ const QuestionType = ({
        if (course_slug) fetchData();
     }, [course_slug]);
 
-    console.log(tests);
   return (
     <>
       <div className="rbt-lesson-area bg-color-white">
@@ -59,7 +58,7 @@ const QuestionType = ({
                 <p>
                   {test.description}
                 </p>
-                {test.passed.is_passed !== null && (
+                {/* {test.passed.is_passed !== null && (
                   <>
                     <p
                       style={{
@@ -92,13 +91,13 @@ const QuestionType = ({
                       Soraglaryň sany: {test.passed.count_of_questions}
                     </p>
                   </>
-                )}
+                )} */}
               </div>
 
               <Link
                 className="rbt-btn btn-gradient hover-icon-reverse mt--30"
                 href={`/test/${test.slug}/${course_slug}`}
-                onClick={(e) => handleClick(e, test.passed)}
+                //onClick={(e) => handleClick(e, test.passed)}
 
               >
                 <span className="icon-reverse-wrapper">

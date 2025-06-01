@@ -36,18 +36,17 @@ const InstructorRegistration = () => {
     password2:"",
     first_name: "",
     last_name: "",
-    role: role ? "student" : "teacher",
+    role: "student",
     educational_institution:""
   }
   )
   const [loading, setLoading] = useState(false);
-
+  console.log(info)
   
   // const handleChange = (e) => {
   //   setSelectedRole(e.target.value);
   // }
 
-  //console.log(role ? "student" :"teacher")
   
   const postInstructor = async (e) => {
     e.preventDefault();
@@ -146,7 +145,6 @@ const InstructorRegistration = () => {
   //   fetchData();
   // }, []);
 
-  console.log(info?.email?.includes("@gmail.com"))
 
   return (
     <>
@@ -333,7 +331,11 @@ const InstructorRegistration = () => {
                     type="button"
                     onClick={() => {
                       setRole(true)
-                    }}
+                      setInfo((info) => ({
+                      ...info,
+                      "role": "student",
+                    }))}
+                  }
                     className="rbt-btn btn-md hover-icon-reverse w-100"
                     style={{
                       marginBottom:"18px",
@@ -351,7 +353,13 @@ const InstructorRegistration = () => {
                 <div >
                   <button
                     type="button"
-                    onClick={() => setRole(false)}
+                    onClick={() => {
+                      setRole(false)
+                      setInfo((info) => ({
+                      ...info,
+                      "role": "teacher",
+                    }))}
+                  }
                     className="rbt-btn btn-md hover-icon-reverse w-100"
                     style={{
                       marginBottom:"18px",

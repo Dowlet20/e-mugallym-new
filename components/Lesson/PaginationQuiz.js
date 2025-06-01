@@ -18,7 +18,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/utils/axiosInstance_quiz";
 import CourseData from "../../data/course-details/courseData.json";
 
 import MutipleSelect from "./Quiz/MutipleSelect";
@@ -39,6 +39,7 @@ const usePersistedState = (key, defaultValue) => {
         return defaultValue;
       }
     }
+    
     return defaultValue;
   });
 
@@ -59,6 +60,7 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
   const [hydrated, setHydrated] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(1);
   const [gorkezme, setGorkezme] = useState(false);
+  const [quizId, setQuizId] = useState(0)
   const [tabsyr, setTabsyr] = useState(false);
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -70,9 +72,10 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
   useEffect(() => {
     const fetchData = async () => {
      try {
-       const url = `/quiz/${course_slug}`;
+       const url = `/quiz/?course_slug=${course_slug}`;
        const response = await axiosInstance.get(url);
-       const result = response.data;
+       const result = response.data.data;
+       setQuizId(result?.[0]?.id)
        const findItem = result.find(item => item.slug === test_slug);
         if (findItem?.passed?.is_passed !== null) {
           setResult(findItem?.passed);
@@ -104,11 +107,12 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
   useEffect(() => {
     const fetchData = async () => {
      try {
-       const url = `/questions/${test_slug}`;
+       const url = `/question/?quiz_slug=${test_slug}`;
        const response = await axiosInstance.get(url);
-       const res = response.data.reverse();
-       setQuestions(response.data.reverse());
-       setLength(response.data.length);
+       const res = response.data.data.reverse();
+       setQuestions(response.data.data.reverse());
+       setLength(response.data.data.length);
+       console.log(response.data.data)
      } catch (error) {
        console.log(error.message);
      }
@@ -146,6 +150,7 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
       });
     }
   }
+  console.log(answers)
 
   const renderPagination = () => {
     const totalPages = questions.length;
@@ -180,8 +185,11 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
 
   const postAnswers = async () => {
     try {
-      const body= answers || [];
-      const response = await axiosInstance.post('/answer/', body);
+      const body= {
+        "quiz_id":quizId,
+        "answers":answers
+      } || {};
+      const response = await axiosInstance.post('/result/', body);
       setResult(response.data);
       setShowAlert(true);
       if (typeof window !== "undefined") {
@@ -199,7 +207,7 @@ const PaginationQuiz = ({test_slug, course_slug,  setResult, setShowAlert}) => {
     return null;
   }
 
-
+  console.log(answers)
   return (
     <>
       <div className="quize-top-meta">

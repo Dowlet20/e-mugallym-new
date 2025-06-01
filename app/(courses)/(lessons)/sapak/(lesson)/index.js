@@ -77,7 +77,8 @@ const LessonPage = () => {
         try {
           const response = await axiosInstance.get(`/lesson/${lesson_slug}/`);
           setLesson(response.data);
-          setLesson_title(response.data?.title);tBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
+          setLesson_title(response.data?.title);
+          // tBaseUrl(`${parsedUrl.protocol}//${parsedUrl.hostname}:${parsedUrl.port}`);
           setLoading(false);
         } catch (err) {
           console.error(err);

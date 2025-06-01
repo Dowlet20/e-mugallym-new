@@ -16,17 +16,18 @@ const MutipleSelect = ({ point, pointNum, question, index, upsertItem, answers }
       updatedValues = updatedValues.filter((value) => value !== i);
     }
 
-    const answer=updatedValues.sort((a,b)=>a-b).join(",") || '';
+    const answer = updatedValues.sort((a,b)=>a-b) || [];
     
     
     upsertItem({
-      "quiz_id":question.quiz, 
+      //"quiz_id":question.quiz, 
       "question_id":question.id, 
       "answer":answer
     })
 
     setSelectedValues(updatedValues);
   };
+  console.log(question);
 
   return (
     <>
@@ -42,66 +43,25 @@ const MutipleSelect = ({ point, pointNum, question, index, upsertItem, answers }
           ""
         )}
         <div className="row g-3">
-          <div className="col-lg-6">
-            <p className="rbt-checkbox-wrapper mb--5">
-              <input
-                id="rbt-checkbox-1"
-                name="rbt-checkbox-1"
-                type="checkbox"
-                value="1"
-                checked={selectedValues.includes("1") || exists?.answer?.includes('1') || false}
-                onChange={(e) => handleCheckboxChange(e, "1")}
-              />
-              <label htmlFor="rbt-checkbox-1">
-                {question.answer1}
-              </label>
-            </p>
-          </div>
-          <div className="col-lg-6">
-            <p className="rbt-checkbox-wrapper">
-              <input
-                id="rbt-checkbox-2"
-                name="rbt-checkbox-2"
-                type="checkbox"
-                value="2"
-                checked={selectedValues.includes("2") || exists?.answer?.includes('2') || false}
-                onChange={(e) => handleCheckboxChange(e, "2")}
-              />
-              <label htmlFor="rbt-checkbox-2">
-                {question.answer2}
-              </label>
-            </p>
-          </div>
-          <div className="col-lg-6">
-            <p className="rbt-checkbox-wrapper">
-              <input
-                id="rbt-checkbox-3"
-                name="rbt-checkbox-3"
-                type="checkbox"
-                value="3"
-                checked={selectedValues.includes("3") || exists?.answer?.includes('3') || false}
-                onChange={(e) => handleCheckboxChange(e, "3")}
-              />
-              <label htmlFor="rbt-checkbox-3">
-                {question.answer3}
-              </label>
-            </p>
-          </div>
-          <div className="col-lg-6">
-            <p className="rbt-checkbox-wrapper">
-              <input
-                id="rbt-checkbox-4"
-                name="rbt-checkbox-4"
-                type="checkbox"
-                value="4"
-                checked={selectedValues.includes("4") || exists?.answer?.includes('4') || false}
-                onChange={(e) => handleCheckboxChange(e, "4")}
-              />
-              <label htmlFor="rbt-checkbox-4">
-                {question.answer4}
-              </label>
-            </p>
-          </div>
+           {question?.answers?.map((answer, index)=> {
+            return (
+              <div className="col-lg-6" key={index}>
+                <p className="rbt-checkbox-wrapper mb--5">
+                  <input
+                    id={"rbt-checkbox-"+`${index+1}`}
+                    name={"rbt-checkbox-"+`${index+1}`}
+                    type="checkbox"
+                    value={`${index+1}`}
+                    checked={selectedValues.includes(`${index+1}`) || exists?.answer?.includes(`${index+1}`) || false}
+                    onChange={(e) => handleCheckboxChange(e, `${index+1}`)}
+                  />
+                  <label htmlFor={"rbt-checkbox-"+`${index+1}`}>
+                    {answer.answer}
+                  </label>
+                </p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </>
