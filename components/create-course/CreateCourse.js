@@ -124,7 +124,7 @@ const CreateCourse = () => {
     try {
 
       if (formData?.title && formData?.course) {
-        const response = await axiosInstance.post("/topic/", formData, {
+        const response = await axiosInstance.post("/topics/", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -267,7 +267,7 @@ const CreateCourse = () => {
 
     try {
       const response = await axiosInstance.post(
-        "/course/",
+        "/courses/",
         formData,
         {
           headers: {
@@ -323,11 +323,11 @@ const CreateCourse = () => {
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get("/category/");
-        setCategories(response.data);
+        setCategories(response.data.data);
         const response_level = await axiosInstance.get("/level/");
-        setLevels(response_level.data);
+        setLevels(response_level.data.data);
         const response_lang = await axiosInstance.get("/language/");
-        setLanguages(response_lang.data);
+        setLanguages(response_lang.data.data);
       } catch (err) {
         console.error(err);
       }
@@ -559,7 +559,7 @@ const CreateCourse = () => {
             <div className="col-lg-4">
               <Link
                 className="rbt-btn hover-icon-reverse bg-primary-opacity w-100 text-center"
-                href="/kurs-barada"
+                href="/course-details"
               >
                 <span className="icon-reverse-wrapper">
                   <span className="btn-text">
@@ -1016,7 +1016,7 @@ export default CreateCourse;
 
 
 // const loadOptions = async (inputValue) => {
-//   const url = !inputValue ? "/api/courses" : `/api/course/?search=${inputValue}`; 
+//   const url = !inputValue ? "/api/courses" : `/api/courses/?search=${inputValue}`; 
 
 //   try {
 

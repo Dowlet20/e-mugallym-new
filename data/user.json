@@ -26,8 +26,8 @@
         },
         {
           "icon": "feather-shopping-bag",
-          "text": "Bellenen kurslar",
-          "link": "/instructor/instructor-enrolled-course"
+          "text": "Kurs döretmek",
+          "link": "/kurs-doret"
         },
         {
           "icon": "feather-star",

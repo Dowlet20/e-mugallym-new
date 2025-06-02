@@ -87,7 +87,7 @@ const InfoForm = ({
     setSelectedLanguage(value);
   }
 
-  
+  console.log(categories)
 
   return (
     <>
@@ -655,7 +655,7 @@ export default InfoForm;
     
   //   try {
   //     const response = await axiosInstance.post(
-  //       "/api/course/", 
+  //       "/api/courses/", 
   //       formData, 
   //       {
   //         headers: {

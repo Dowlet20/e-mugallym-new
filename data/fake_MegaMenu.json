@@ -211,7 +211,7 @@
         },
         {
           "title": "Create Course",
-          "link": "/create-course",
+          "link": "/kurs-doret",
           "subTitle": "New"
         }
       ]
@@ -370,7 +370,7 @@
         },
         {
           "title": "Create Course",
-          "link": "/create-course"
+          "link": "/kurs-doret"
         }
       ],
       "gridMenuItems2": [

@@ -33,7 +33,7 @@ const InstructorDashboardHeader = () => {
             <div className="tutor-btn">
               <Link 
                 className="rbt-btn btn-md hover-icon-reverse" 
-                href="create-course"
+                href="/kurs-doret"
               >
                 <span className="icon-reverse-wrapper">
                   <span className="btn-text">Täze kurs döret</span>
