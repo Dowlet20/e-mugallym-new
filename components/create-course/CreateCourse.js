@@ -124,7 +124,7 @@ const CreateCourse = () => {
     try {
 
       if (formData?.title && formData?.course) {
-        const response = await axiosInstance.post("/topics/", formData, {
+        const response = await axiosInstance.post("/topic/", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -135,7 +135,7 @@ const CreateCourse = () => {
       }
 
     } catch (err) {
-      console.error(err);
+      console.log(err);
       return;
     }
   }
@@ -143,8 +143,9 @@ const CreateCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
+    console.log("slam")
     if (!title) {
+      console.log("slam title")
       setError((prevError) => ({
         ...prevError,
         kurs_title: false
@@ -154,6 +155,7 @@ const CreateCourse = () => {
     }
 
     if (!short_description) {
+      console.log("slam short_description")
       setError((prevError) => ({
         ...prevError,
         short_description: false
@@ -163,6 +165,7 @@ const CreateCourse = () => {
     }
 
     if (selectedValues.length === 0) {
+      console.log("slam selectedValues")
       setError((prevError) => ({
         ...prevError,
         selectedValues: false
@@ -172,6 +175,7 @@ const CreateCourse = () => {
     }
 
     if (!selectedLevel) {
+      console.log("slam selectedLevel")
       setError((prevError) => ({
         ...prevError,
         selectedLevel: false
@@ -181,6 +185,7 @@ const CreateCourse = () => {
     }
 
     if (!selectedLanguage) {
+      console.log("slam selectedLanguage")
       setError((prevError) => ({
         ...prevError,
         selectedLanguage: false
@@ -190,6 +195,7 @@ const CreateCourse = () => {
     }
 
     if (paid && !price) {
+      console.log("slam paid price")
       setError((prevError) => ({
         ...prevError,
         price: false
@@ -199,6 +205,7 @@ const CreateCourse = () => {
     }
 
     if (!selectedImage) {
+      console.log("slam selectedImage")
       setError((prevError) => ({
         ...prevError,
         selectedImage: false
@@ -208,6 +215,7 @@ const CreateCourse = () => {
     }
 
     if (!requirements) {
+      console.log("slam requirements")
       setError((prevError) => ({
         ...prevError,
         requirements: false
@@ -217,6 +225,7 @@ const CreateCourse = () => {
     }
 
     if (!description) {
+      console.log("slam description")
       setError((prevError) => ({
         ...prevError,
         description: false
@@ -226,6 +235,7 @@ const CreateCourse = () => {
     }
 
     if (!learning_outcomes) {
+      console.log("slam learning_outcomes")
       setError((prevError) => ({
         ...prevError,
         learning_outcomes: false
@@ -234,14 +244,15 @@ const CreateCourse = () => {
       return;
     }
 
-    if (!teacherId) {
-      setError((prevError) => ({
-        ...prevError,
-        teacherId: false
-      }));
-      progressRef.current.click();
-      return;
-    }
+    // if (!teacherId) {
+    //   console.log("slam teacherID")
+    //   setError((prevError) => ({
+    //     ...prevError,
+    //     teacherId: false
+    //   }));
+    //   progressRef.current.click();
+    //   return;
+    // }
 
     setLoading(true);
 
@@ -250,7 +261,7 @@ const CreateCourse = () => {
     formData.append('short_description', short_description);
     formData.append('description', description);
     formData.append('learning_outcomes', learning_outcomes);
-    formData.append('user', teacherId);
+    //formData.append('user', teacherId); ???
     formData.append('requirements', requirements);
     formData.append('level', selectedLevel);
     formData.append('language', selectedLanguage);
@@ -260,14 +271,16 @@ const CreateCourse = () => {
     formData.append('thumbnail', selectedImage);
     formData.append('price', price);
     formData.append('discount', discount);
-    formData.append('is_active', false);
+    //formData.append('is_active', false);
     formData.append('paid', paid);
     formData.append('certified', certified);
     formData.append('start_date', start_date);
-
+  
+    console.log(formData)
+  
     try {
       const response = await axiosInstance.post(
-        "/courses/",
+        "/course/",
         formData,
         {
           headers: {
@@ -288,7 +301,7 @@ const CreateCourse = () => {
       }
 
     } catch (err) {
-      console.error(err);
+      console.log(err);
     } finally {
       setLoading(false);
       setTitle("");
@@ -574,6 +587,7 @@ const CreateCourse = () => {
                 </span>
               </Link>
             </div>
+
             <div className="col-lg-8">
               <button
                 type="button"
