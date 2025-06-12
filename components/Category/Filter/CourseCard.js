@@ -31,7 +31,7 @@ const CourseCard = ({data, toggle, handleRender}) => {
                 <Link href={`/kurs-barada/${data?.slug}`}>
                     <div style={{ height: toggle ? '244px' : '304px', overflow: 'hidden', position: 'relative' }}>
                     <img
-                        src={data?.thumbnail ? data?.thumbnail: "/images/course/course-01.jpg"}
+                        src={data?.thumbnail ? data?.thumbnail.replace("http://", "https://") : "/images/course/course-01.jpg"}
                         alt="Card image"
                         // layout="fill"
                         // objectFit="cover"
@@ -80,7 +80,7 @@ const CourseCard = ({data, toggle, handleRender}) => {
                     <div className="rbt-avater">
                         <Link href={`/cesme/${data?.source?.slug ? data?.source?.slug : ""}`}>
                             <img
-                                src={data?.source?.icon ? data?.source?.icon : "/images/client/avatar-02.png"}
+                                src={data?.source?.icon ? data?.source?.icon.replace("http://", "https://") : "/images/client/avatar-02.png"}
                                 width={33}
                                 height={33}
                                 alt="Sophia Jaymes"

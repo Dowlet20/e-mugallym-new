@@ -89,7 +89,7 @@ const Search = () => {
                     <a href={`/kurs-barada/${data?.slug}`}>
                     <div style={{ height: '128px', overflow: 'hidden', position: 'relative' }}>
                         <img
-                            src={data?.thumbnail ? data?.thumbnail  : "/images/course/course-01.jpg"}
+                            src={data?.thumbnail ? data?.thumbnail.replace("http://", "https://")  : "/images/course/course-01.jpg"}
                             alt="Card image"
                             // layout="fill" 
                             // objectFit="cover" 

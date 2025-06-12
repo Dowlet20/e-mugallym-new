@@ -74,9 +74,9 @@ const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLe
                     )}
                   </div>
                 </div>
-                <div className="rbt-elements-area rbt-section-gap">
+                {/* <div className="rbt-elements-area rbt-section-gap">
                   <SearchThree />
-                </div>
+                </div> */}
                 <div className="col-lg-7 col-md-12">
                   <div className="rbt-sorting-list d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end">
                     <div className="rbt-short-item">
@@ -126,7 +126,7 @@ const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLe
                 />
               </div>
               <div className="container">
-            <div className="row mb--30">
+            {/* <div className="row mb--30">
               <div className="col-lg-12">
                 <div className="section-title text-center">
                   <span className="subtitle bg-primary-opacity">
@@ -138,8 +138,8 @@ const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLe
                   </h2>
                 </div>
               </div>
-            </div>
-            <div className="row mb--40 mb_sm--30">
+            </div> */}
+            {/* <div className="row mb--40 mb_sm--30">
               <div className="col-lg-12">
                 <div className="rbt-course-tab-button-wrap">
                   <ul
@@ -169,7 +169,7 @@ const CategoryHeadTwo = ({ category, setSearch, setSelectedValues, setSelectedLe
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> */}
             </div>
             </div>
           </div>

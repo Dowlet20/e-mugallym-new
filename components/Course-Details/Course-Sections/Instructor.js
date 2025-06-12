@@ -14,7 +14,7 @@ const Instructor = ({ checkMatchCourses, course }) => {
             <div className="thumbnail">
               <Link href={`/cesme/${course?.source?.slug ? course?.source?.slug : ""}`}>
                 <img
-                  src={course?.source?.icon ? course?.source?.icon  : "/images/client/avatar-02.png"}
+                  src={course?.source?.icon ? course?.source?.icon.replace("http://", "https://")  : "/images/client/avatar-02.png"}
                   width={250}
                   height={250}
                   alt={course?.source?.title}

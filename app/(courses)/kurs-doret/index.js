@@ -6,25 +6,25 @@ import Context from "@/context/Context";
 import HeaderStyleTen from "@/components/Header/HeaderStyle-Ten";
 import MobileMenu from "@/components/Header/MobileMenu";
 import Cart from "@/components/Header/Offcanvas/Cart";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+// import { useEffect, useState } from "react";
+// import { useRouter } from "next/navigation";
 
 import Separator from "@/components/Common/Separator";
 import FooterTwo from "@/components/Footer/Footer-Two";
 import CreateCourse from "@/components/create-course/CreateCourse";
 
 const CreateCoursePage = () => {
-  const router = useRouter();
+  // const router = useRouter();
   
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const id = localStorage.getItem('teacher_id');
-      if (!id) {
-        router.push('/become-a-teacher'); 
-      }
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     const id = localStorage.getItem('teacher_id');
+  //     if (!id) {
+  //       router.push('/become-a-teacher'); 
+  //     }
+  //   }
+  // }, [router]);
   
   return (
     <>
