@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import img from "../../public/images/banner/banner-01.png";
+import img from "../../public/images/banner/banner-01-new.jpg";
 import shape1 from "../../public/images/shape/shape-01.png";
 import shape2 from "../../public/images/shape/shape-02.png";
 

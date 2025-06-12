@@ -52,10 +52,10 @@
   ],
   "aboutTwo": [
     {
-      "tag": "KNOW ABOUT US",
-      "title": "Know About Histudy",
-      "subTitle": " Learning Platform",
-      "desc": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+      "tag": "Biz hakda bil",
+      "title": "E-Mugallym",
+      "subTitle": "Bilim platformasy",
+      "desc": "Taslamanyň konsepsiýasy bilim pudagy üçin ähli peýdaly maglumatlary özünde jemleýän umumy informasion bilim platformasyny döretmekden ybarat.",
       "images": [
         {
           "id": 1,
@@ -81,16 +81,22 @@
       ],
       "children": [
         {
-          "title": "Flexible Classes",
+          "title": "Siziň isleýän kurslaryňyz",
           "icon": "feather-heart",
           "isPrimary": false,
-          "info": "It is a long established fact that a reader will be distracted by this on readable content of when looking at its layout."
+          "info": ""
         },
         {
-          "title": "Learn From Anywhere",
+          "title": "Islendik ýerden öwreniň",
           "icon": "feather-book",
           "isPrimary": true,
-          "info": "Sed distinctio repudiandae eos recusandae laborum eaque non eius iure suscipit laborum eaque non eius iure suscipit."
+          "info": ""
+        },
+        {
+          "title": "Tejribeli mugallymyň hyzmaty.",
+          "icon": "feather-monitor",
+          "isPrimary": false,
+          "info": ""
         }
       ]
     }

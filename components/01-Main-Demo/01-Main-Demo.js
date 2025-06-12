@@ -47,14 +47,14 @@ const MainDemo = ({ blogs }) => {
                                             <a href="#"><i className="fa fa-star"></i></a>
                                         </div>
                                     </div>
-                                    <span className="subtitle">12500+ Trust Customer</span>
+                                    <span className="subtitle">12500+ ulanyjylar</span>
                                 </div>
 
                                 <div className="banner-badge-top">
                                     <div className="icon">
                                         <img src="/images/icons/elite.svg" alt="Icons Images"/>
                                     </div>
-                                    <span className="subtitle">Envato Elite Author</span>
+                                    <span className="subtitle">Ýokary derejeli mugallymlar</span>
                                 </div>
                             </div>
                             <h1 className="title">Have your dream site in minutes <br /> for
@@ -76,6 +76,7 @@ const MainDemo = ({ blogs }) => {
                     </div>
                     <div className="col-lg-12 col-xl-6 order-1 order-xl-2">
                         <div className="video-popup-wrapper">
+                          {/* duzetmeli */}
                             <img className="w-100 rbt-radius" src="/images/splash/banner-group-image.png" alt="Video Images"/>
                             <a className="rbt-btn rounded-player-2 popup-video position-to-top with-animation d-none" href="https://www.youtube.com/watch?v=nA1Aqp0sPQo">
                                 <span className="play-icon"></span>
@@ -326,7 +327,7 @@ const MainDemo = ({ blogs }) => {
           </div>
         </div>
 
-        <div className="rbt-rbt-blog-area rbt-section-gap bg-color-extra2">
+        {/* <div className="rbt-rbt-blog-area rbt-section-gap bg-color-extra2">
           <div className="container">
             <div className="row g-5 align-items-center mb--30">
               <div className="col-lg-6 col-md-6 col-12">
@@ -356,11 +357,11 @@ const MainDemo = ({ blogs }) => {
             </div>
             <BlogGridTop BlogData={blogs} />
           </div>
-        </div>
+        </div> */}
 
-        <div className="rbt-newsletter-area newsletter-style-2 bg-color-primary rbt-section-gap">
+        {/* <div className="rbt-newsletter-area newsletter-style-2 bg-color-primary rbt-section-gap">
           <NewsletterTwo />
-        </div>
+        </div> */}
       </main>
     </>
   );

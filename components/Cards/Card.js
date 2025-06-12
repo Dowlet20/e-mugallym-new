@@ -1,12 +1,60 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react"
+import { Ripple } from 'react-css-spinners';
+import axiosInstance, {base_URL} from "@/utils/axiosInstance";
+import axios from "axios"
 
 import CourseDetails from "../../data/course-details/courseData.json";
+import CourseFilterOneToggle from "../Category/Filter/CourseFilterOneToggle";
 
 const Card = ({ start, end, col, mt, isDesc, isUser }) => {
+
+  const [courses, setCourse] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [total_items, setTotal_items] =useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = base_URL+`/course/?page=1`;
+        const response = await axios.get(
+          url,
+          {
+            headers: {
+              'Authorization': `Bearer ${sessionStorage.getItem("authToken")}`,
+              'Content-Type': 'application/json',
+            }
+          }
+        );
+        const allCourse = response.data.items;
+        
+        setCourse(allCourse);
+        setTotalPages(response.data.total_pages);
+        setTotal_items(response.data.total_items);
+        // localStorage.setItem('currentPage', page);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, [setTotalPages, setCourse]);
+
+
+
+  if (loading) {
+    return (
+      <></>
+    );
+  }
+
+  console.log(courses)
+
   return (
     <>
-      {CourseDetails &&
+      {/* {CourseDetails &&
         CourseDetails.courseDetails.slice(start, end).map((data, index) => (
           <div
             className={`${col} ${mt}`}
@@ -117,7 +165,22 @@ const Card = ({ start, end, col, mt, isDesc, isUser }) => {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
+        <div className="container">
+                <CourseFilterOneToggle
+                  course={courses}
+                  //handleRender={handleRender}
+                />
+                {/* <div className="row">
+                  <div className="col-lg-12 mt--60">
+                    <Pagination
+                      totalPages={totalPages}
+                      pageNumber={page}
+                      handleClick={handleClick}
+                    />
+                  </div>
+                </div> */}
+              </div>
     </>
   );
 };

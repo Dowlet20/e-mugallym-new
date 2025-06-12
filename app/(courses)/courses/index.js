@@ -20,11 +20,11 @@ import { Ripple } from 'react-css-spinners';
 const CourseFilteTwoTogglePage = () => {
   const [taze,  setTaze] = useState(false);
   const [courses, setCourse] = useState([]);
-  const [total_items, setTotal_items] =useState(0);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [total_items, setTotal_items] =useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [selectedValues, setSelectedValues] = useState([]);
   const [selectedLevels, setSelectedLevels] = useState([]);
   const [selectedSources, setSelectedSources] = useState([]);

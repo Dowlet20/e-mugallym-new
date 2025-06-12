@@ -121,10 +121,10 @@ const AboutTwo = () => {
                 <div className="about-btn mt--40">
                   <Link
                     className="rbt-btn btn-gradient hover-icon-reverse"
-                    href="#"
+                    href="/biz-barada"
                   >
                     <span className="icon-reverse-wrapper">
-                      <span className="btn-text">More About Us</span>
+                      <span className="btn-text">Biz barada</span>
                       <span className="btn-icon">
                         <i className="feather-arrow-right"></i>
                       </span>

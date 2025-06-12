@@ -17,7 +17,7 @@ const FooterThree = () => {
         <div className="footer-top">
           <div className="container">
             {FooterData &&
-              FooterData.footerOne.map((footer, index) => (
+              FooterData.footerTwo.map((footer, index) => (
                 <div className="row row--15 mt_dec--30" key={index}>
                   <div className="col-lg-4 col-md-6 col-sm-6 col-12 mt--30">
                     <div className="footer-widget">
@@ -51,7 +51,7 @@ const FooterThree = () => {
                           href="#"
                         >
                           <div className="icon-reverse-wrapper">
-                            <span className="btn-text">Contact With Us</span>
+                            <span className="btn-text">Biz bilen habarlaşyň</span>
                             <span className="btn-icon">
                               <i className="feather-arrow-right"></i>
                             </span>
@@ -64,21 +64,23 @@ const FooterThree = () => {
                     </div>
                   </div>
 
-                  <SingleFooter
+                  {/* <SingleFooter
                     classOne="offset-lg-1 col-lg-2 col-md-6 col-sm-6 col-12 mt--30"
                     title="Useful Links"
                     footerType={footer.usefulLinks}
-                  />
+                  /> */}
+                  <div className="offset-lg-1 col-lg-2 col-md-6 col-sm-6 col-12 mt--30">
+                  </div>
 
                   <SingleFooter
                     classOne="col-lg-2 col-md-6 col-sm-6 col-12 mt--30"
-                    title="Our Company"
+                    title="Ulgam barada"
                     footerType={footer.ourCompany}
                   />
 
                   <div className="col-lg-3 col-md-6 col-sm-6 col-12 mt--30">
                     <div className="footer-widget">
-                      <h5 className="ft-title">Get Contact</h5>
+                      <h5 className="ft-title">Habarlaşmak</h5>
                       <ul className="ft-link">
                         <li>
                           <span>Phone:</span>
@@ -94,7 +96,7 @@ const FooterThree = () => {
                           <span>Location:</span> {footer.address}
                         </li>
                       </ul>
-                      <ul className="social-icon social-default icon-naked justify-content-start mt--20">
+                      {/* <ul className="social-icon social-default icon-naked justify-content-start mt--20">
                         {footer.socialLink.map((value, innerIndex) => (
                           <li key={innerIndex}>
                             <Link href={value.link}>
@@ -102,7 +104,7 @@ const FooterThree = () => {
                             </Link>
                           </li>
                         ))}
-                      </ul>
+                      </ul> */}
                     </div>
                   </div>
                 </div>
