@@ -147,7 +147,7 @@ const LessonPage = () => {
                      url={lesson_slug ? `${new_base_URL}/video/${lesson?.video_name}` : "https://www.youtube.com/embed/qKzhrXqT6oE"}
                      width="100%"
                      height="100%"
-                     playing={true} 
+                     playing={false} 
                      controls={true} 
                      light={false}
                    />

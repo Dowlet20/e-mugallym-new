@@ -7,9 +7,9 @@ import AboutData from "../../data/elements/about.json";
 
 import { useParallax } from "react-scroll-parallax";
 
-import aboutImg1 from "../../public/images/about/about-01.png";
-import aboutImg2 from "../../public/images/about/about-02.png";
-import aboutImg3 from "../../public/images/about/about-03.png";
+import aboutImg1 from "../../public/images/about/about-01-new.png";
+import aboutImg2 from "../../public/images/about/about-02-new.png";
+import aboutImg3 from "../../public/images/about/about-03-new.png";
 
 const AboutTwo = () => {
   const { ref: ref1, style: style1 } = useParallax({
