@@ -33,7 +33,7 @@ const HomeCourses = ({ start, end }) => {
                     />
                     <div className="rbt-badge-3 bg-white">
                       <span>-{data.discount}%</span>
-                      <span>Off</span>
+                      <span>arzan</span>
                     </div>
                   </Link>
                 </div>
@@ -41,11 +41,11 @@ const HomeCourses = ({ start, end }) => {
                   <ul className="rbt-meta">
                     <li>
                       <i className="feather-book"></i>
-                      {data.lesson} Lessons
+                      {data.lesson} Sapaklar
                     </li>
                     <li>
                       <i className="feather-users"></i>
-                      {data.student} Students
+                      {data.student} Studentler
                     </li>
                   </ul>
                   <h4 className="rbt-card-title">
@@ -63,19 +63,19 @@ const HomeCourses = ({ start, end }) => {
                       <i className="fas fa-star"></i>
                     </div>
                     <span className="rating-count">
-                      ({data.review} Reviews)
+                      ({data.review} baha)
                     </span>
                   </div>
                   <div className="rbt-card-bottom">
                     <div className="rbt-price">
-                      <span className="current-price">${data.price}</span>
-                      <span className="off-price">${data.offPrice}</span>
+                      <span className="current-price">{data.price} TMT</span>
+                      <span className="off-price">{data.offPrice} TMT</span>
                     </div>
                     <Link
                       className="rbt-btn-link"
                       href={`/course-details/${data.id}`}
                     >
-                      Learn More
+                      giňişleýin
                       <i className="feather-arrow-right"></i>
                     </Link>
                   </div>

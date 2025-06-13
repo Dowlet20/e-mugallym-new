@@ -30,7 +30,7 @@ const Card = ({ start, end, col, mt, isDesc, isUser }) => {
         );
         const allCourse = response.data.items;
         
-        setCourse(allCourse);
+        setCourse(allCourse.slice(0,3));
         setTotalPages(response.data.total_pages);
         setTotal_items(response.data.total_items);
         // localStorage.setItem('currentPage', page);

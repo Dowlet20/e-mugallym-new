@@ -56,7 +56,7 @@ const TeamThree = () => {
                     <div className="thumbnail">
                       <Link href={`/cesme/${source?.slug}`}>
                         <img
-                          src={source?.icon ? `${baseUrl}${source?.icon}` : "/images/team/team-01.jpg"}
+                          src={source?.icon ? `${baseUrl.replace("/gateway", "")}${source?.icon}` : "/images/team/team-01.jpg"}
                           width={415}
                           height={555}
                           priority

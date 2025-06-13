@@ -7,25 +7,25 @@
       "desc": "There are many variations of passages of the Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
       "body": [
         {
-          "text": "Learners & counting",
+          "text": "Öwrenmeklik",
           "num": 500,
           "img": "/images/icons/counter-01.png",
           "top": true
         },
         {
-          "text": "Courses & Video",
+          "text": "Kurslar we wideolar",
           "num": 800,
           "img": "/images/icons/counter-02.png",
           "top": false
         },
         {
-          "text": "Certified Students",
+          "text": "Sertifikatlaşdyrylan studentler",
           "num": 1000,
           "img": "/images/icons/counter-03.png",
           "top": true
         },
         {
-          "text": "Registered Enrolls",
+          "text": "kursa hasaba alnanlar",
           "num": 100,
           "img": "/images/icons/counter-04.png",
           "top": false

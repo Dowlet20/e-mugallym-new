@@ -57,21 +57,21 @@ const MainDemo = ({ blogs }) => {
                                     <span className="subtitle">Ýokary derejeli mugallymlar</span>
                                 </div>
                             </div>
-                            <h1 className="title">Have your dream site in minutes <br /> for
+                            <h1 className="title">Siziň ygtybarly çeşmäniz <br /> {" "}
                                 <span className="cd-headline slide">
                                     <span className="cd-words-wrapper">
-                                        <b className="is-hidden theme-gradient">Online Course.</b>
-                                        <b className="is-visible theme-gradient">Like Udemy.</b>
-                                        <b className="is-hidden theme-gradient">School.</b>
-                                        <b className="is-hidden theme-gradient">University.</b>
-                                        <b className="is-hidden theme-gradient">High School.</b>
-                                        <b className="is-hidden theme-gradient">Kindergarden.</b>
+                                        <b className="is-hidden theme-gradient">Online kurs.</b>
+                                        <b className="is-visible theme-gradient">E-mugallym.</b>
+                                        <b className="is-hidden theme-gradient">Mekdep.</b>
+                                        <b className="is-hidden theme-gradient">Uniwersitet.</b>
+                                        <b className="is-hidden theme-gradient">Ýokary okuw jaýy.</b>
+                                        {/* <b className="is-hidden theme-gradient">Kindergarden.</b> */}
                                     </span>
                                 </span>
                             </h1>
-                            <p className="description">The most <strong>powerful</strong> yet the
+                            {/* <p className="description">The most <strong>powerful</strong> yet the
                                 <strong>easiest</strong> template ever.
-                            </p>
+                            </p> */}
                         </div>
                     </div>
                     <div className="col-lg-12 col-xl-6 order-1 order-xl-2">
@@ -118,9 +118,8 @@ const MainDemo = ({ blogs }) => {
                                                 <img src="/images/icons/icons-01.png" alt="Icon Images"/>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title">Fast Performance</h4>
-                                                <p>Optimized for a smaller build size, faster dev compilation and dozens of
-                                                    other improvements.</p>
+                                                <h4 className="title">Ýokary netijelilik bilen</h4>
+                                                <p>Kiçi göwrümli, kompilýasiýa we onlarça täzelik üçin optimizasiýa edilen.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -131,9 +130,8 @@ const MainDemo = ({ blogs }) => {
                                                 <img src="/images/icons/icons-02.png" alt="Icon Images"/>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title">Perfect Responsive</h4>
-                                                <p>Our template is full perfect for all device. You can visit our template all
-                                                    device easily.</p>
+                                                <h4 className="title">Ýokary derejeli dizaýn</h4>
+                                                <p>Web sahypamyz ähli enjamlar bilen doly laýyk gelýär — islän enjamyňyzdan aňsatlyk bilen görüp bilersiňiz!</p>
                                             </div>
                                         </div>
                                     </div>
@@ -144,9 +142,8 @@ const MainDemo = ({ blogs }) => {
                                                 <img src="/images/icons/icons-03.png" alt="Icon Images"/>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title">Fast &amp; Friendly Support</h4>
-                                                <p>We are provide 24 hours support for all clients.You can purchase without
-                                                    hesitation.</p>
+                                                <h4 className="title">Ynamly we amatly hyzmatlar </h4>
+                                                <p>Ähli müşderilerimiz üçin 24 sagatlyk goldaw berýäris — arkaýynlykda satyn alyp bilersiňiz!</p>
                                             </div>
                                         </div>
                                     </div>
@@ -157,8 +154,9 @@ const MainDemo = ({ blogs }) => {
                                                 <img src="/images/icons/icons-04.png" alt="Icon Images"/>
                                             </div>
                                             <div className="content">
-                                                <h4 className="title">Easy to Use</h4>
-                                                <p>Create your own custom template or section by copying, pasting, and assembling.
+                                                <h4 className="title">Ulanylmagy aňsat</h4>
+                                                <p>
+                                                  Kämilleşmek üçin iň gowy kurs kategoriýalaryndan öwreniň
                                                 </p>
                                             </div>
                                         </div>
@@ -193,10 +191,10 @@ const MainDemo = ({ blogs }) => {
               <div className="col-lg-12">
                 <div className="section-title text-center">
                   <span className="subtitle bg-primary-opacity">
-                    CATEGORIES
+                    Kategoriýalar
                   </span>
                   <h2 className="title">
-                    Explore Top Courses Caterories <br /> That Change Yourself
+                    Kämilleşmek üçin iň gowy kurs  <br /> kategoriýalaryndan öwreniň
                   </h2>
                 </div>
               </div>
@@ -213,10 +211,10 @@ const MainDemo = ({ blogs }) => {
               <div className="col-lg-12">
                 <div className="section-title text-center">
                   <span className="subtitle bg-secondary-opacity">
-                    Top Popular Course
+                    Iň meşhur kurslar
                   </span>
                   <h2 className="title">
-                    Histudy Course student <br /> can join with us.
+                    E-mugallym kursynyň  <br /> talyby bize goşulyp biler.
                   </h2>
                 </div>
               </div>
@@ -239,7 +237,7 @@ const MainDemo = ({ blogs }) => {
                     href="#"
                   >
                     <span className="icon-reverse-wrapper">
-                      <span className="btn-text">Load More Course (40)</span>
+                      <span className="btn-text">Hemmesini aç (40)</span>
                       <span className="btn-icon">
                         <i className="feather-arrow-right"></i>
                       </span>
@@ -293,7 +291,7 @@ const MainDemo = ({ blogs }) => {
           <TestimonialSeven />
         </div> */}
 
-        <div className="rbt-event-area rbt-section-gap bg-gradient-3">
+        {/* <div className="rbt-event-area rbt-section-gap bg-gradient-3">
           <div className="container">
             <div className="row mb--55">
               <div className="section-title text-center">
@@ -309,7 +307,7 @@ const MainDemo = ({ blogs }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="rbt-team-area bg-color-white rbt-section-gap">
           <div className="container">
@@ -317,9 +315,9 @@ const MainDemo = ({ blogs }) => {
               <div className="col-lg-12">
                 <div className="section-title text-center">
                   <span className="subtitle bg-primary-opacity">
-                    Our Teacher
+                    Biziň Mugallymlarymyz
                   </span>
-                  <h2 className="title">Whose Inspirations You</h2>
+                  <h2 className="title">Kimiň ylhamlary siz</h2>
                 </div>
               </div>
             </div>

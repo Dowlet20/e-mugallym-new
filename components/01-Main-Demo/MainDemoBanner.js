@@ -16,17 +16,16 @@ const MainDemoBanner = () => {
             <div className="content">
               <div className="inner">
                 <div className="rbt-new-badge rbt-new-badge-one">
-                  <span className="rbt-new-badge-icon">🏆</span> The Leader in
-                  Online Learning
+                  <span className="rbt-new-badge-icon">🏆</span> 
+                  Onlaýn kurslary öwrenmeklik
                 </div>
 
                 <h1 className="title">
-                  Build The Skills <br /> To Drive Your Career.
+                  E-mugallym bilen  <br /> bilimi öňe sürmek.
                 </h1>
                 <p className="description">
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint.
-                  <strong> Velit officia consequat.</strong>
+                  Islän enjamyňyzdan aňsatlyk<br /> bilen görüp bilersiňiz!
+                  <strong> Ýokary derejeli dizaýn.</strong>
                 </p>
                 <div className="slider-btn">
                   <Link
@@ -46,7 +45,7 @@ const MainDemoBanner = () => {
                 </div>
               </div>
               <div className="shape-wrapper" id="scene">
-                <Image src={img} width={1200} height={1400} alt="Hero Image" />
+                {/* <Image src={img} width={1200} height={1400} alt="Hero Image" /> */}
                 <div className="hero-bg-shape-1 layer" data-depth="0.4">
                   <Image
                     src={shape1}

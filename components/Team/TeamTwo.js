@@ -45,7 +45,7 @@ const TeamTwo = () => {
                           </span>
                         </div>
                         <p>{item.desc}</p>
-                        <ul className="social-icon social-default mt--20 justify-content-start">
+                        {/* <ul className="social-icon social-default mt--20 justify-content-start">
                           <li>
                             <Link href="https://www.facebook.com/">
                               <i className="feather-facebook"></i>
@@ -61,7 +61,7 @@ const TeamTwo = () => {
                               <i className="feather-instagram"></i>
                             </Link>
                           </li>
-                        </ul>
+                        </ul> */}
                         <ul className="rbt-information-list mt--25">
                           <li>
                             <Link href="#">

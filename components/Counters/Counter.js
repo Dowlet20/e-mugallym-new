@@ -23,9 +23,9 @@ const Counter = ({ isDesc, head }) => {
               <CounterHead
                 bgClass="bg-primary-opacity"
                 mb="mb--40"
-                tag={data.tag}
-                title={data.title}
-                subTitle={data.subTitle}
+                tag={"NÄME ÜÇIN BIZ"}
+                title={"Ömürboýy öwrenýänleriň jemgyýetini"}
+                subTitle={"döredýäris."}
                 desc={isDesc ? data.desc : ""}
               />
             ) : (
